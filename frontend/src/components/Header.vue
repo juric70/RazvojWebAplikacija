@@ -16,12 +16,10 @@
   
     <div id="headerIcon">
         <img class="headerIcon" :src="require('../assets/profilePictureIcon.png')"/>
-        <button @click="(isOpened= !isOpened)" >
-        <img class="headerIcon" :src="require('../assets/SearchIcon.png')" />
-        </button> 
+        <img class="headerIcon" :src="require('../assets/SearchIcon.png')"/>
     </div>
     <div id="searchInputDiv">
-        <input type="text" v-model="text" id="searchInput" v-if="isOpened">
+        <input type="text" v-model="text" id="searchInput">
     </div>
   </div>
       
@@ -33,12 +31,7 @@
 
 <script>
 export default{
-    name: 'Header',
-    data(){
-        return{
-            isOpened: false
-        }
-    }
+    name: 'Header'
 }
 </script>
 
@@ -53,9 +46,6 @@ header{
   background-color:  #007399;
   height: 58px;
   overflow: hidden;
-}button{
-    background-color: #007399;
-    border: 0;
 }
 header a{
   display:inline-block;
@@ -95,8 +85,6 @@ header a:hover{
 
 }
 #searchInput{
-    
-
     width: 200px;
     height: 25px;
     border-radius: 15px;
