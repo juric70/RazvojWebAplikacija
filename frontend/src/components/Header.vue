@@ -16,9 +16,9 @@
   
     <div id="headerIcon">
         <img class="headerIcon" :src="require('../assets/profilePictureIcon.png')"/>
-        <img class="headerIcon" :src="require('../assets/SearchIcon.png')"/>
+        <img class="headerIcon" :src="require('../assets/SearchIcon.png')" @click="(isOpened = !isOpened)"/>
     </div>
-    <div id="searchInputDiv">
+    <div id="searchInputDiv" v-if="isOpened" >
         <input type="text" v-model="text" id="searchInput">
     </div>
   </div>
