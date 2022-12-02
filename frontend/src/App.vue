@@ -1,14 +1,18 @@
 <template>
   <Header/>
+  <MiddleContent/>
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import MiddleContent from './components/MiddleContent.vue'
+
 
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    MiddleContent
   }
 }
 </script>
