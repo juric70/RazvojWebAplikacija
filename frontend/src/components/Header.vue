@@ -3,14 +3,14 @@
 <header>
     <img id="headerImg" :src="require('../assets/logoOfClub.png')"/>
     <div id="headerMenuDiv">
-    <a href="#" class="headerItem">Novosti</a>
-    <a href="#" class="headerItem">Treninzi</a>
-    <a href="#" class="headerItem">Raspored</a>
-    <a href="#" class="headerItem">Treneri</a>
-    <a href="#" class="headerItem">Cjenik</a>
-    <a href="#" class="headerItem">Album</a>
-    <a href="#" class="headerItem">Podrška</a>
-    <a href="#" class="headerItem">O nama</a>   
+    <a href="#" class="headerItem">{{headerMenuNames[0]}}</a>
+    <a href="#" class="headerItem">{{headerMenuNames[1]}}</a>
+    <a href="#" class="headerItem">{{headerMenuNames[2]}}</a>
+    <a href="#" class="headerItem">{{headerMenuNames[3]}}</a>
+    <a href="#" class="headerItem">{{headerMenuNames[4]}}</a>
+    <a href="#" class="headerItem">{{headerMenuNames[5]}}</a>
+    <a href="#" class="headerItem">{{headerMenuNames[6]}}</a>
+    <a href="#" class="headerItem">{{headerMenuNames[7]}}</a>   
   </div>
   <div id="headerIconDiv">
   
@@ -36,7 +36,8 @@ export default{
     name: 'Header',
     data(){
         return{
-            isOpened: false
+            isOpened: false, 
+            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "O nama"]
         }
     }
 }
@@ -50,11 +51,11 @@ export default{
 }
 header{
   font-weight: bold;
-  background-color:  #007399;
+  background-color:  #03A9F4;
   height: 58px;
   overflow: hidden;
 }button{
-    background-color: #007399;
+    background-color: #03A9F4;
     border: 0;
 }
 header a{
@@ -83,7 +84,6 @@ header a:hover{
     padding:17px 15px;
 }
 #headerIcon{
-
     display: inline;
     float: right;
 }
@@ -92,14 +92,14 @@ header a:hover{
     display: inline;
     margin-left: px;
     float: right;
-
 }
 #searchInput{
-    
-
     width: 200px;
-    height: 25px;
+    padding:6px;
     border-radius: 15px;
     border: 1px solid lightgrey;
+}
+#searchInput:focus{
+    outline: none;
 }
 </style>
