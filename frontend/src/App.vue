@@ -1,18 +1,31 @@
 <template>
   <Header/>
   <MiddleContent/>
+  <News/>
+  <AboutUs/>
+  <AboutProject/>
+
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import MiddleContent from './components/MiddleContent.vue'
+import News from './components/News.vue'
+import AboutUs from './components/AboutUs.vue'
+import AboutProject from './components/AboutProject.vue'
+
+
+
 
 
 export default {
   name: 'App',
   components: {
     Header,
-    MiddleContent
+    MiddleContent,
+    News,
+    AboutUs,
+    AboutProject
   }
 }
 </script>
