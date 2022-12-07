@@ -1,12 +1,12 @@
 <template>
     <swiper
     :lazy="true"
-    :slidesPerView="2"
+    :slidesPerView="1.5"
     :loop="true"
       :spaceBetween="30"
       :centeredSlides="true"
       :autoplay="{
-        delay: 4500,
+        delay: 2500,
         disableOnInteraction: false,
       }"
       :pagination="{
@@ -14,87 +14,61 @@
       }"
       :navigation="true"
       :modules="modules"
+      :speed="750"
+      :on-transition-start="true"
       class="mySwiper"
     >
-      <swiper-slide> <img
-        data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
+      <swiper-slide> 
           <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
-      </swiper-slide>
-      <swiper-slide>        <img
-          data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
-          <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
-      </swiper-slide>
-      <swiper-slide>        <img
-          data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
-          <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
-      </swiper-slide>
-      <swiper-slide>
-        <img
-          data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
-          <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
-      </swiper-slide>
-      <swiper-slide>
-        <img
-          data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
-          <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
-      </swiper-slide>
-      <swiper-slide>        <img
-          data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
-     
-          <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white">
-     
+             class=" imgDiv">
+             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
+
+             <button class="NewsButtonClass">Procitaj Više!</button>
             </div>
       </swiper-slide>
-      <swiper-slide>
-        <img
-          data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
+
+      <swiper-slide> 
           <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
-      </swiper-slide>
-      <swiper-slide>
-        <img
-        data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
+             class=" imgDiv">
+             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
+             <button class="NewsButtonClass">Procitaj Više!</button>
+             
+            </div>
+      </swiper-slide> 
+      <swiper-slide> 
           <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
+             class=" imgDiv">
+             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
+             <button class="NewsButtonClass">Procitaj Više!</button>
+
+            </div>
       </swiper-slide>
-      <swiper-slide>
-        <img
-        data-src="https://swiperjs.com/demos/images/nature-2.jpg"
-          class="swiper-lazy"
-           />
+      <swiper-slide> 
           <div
-             class="swiper-lazy-preloader swiper-lazy-preloader-white"
-         ></div>
+             class=" imgDiv">
+             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
+             <button class="NewsButtonClass">Procitaj Više!</button>
+
+            </div>
       </swiper-slide>
+      <swiper-slide> 
+          <div
+             class=" imgDiv">
+             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
+             <button class="NewsButtonClass">Procitaj Više!</button>
+
+            </div>
+      </swiper-slide>   
+      <swiper-slide> 
+          <div
+             class=" imgDiv">
+             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
+             <button class="NewsButtonClass">Procitaj Više!</button>
+
+            </div>
+      </swiper-slide>
+
+     
     </swiper>
   </template>
   <script>
@@ -120,8 +94,14 @@
     setup() {
       return {
         modules: [Lazy, Autoplay, Pagination, Navigation],
+   
       };
     },
+    data(){
+      return{
+        urlPlivanje: '../assets/plivanje2.jpg'
+      }
+    }
   };
   </script>
 
@@ -147,15 +127,17 @@ body {
 
 .swiper {
   width: 100%;
-  height: 50%;
+  height: 70%;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
-height: 100%;
-margin: 20px 0;
+  transition: opacity 1s;  
+  opacity: 0.3;
+  height: 100%;
+  margin: 20px 0;
   /* Center slide text vertically */
   display: -webkit-box;
   display: -ms-flexbox;
@@ -170,12 +152,31 @@ margin: 20px 0;
   -webkit-align-items: center;
   align-items: center;
 }
-
+.imgDiv{
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/plivanje2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+.swiper-slide-active{
+  opacity: 0.8;
+}
 
+
+.NewsButtonClass{
+    width: 150px;
+    height: 45px;
+    padding:6px;
+    border-radius: 15px;
+    border: 1px solid white;
+    background-color: white;
+}
 </style>

@@ -44,8 +44,8 @@ export default{
 }
 #MiddleContentImg{
     width: 100%;
-    height: 400px;
-    background-image: url('../assets/swimingBackgroundImage.png');
+    height: 500px;
+    background-image: url('../assets/plivanje1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

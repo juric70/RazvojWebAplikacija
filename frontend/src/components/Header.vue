@@ -11,6 +11,10 @@
     <a href="#" class="headerItem">{{headerMenuNames[5]}}</a>
     <a href="#" class="headerItem">{{headerMenuNames[6]}}</a>
     <a href="#" class="headerItem">{{headerMenuNames[7]}}</a>   
+    <router-link to="/login">Login</router-link>
+    <router-link to="/">Home</router-link>
+
+    <component :is="currentView" />
   </div>
   <div id="headerIconDiv">
   
@@ -26,31 +30,38 @@
 
 
 </header>
-
+<router-view/>
 </template>
 
 <script>
+
 export default{
     name: 'Header',
+ 
     data(){
         return{
             isOpened: false, 
             headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "O nama"]
         }
-    }
+    },
+    
 }
 </script>
 
 <style lang="css">
 #headerImg{
     width: 60px;
-    height: 60px;
+    height: 50px;
     float: left;
 }
 header{
+    position: fixed;
+    opacity: 0.95;
+    width: 100%;
+    z-index: 99;
   font-weight: bold;
   background-color:  #03A9F4;
-  height: 58px;
+  height: 48px;
   overflow: hidden;
 }button{
     background-color: #03A9F4;
@@ -58,7 +69,7 @@ header{
 }
 header a{
   display:inline-block;
-  padding:20px 15px;
+  padding:16px 15px;
   color: #333333;
   text-decoration: none;
 }
@@ -79,14 +90,14 @@ header a:hover{
     width: 25px;
     height: 25px;
     float: right;
-    padding:17px 15px;
+    padding:15px 15px;
 }
 #headerIcon{
     display: inline;
     float: right;
 }
 #searchInputDiv{
-    padding:15px 15px;
+    padding:9px 15px;
     display: inline;
     margin-left: px;
     float: right;
