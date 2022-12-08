@@ -12,6 +12,7 @@
     <a href="#" class="headerItem">{{headerMenuNames[6]}}</a>
     <a href="#" class="headerItem">{{headerMenuNames[7]}}</a>   
     <router-link to="/login">Login</router-link>
+    <router-link to="/aboutUs">O nama</router-link>
     <router-link to="/">Home</router-link>
 
     <component :is="currentView" />
@@ -41,7 +42,7 @@ export default{
     data(){
         return{
             isOpened: false, 
-            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "O nama"]
+            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška"]
         }
     },
     
