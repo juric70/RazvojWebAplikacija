@@ -30,7 +30,7 @@
 
 
 </header>
-<router-view/>
+
 </template>
 
 <script>

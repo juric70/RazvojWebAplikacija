@@ -1,6 +1,6 @@
 <template>
   <Header/>
-  <RouterView></RouterView>
+  <RouterView/>
   <Login/>
 </template>
 
@@ -11,8 +11,6 @@ export default {
   name: 'App',
   components: {
     Header,
-
-  
   }
 }
 </script>
