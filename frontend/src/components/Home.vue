@@ -2,23 +2,17 @@
  <template>
     <MiddleContent/>
     <News/>
-    <AboutUs/>
-    <AboutProject/>
   
   </template>
   
   <script>
   import MiddleContent from './MiddleContent.vue'
   import News from './News.vue'
-  import AboutUs from './AboutUs.vue'
-  import AboutProject from './AboutProject.vue'
   export default {
     name: 'Home',
     components: {
       MiddleContent,
       News,
-      AboutUs,
-      AboutProject,
    
     }
   }

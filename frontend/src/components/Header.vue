@@ -1,8 +1,10 @@
 <template>
 
 <header>
-    <img id="headerImg" :src="require('../assets/logoOfClub.png')"/>
+    <router-link to="/" class="headerImg"> <img class="headerImg" :src="require('../assets/logoOfClub.png')"/></router-link>
+   
     <div id="headerMenuDiv">
+        
     <a href="#" class="headerItem">{{headerMenuNames[0]}}</a>
     <a href="#" class="headerItem">{{headerMenuNames[1]}}</a>
     <a href="#" class="headerItem">{{headerMenuNames[2]}}</a>
@@ -12,14 +14,16 @@
     <a href="#" class="headerItem">{{headerMenuNames[6]}}</a>
     <a href="#" class="headerItem">{{headerMenuNames[7]}}</a>   
     <router-link to="/login">Login</router-link>
-    <router-link to="/">Home</router-link>
+    <router-link to="/aboutUs">O nama</router-link>
+
 
     <component :is="currentView" />
   </div>
   <div id="headerIconDiv">
   
     <div id="headerIcon">
-        <img class="headerIcon" :src="require('../assets/profilePictureIcon.png')"/>
+        <router-link to="/profile" class="headerIcon" > <img class="headerIcon" id="headerIconProfile" :src="require('../assets/profilePictureIcon.png')"/></router-link>
+       
         <img class="headerIcon" :src="require('../assets/SearchIcon.png')" @click="(isOpened = !isOpened)"/>
     </div>
     <div id="searchInputDiv" v-if="isOpened" >
@@ -41,7 +45,7 @@ export default{
     data(){
         return{
             isOpened: false, 
-            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "O nama"]
+            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška"]
         }
     },
     
@@ -49,7 +53,7 @@ export default{
 </script>
 
 <style lang="css">
-#headerImg{
+.headerImg{
     width: 60px;
     height: 50px;
     float: left;
@@ -69,7 +73,7 @@ header{
 }
 header a{
   display:inline-block;
-  padding:16px 15px;
+
   color: #333333;
   text-decoration: none;
 }
@@ -91,10 +95,12 @@ header a:hover{
     height: 25px;
     float: right;
     padding:15px 15px;
+
 }
 #headerIcon{
     display: inline;
     float: right;
+    padding: 0;
 }
 #searchInputDiv{
     padding:9px 15px;
@@ -111,4 +117,11 @@ header a:hover{
 #searchInput:focus{
     outline: none;
 }
+.headerItem{
+    padding:16px 15px;
+}
+#headerIconProfile{
+    padding: 0;
+}
+
 </style>
