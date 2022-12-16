@@ -6,24 +6,28 @@
             </h1>
             <!-- <div class="RegisterCardPhoto"><img id="RegisterPhoto" src="../assets/PlivacProfilnaSlika.jpg"></div> -->
             <div class="RegisterInputBox">
-                <input type="text" placeholder="Ime">
+                <input type="text" placeholder="Korisničko ime" v-model="UserName">
+            </div> 
+            <div class="RegisterInputBox">
+                <input type="text" placeholder="Ime" v-model="FirstName">
             </div>
             <div class="RegisterInputBox">
-                <input type="text" placeholder="Prezime">
+                <input type="text" placeholder="Prezime" v-model="LastName">
+            </div> 
+         
+            <div class="RegisterInputBox">
+                <input type="email" placeholder="Email" v-model="Email">
             </div> 
             <div class="RegisterInputBox">
-                <input type="text" placeholder="Korisničko ime">
-            </div> 
-            <div class="RegisterInputBox">
-                <input type="email" placeholder="Email">
-            </div> 
+                <input type="text" placeholder="Broj Telefona" v-model="PhoneNumber">
+            </div>
             <div class="RegisterInputBox">
                 <input type="password" placeholder="Šifra">
             </div>
             <div class="RegisterInputBox">
                 <input type="password" placeholder="Provjera šifre">
             </div>  
-           <button class="RegisterButton">
+           <button class="RegisterButton" @click="registerUser">
                 Kreiraj račun!
             </button>
         </div>
@@ -33,8 +37,45 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default{
-    name: 'Register'
+    name: 'Register',
+    data(){
+        return{
+            UserName: "",
+            FirstName: "",
+            LastName: "",
+            Email: "",
+            PhoneNumber: ""
+        }
+    },
+    methods: {
+        registerUser: function(){
+            axios.post("/api/registerUser",{
+                UserName: this.UserName,
+                FirstName: this.FirstName,
+                LastName: this.LastName,
+                Email: this.Email,
+                PhoneNumber: this.PhoneNumber
+            }).then((res) => {
+                if(res.data.msg === "Validtion failed"){
+                    let errors = res.data.errors;
+                    let errorMsg = "";
+                }
+                else{
+                console.log(this.LastName + ' ' + this.FirstName)
+
+                    alert("Successfully Saved");
+                console.log(res.data)
+                }
+            
+            }).catch(()=>{
+                alert("Something Went Wrong");
+            })
+            
+        }
+    }
+    
 }
 </script>
 
@@ -58,8 +99,8 @@ justify-content: center;
 background-color: white;
 position: relative;
 width: 25%;
-top: 13%;
-transform: translateY(-13%);
+top: 10%;
+transform: translateY(-10%);
 left: 50%;
 transform: translateX(-50%);
 }
