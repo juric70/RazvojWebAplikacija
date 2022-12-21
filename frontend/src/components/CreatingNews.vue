@@ -41,7 +41,7 @@ export default {
             formData.append("Description", this.Description);
 
             axios
-            .post("/api/createNews", formData)
+            .post("/api/createNews", formData, {headers:{"content-type":"multipart/form-data"}})
             .then(res => {
                 console.log(res);
             })
