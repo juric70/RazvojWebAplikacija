@@ -5,30 +5,27 @@
    
     <div id="headerMenuDiv">
         
-    <a href="#" class="headerItem">{{headerMenuNames[0]}}</a>
-    <a href="#" class="headerItem">{{headerMenuNames[1]}}</a>
-    <a href="#" class="headerItem">{{headerMenuNames[2]}}</a>
-    <a href="#" class="headerItem">{{headerMenuNames[3]}}</a>
-    <a href="#" class="headerItem">{{headerMenuNames[4]}}</a>
-    <a href="#" class="headerItem">{{headerMenuNames[5]}}</a>
-    <a href="#" class="headerItem">{{headerMenuNames[6]}}</a>
-    <a href="#" class="headerItem">{{headerMenuNames[7]}}</a>   
-    <router-link to="/login">Login</router-link>
-    <router-link to="/aboutUs">O nama</router-link>
-
-
-    <component :is="currentView" />
-  </div>
+            <a href="#" class="headerItem">{{headerMenuNames[1]}}</a>
+            <a href="#" class="headerItem">{{headerMenuNames[2]}}</a>
+            <a href="#" class="headerItem">{{headerMenuNames[3]}}</a>
+            <a href="#" class="headerItem">{{headerMenuNames[4]}}</a>
+            <a href="#" class="headerItem">{{headerMenuNames[6]}}</a>
+            <router-link  class= "headerItem" to="/login">Login</router-link>
+            <router-link  class= "headerItem" to="/createNews">Napravi novost!</router-link>
+            <router-link  class= "headerItem" to="/aboutUs">O nama</router-link>
+    </div>
   <div id="headerIconDiv">
-  
     <div id="headerIcon">
         <router-link to="/profile" class="headerIcon" > <img class="headerIcon" id="headerIconProfile" :src="require('../assets/profilePictureIcon.png')"/></router-link>
        
         <img class="headerIcon" :src="require('../assets/SearchIcon.png')" @click="(isOpened = !isOpened)"/>
+        <img class="headerIcon dropdownMenuIcon" :src="require('../assets/menuIcon.png')" @click="(isOpenedMenu = !isOpenedMenu)" />
+
     </div>
     <div id="searchInputDiv" v-if="isOpened" >
         <input type="text" v-model="text" id="searchInput">
     </div>
+    <SideBar v-if="isOpenedMenu" @click="(isOpenedMenu = !isOpenedMenu)"></SideBar>
   </div>
       
 
@@ -38,14 +35,17 @@
 </template>
 
 <script>
-
+import SideBar from './SideBar.vue'
 export default{
     name: 'Header',
- 
+    components:{
+        SideBar
+    },
     data(){
         return{
             isOpened: false, 
-            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška"]
+            isOpenedMenu: false,
+            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "login", "o nama"]
         }
     },
     
@@ -122,6 +122,17 @@ header a:hover{
 }
 #headerIconProfile{
     padding: 0;
+}
+.dropdownMenuIcon{
+    display: none;
+}
+@media (max-width: 800px) {
+    .headerItem{
+        display: none;
+    }
+    .dropdownMenuIcon{
+        display: inline;
+    }
 }
 
 </style>

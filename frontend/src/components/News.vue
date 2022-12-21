@@ -1,14 +1,22 @@
 <template>
     <swiper
-    :lazy="true"
-    :slidesPerView="1.5"
     :loop="true"
+    :lazy="true"
+    :slidesPerView="1"
+    :breakpoints="{
+        700:{
+          slidesPerView: 1.5
+
+        }
+      }"
+      :autoplay="{
+      delay: 5500,
+      disableOnInteraction: false,
+    }"
+   
       :spaceBetween="30"
       :centeredSlides="true"
-      :autoplay="{
-        delay: 2500,
-        disableOnInteraction: false,
-      }"
+     
       :pagination="{
         clickable: true,
       }"
@@ -16,57 +24,58 @@
       :modules="modules"
       :speed="750"
       :on-transition-start="true"
+     
       class="mySwiper"
     >
       <swiper-slide> 
           <div
              class=" imgDiv">
-             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
+             <div class="newsAndBtn">
+              <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
 
-             <button class="NewsButtonClass">Procitaj Više!</button>
-            </div>
-      </swiper-slide>
-
-      <swiper-slide> 
-          <div
-             class=" imgDiv">
-             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
-             <button class="NewsButtonClass">Procitaj Više!</button>
+              <button class="NewsButtonClass">Procitaj Više!</button>
+              </div>
              
             </div>
-      </swiper-slide> 
+      </swiper-slide>
+
       <swiper-slide> 
           <div
              class=" imgDiv">
-             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
-             <button class="NewsButtonClass">Procitaj Više!</button>
+             <div class="newsAndBtn">
+              <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
 
+              <button class="NewsButtonClass">Procitaj Više!</button>
+              </div>
+             
             </div>
       </swiper-slide>
+      
       <swiper-slide> 
           <div
              class=" imgDiv">
-             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
-             <button class="NewsButtonClass">Procitaj Više!</button>
+             <div class="newsAndBtn">
+              <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
 
+              <button class="NewsButtonClass">Procitaj Više!</button>
+              </div>
+             
             </div>
       </swiper-slide>
+
       <swiper-slide> 
           <div
              class=" imgDiv">
-             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
-             <button class="NewsButtonClass">Procitaj Više!</button>
+             <div class="newsAndBtn">
+              <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
 
-            </div>
-      </swiper-slide>   
-      <swiper-slide> 
-          <div
-             class=" imgDiv">
-             <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
-             <button class="NewsButtonClass">Procitaj Više!</button>
-
+              <button class="NewsButtonClass">Procitaj Više!</button>
+              </div>
+             
             </div>
       </swiper-slide>
+
+      
 
      
     </swiper>
@@ -129,7 +138,13 @@ body {
   width: 100%;
   height: 70%;
 }
-
+@media 	(max-width: 700px) {
+  .swiper{
+    height: 40%;
+  }
+  
+  
+}
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -179,4 +194,11 @@ body {
     border: 1px solid white;
     background-color: white;
 }
+.newsAndBtn{
+  width: 94%;
+  position: fixed;
+  bottom: 10%;
+  margin: 3%;
+}
+
 </style>

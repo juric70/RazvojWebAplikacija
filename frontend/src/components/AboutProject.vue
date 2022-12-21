@@ -71,7 +71,7 @@
     <div id="AboutProjectLinks">
 
         <br>
-        <a href="https://docs.google.com/document/d/11cZBQ_qFBVd1KLtlQYnkseLDhYLLom3g/edit">Vizija</a>
+        <a href="https://docs.google.com/document/d/1Lb_jcY9TfMXmjVAo5A3Du7Dj2YziA28Q/edit?usp=sharing&ouid=117364038869354041994&rtpof=true&sd=true">Vizija</a>
         <br>
         <a href="https://github.com/juric70/RazvojWebAplikacija">GitHub</a>
     </div>
@@ -94,9 +94,7 @@
     
     <style>
     
-    #AboutProjectInfo{
-        height: 500px;
-    }
+  
     #AboutProjectTechnologiesDiv{
         height: 35%;
         display: inline-block;
@@ -129,9 +127,19 @@
         width: 90px;
         border-radius: 5PX;
     }
+    #AboutProjectLinks a{
+      
+        
+       
+        width: 50%;
+        font-size: 30px;
+        font-weight: bold;
+        float: left;
+        text-decoration: none;
+        color: lightskyblue;
+    }
     #AboutProjectLinks{
-        width: 100%;
-        height: 90px;
+        display: flex;
     }
     
     </style>

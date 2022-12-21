@@ -6,13 +6,13 @@
             </h1>
             <!-- <div class="RegisterCardPhoto"><img id="RegisterPhoto" src="../assets/PlivacProfilnaSlika.jpg"></div> -->
             <div class="RegisterInputBox">
-                <input type="text" placeholder="Korisničko ime" v-model="UserName">
+                <input type="text" placeholder="Korisničko ime" v-model="Username" id="uname">
             </div> 
             <div class="RegisterInputBox">
-                <input type="text" placeholder="Ime" v-model="FirstName">
+                <input type="text" placeholder="Ime" v-model="FirstName" id="fname">
             </div>
             <div class="RegisterInputBox">
-                <input type="text" placeholder="Prezime" v-model="LastName">
+                <input type="text" placeholder="Prezime" v-model="LastName" id="lname">
             </div> 
          
             <div class="RegisterInputBox">
@@ -52,25 +52,25 @@ export default{
     methods: {
         registerUser: function(){
             axios.post("/api/registerUser",{
-                UserName: this.UserName,
+                Username: this.Username,
                 FirstName: this.FirstName,
                 LastName: this.LastName,
                 Email: this.Email,
                 PhoneNumber: this.PhoneNumber
             }).then((res) => {
-                if(res.data.msg === "Validtion failed"){
-                    let errors = res.data.errors;
-                    let errorMsg = "";
+                console.log(res.data)
+                if(res.data==false){
+               
+                        alert("Something went wrong");
                 }
                 else{
-                console.log(this.LastName + ' ' + this.FirstName)
-
                     alert("Successfully Saved");
-                console.log(res.data)
                 }
             
             }).catch(()=>{
-                alert("Something Went Wrong");
+                
+                        alert("Something Went Wrong");
+               
             })
             
         }
@@ -98,7 +98,7 @@ align-items: center;
 justify-content: center; 
 background-color: white;
 position: relative;
-width: 25%;
+width: 30%;
 top: 10%;
 transform: translateY(-10%);
 left: 50%;
@@ -119,7 +119,7 @@ border: 2px solid #03A9F4 ;
 
 .RegisterInputBox input{
 height: 35px;
-width: 300px;
+width: 90%;
 margin: 10px;
 border-radius: 15px;
 border: solid 1px #03A9F4;
@@ -128,11 +128,24 @@ padding-left: 7px;
 
 .RegisterButton{
 height: 40px;
-width: 310px;
+width: 93%;
 margin: 10px;
 border-radius: 15px;
 border: solid 1px #03A9F4;
 background-color: #03A9F4;
 font-weight: bold;
+}
+@media(max-width:800px){
+    .RegisterCard{
+        width: 80%;
+    }
+    .RegisterInputBox input{
+        width: 80%;
+    }
+    .RegisterCard{
+        background-color: #f2f2f2;
+        border: 0px;
+        padding: 7px;
+    }
 }
 </style>

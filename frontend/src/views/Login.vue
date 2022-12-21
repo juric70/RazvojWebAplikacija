@@ -46,13 +46,20 @@ body{
     justify-content: center; 
     background-color: white;
     position: relative;
-    width: 25%;
+    width: 30%;
     top: 13%;
     transform: translateY(-13%);
     left: 50%;
     transform: translateX(-50%);
 }
-
+@media(max-width:800px){
+    .LoginCard{
+        width: 80%;
+    }
+    .LoginInputBox input{
+        width: 80%;
+    }
+}
 .LoginDescriptionTitle{
     color: #333333;
 }
@@ -67,7 +74,7 @@ body{
 
 .LoginInputBox input{
     height: 35px;
-    width: 300px;
+    width: 90%;
     margin: 10px;
     border-radius: 15px;
     border: solid 1px #03A9F4;
@@ -76,7 +83,7 @@ body{
 
 .LoginButton{
     height: 40px;
-    width: 310px;
+    width: 93%;
     margin: 10px;
     border-radius: 15px;
     border: solid 1px #03A9F4;

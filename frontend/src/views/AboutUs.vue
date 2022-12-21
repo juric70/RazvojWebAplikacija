@@ -62,18 +62,16 @@
 
     #AboutUsBackDiv{
         width: 100%;
-        height: 500px;
+        
         background-color: #f2f2f2;
     }
 
     #AboutUsInfo{
         height: 70%;
-        padding: 50px;
-        position: relative;
-        padding: 20%s;
+      
+    
         width: 100%;
-        top: 40%;
-        transform: translateY(-40%);
+        padding-top: 40px;
     }
 
     .AboutUsCard{
@@ -82,8 +80,7 @@
         display: inline-block;
         justify-content: center;
         margin: auto;
-        margin: 30px;
-    }
+     }
     
     #aboutUsCardsDiv{
         height: 100%;

@@ -3,10 +3,10 @@
     
     <div id="MiddleContentImg">
         <div id="MiddleContentImgH1">
-    <h1>Nemo</h1>
+    <h1>KVSUM</h1>
         </div>
         <div id="MiddleContentImgH4">
-    <h4>učimo ribice kako plivati :)</h4>
+    <h4>Klub vodenih sportova Sveučilišta u Mostaru</h4>
 
         </div>
     </div>
@@ -28,7 +28,7 @@ export default{
 #MiddleContentImgH1 h1{
     margin-top: 0;
     text-align: left;
-    margin-left: 60px;
+    margin-left: 5%;
     padding-top: 50px;
     font-size: 100px;
     margin-bottom: 0;
@@ -37,7 +37,7 @@ export default{
 #MiddleContentImgH4 h4{
     margin-top: 0;
     text-align: left;
-    margin-left: 60px;
+    margin-left: 5%;
     
     font-size: 25px;
 
