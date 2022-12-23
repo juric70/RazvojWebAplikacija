@@ -75,11 +75,12 @@ app.post('/api/registerUser', function (req,res){
 //Kreiranje novosti
 app.post('/api/createNews',function(req, res){
   console.log(req.body)
-const myFile = req.formData.selectedFile; //OVO NE PREPOZNAJE :(
-var Title = req.formData.Title;
-var Descripription = req.formData.Descripription;
+  console.log(req.files)
+const myFile = req.files.selectedFile; //OVO NE PREPOZNAJE :(
+var Title = req.body.Title;
+var Description = req.body.Description;
 
-var date = new Date.now;
+var date = Date.now();
 console.log(date)
 
 myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
@@ -89,7 +90,7 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
   }
  
   db.query(`INSERT INTO News(Title, Description, ImageName, CreationDate)
-            VALUES('${Title}', '${Descripription}', ${myFile.name}, '${date}' )`, 
+            VALUES('${Title}', '${Description}', ${myFile.name}, '${date}' )`, 
             (error, result) => {
               if(error){
                 console.log(error);
