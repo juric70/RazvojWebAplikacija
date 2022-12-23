@@ -89,8 +89,8 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
       return res.status(500).send({ msg: "Error occured" });
   }
  
-  db.query(`INSERT INTO News(Title, Description, ImageName, CreationDate)
-            VALUES('${Title}', '${Description}', ${myFile.name}, '${date}' )`, 
+  db.query(`INSERT INTO News(Title, Decsription, ImageName, CreationDate)
+            VALUES('${Title}', '${Description}','${myFile.name}', '${date}' )`, 
             (error, result) => {
               if(error){
                 console.log(error);
