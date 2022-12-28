@@ -97,8 +97,7 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
                 res.json(false);
               }
               else{
-                res.json(true);
-                return res.send({name: myFile.name, path: `/${myFile.name}`});
+                return res.json({name: myFile.name, path: `/${myFile.name}`});
               }
             } )
   // returing the response with file path and name
