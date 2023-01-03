@@ -2,8 +2,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 var fileUpload = require('express-fileupload');
-var cors = require('cors')
+var cors = require('cors');
+const { response } = require('express');
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(express.static('public'))
@@ -33,7 +36,8 @@ app.get('/', function (req, res) {
 
 //Registracija Usera
 app.post('/api/registerUser', function (req,res){
-  const {Username,FirstName, LastName,  Email, PhoneNumber} = req.body
+  var hashPwd;
+  const {Username,FirstName, LastName,  Email, PhoneNumber, Password, RepeatedPassword} = req.body
   db.query(
     `SELECT Username FROM Users
     WHERE Username = '${Username}'`,
@@ -51,25 +55,67 @@ app.post('/api/registerUser', function (req,res){
         }
         else if(FirstName.length==0 || LastName.length==0 || Email.length==0 || PhoneNumber.length==0){
           res.json(false);
+        }else if(Password != RepeatedPassword){
+          res.json(false);
         }
         else{
-       
-          db.query(`INSERT INTO Users (Username, FirstName, LastName, Email, PhoneNumber, RoleId)
-          VALUE('${Username}', '${FirstName}', '${LastName}', '${Email}', '${PhoneNumber}', 3 )`,
-          (error, result) => {
-            if (error) {
-              console.log(error)
-              res.json(false)
-          }
-          else {
-              res.json(true)
-          }
-          })
+          bcrypt
+            .genSalt(saltRounds)
+            .then(salt => {
+              console.log('Salt: ', salt)
+              return bcrypt.hash(Password, salt)
+            })
+            .then(hash => {
+              
+              console.log(hash);
+              db.query(`INSERT INTO Users (Username, FirstName, LastName, Email, PhoneNumber, RoleId, Password)
+              VALUE('${Username}', '${FirstName}', '${LastName}', '${Email}', '${PhoneNumber}', 3 , '${hash}')`,
+              (error, result) => {
+                if (error) {
+                  console.log(error)
+                  res.json(false)
+              }
+              else {
+                  res.json(true)
+              }
+              })
+            })
+            .catch(err => console.error(err.message))
+
+   
         }
       }
     }
 
   )
+})
+
+//Login Usera
+app.post('/api/loginUser', function(req, res){
+  const {Username, Password} = req.body
+  db.query(
+    `SELECT * FROM Users
+    WHERE Username = '${Username}'`,
+    function (error, result){
+      if(error != null){
+        res.status(500).send(error.message);
+        console.log(error);
+      }
+      else if(result.length>0){
+        bcrypt.compare(Password, result[0].Password)
+        .then(res => {
+          console.log(res) // return true
+        })
+        .catch(err => console.error(err.message))
+      }
+      else{
+        console.log("Username not found");
+      }
+
+    }
+    
+    )
+
 })
 
 //Kreiranje novosti
@@ -97,8 +143,7 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
                 res.json(false);
               }
               else{
-                res.json(true);
-                return res.send({name: myFile.name, path: `/${myFile.name}`});
+                return res.json({name: myFile.name, path: `/${myFile.name}`});
               }
             } )
   // returing the response with file path and name
@@ -108,6 +153,21 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
  
 } )
 
+app.get('/api/myprofile',
+async (req,res)=> {
+
+  db.query(`SELECT * FROM Users
+  WHERE Username = '${Username}'`,
+  (error,result)=>{
+    if(error){
+      console.log('error');
+      res.send('an error occurred');
+    }else{
+      res.send(result);
+    }
+   }
+  );
+});
 
 const port = 3000;
 app.listen(port, () => {

@@ -46,7 +46,9 @@ export default{
             FirstName: "",
             LastName: "",
             Email: "",
-            PhoneNumber: ""
+            PhoneNumber: "",
+            Password: "",
+            RepeatedPassword: ""
         }
     },
     methods: {
@@ -56,7 +58,9 @@ export default{
                 FirstName: this.FirstName,
                 LastName: this.LastName,
                 Email: this.Email,
-                PhoneNumber: this.PhoneNumber
+                PhoneNumber: this.PhoneNumber,
+                Password: this.Password,
+                RepeatedPassword: this.RepeatedPassword
             }).then((res) => {
                 console.log(res.data)
                 if(res.data==false){

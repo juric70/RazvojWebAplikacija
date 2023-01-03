@@ -6,12 +6,12 @@
                 </h1>
                 <div class="LoginCardPhoto"><img id="LoginPhoto" src="../assets/PlivacProfilnaSlika.jpg"></div>
                 <div class="LoginInputBox">
-                    <input type="text" placeholder="Korisničko ime">
+                    <input type="text" placeholder="Korisničko ime" v-model="Username">
                 </div>  
                 <div class="LoginInputBox">
-                    <input type="password" placeholder="Šifra">
+                    <input type="password" placeholder="Šifra" v-model="Password">
                 </div>
-               <button class="LoginButton">
+               <button class="LoginButton" @click="loginUser">
                     Prijavi se!
                 </button>
                 <p>Ukoliko nemate račun <router-link to="/register">Registrirajte se!</router-link></p>
@@ -22,8 +22,34 @@
     </template>
     
 <script>
+import axios from 'axios';
+
     export default{
-        name: 'Login'
+        name: 'Login',
+        data(){
+            return{
+                Username:"",
+                Password:""
+            }
+        },
+        methods:{
+            loginUser: function(){
+                axios.post("/api/loginUser", {
+                    Username: this.Username,
+                    Password: this.Password
+                }).then((res) => {
+                    if(res.data==false){
+                      alert("Something went wrong");
+                    }
+                    else{
+                        alert("nepravi da prebaci na drugu str")
+                    }
+
+                }).catch(() => {
+                    alert("Something went wrong");
+                })
+            }
+        }
     }
 </script>
 
