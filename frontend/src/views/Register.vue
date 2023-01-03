@@ -1,30 +1,30 @@
 <template>
     <div class="RegisterBackground">
-        <div class="RegisterCard">
+        <div class="card">
             <h1 class="RegisterDescriptionTitle">
                 Registrirajte se da bi nastavili!
             </h1>
             <!-- <div class="RegisterCardPhoto"><img id="RegisterPhoto" src="../assets/PlivacProfilnaSlika.jpg"></div> -->
-            <div class="RegisterInputBox">
+            <div class="cardInputBox">
                 <input type="text" placeholder="Korisničko ime" v-model="Username" id="uname">
             </div> 
-            <div class="RegisterInputBox">
+            <div class="cardInputBox">
                 <input type="text" placeholder="Ime" v-model="FirstName" id="fname">
             </div>
-            <div class="RegisterInputBox">
+            <div class="cardInputBox">
                 <input type="text" placeholder="Prezime" v-model="LastName" id="lname">
             </div> 
          
-            <div class="RegisterInputBox">
+            <div class="cardInputBox">
                 <input type="email" placeholder="Email" v-model="Email">
             </div> 
-            <div class="RegisterInputBox">
+            <div class="cardInputBox">
                 <input type="text" placeholder="Broj Telefona" v-model="PhoneNumber">
             </div>
-            <div class="RegisterInputBox">
+            <div class="cardInputBox">
                 <input type="password" placeholder="Šifra">
             </div>
-            <div class="RegisterInputBox">
+            <div class="cardInputBox">
                 <input type="password" placeholder="Provjera šifre">
             </div>  
            <button class="RegisterButton" @click="registerUser">
@@ -90,7 +90,7 @@ height: 100%;
 background-color: #f2f2f2;
 }
 
-.RegisterCard{
+.card{
 border-radius: 5px;
 border: solid 1px #e6e6e6;
 padding: 50px;
@@ -117,7 +117,7 @@ border-radius: 85px;
 border: 2px solid #03A9F4 ;
 }
 
-.RegisterInputBox input{
+.cardInputBox input{
 height: 35px;
 width: 90%;
 margin: 10px;
@@ -136,13 +136,13 @@ background-color: #03A9F4;
 font-weight: bold;
 }
 @media(max-width:800px){
-    .RegisterCard{
+    .card{
         width: 80%;
     }
-    .RegisterInputBox input{
+    .cardInputBox input{
         width: 80%;
     }
-    .RegisterCard{
+    .card{
         background-color: #f2f2f2;
         border: 0px;
         padding: 7px;

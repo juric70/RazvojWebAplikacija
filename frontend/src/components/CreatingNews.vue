@@ -1,17 +1,17 @@
 <template>
-<div class="createNewsCard">
-    <div class="createInputField">
+<div class="card">
+    <div class="cardInputBox">
         <p>Title</p>
-        <input type="text" name="Title" id="titleNewsCard" v-model="Title">
+        <input type="text" name="Title" id="titleNewsCard"  v-model="Title">
     </div>
-    <div class="createInputField">
+    <div class="cardInputBox">
         <p>Description</p>
-        <input type="text" name="Description" id="NewsCard" v-model="Description">
+        <input type="text" name="Description" id="NewsCard"  v-model="Description">
     </div>
 
-    <div class="file-upload">
-    <input type="file" @change="onFileChange" />
-    <button @click="onUploadFile" class="upload-button" :disabled="!this.selectedFile">Upload file</button>
+    <div class="">
+    <input type="file" @change="onFileChange"  />
+    <button @click="onUploadFile" class="upload-button RegisterButton" :disabled="!this.selectedFile">Upload file</button>
   </div>
 
 
