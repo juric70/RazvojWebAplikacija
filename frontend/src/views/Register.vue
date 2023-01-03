@@ -22,10 +22,10 @@
                 <input type="text" placeholder="Broj Telefona" v-model="PhoneNumber">
             </div>
             <div class="RegisterInputBox">
-                <input type="password" placeholder="Šifra">
+                <input type="password" placeholder="Šifra" v-model="Password">
             </div>
             <div class="RegisterInputBox">
-                <input type="password" placeholder="Provjera šifre">
+                <input type="password" placeholder="Provjera šifre" v-model="RepeatedPassword">
             </div>  
            <button class="RegisterButton" @click="registerUser">
                 Kreiraj račun!
@@ -46,7 +46,9 @@ export default{
             FirstName: "",
             LastName: "",
             Email: "",
-            PhoneNumber: ""
+            PhoneNumber: "",
+            Password: "",
+            RepeatedPassword: ""
         }
     },
     methods: {
@@ -56,7 +58,9 @@ export default{
                 FirstName: this.FirstName,
                 LastName: this.LastName,
                 Email: this.Email,
-                PhoneNumber: this.PhoneNumber
+                PhoneNumber: this.PhoneNumber,
+                Password: this.Password,
+                RepeatedPassword: this.RepeatedPassword
             }).then((res) => {
                 console.log(res.data)
                 if(res.data==false){
