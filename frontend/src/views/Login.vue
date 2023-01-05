@@ -22,6 +22,7 @@
     </template>
     
 <script>
+import router from "../router"
 import axios from 'axios';
 
     export default{
@@ -42,7 +43,9 @@ import axios from 'axios';
                       alert("Something went wrong");
                     }
                     else{
-                        alert("nepravi da prebaci na drugu str")
+                        console.log("nepravi da prebaci na drugu str");
+                        this.$cookies.set("LogUsername", this.Username , "2h");
+                        router.push("/");
                     }
 
                 }).catch(() => {

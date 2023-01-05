@@ -14,7 +14,8 @@
       MiddleContent,
       News,
    
-    }
+    }, 
+
   }
 
   

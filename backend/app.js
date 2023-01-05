@@ -5,11 +5,18 @@ var mysql = require('mysql');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var fileUpload = require('express-fileupload');
+
+const cookieParser = require('cookie-parser');
+const cookie = require('cookie-signature');
+const session = require('express-session');
 var cors = require('cors');
-const { response } = require('express');
+
+
+// const { response } = require('express');
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(express.static('public'))
+
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
@@ -18,6 +25,24 @@ app.use(cors(
 		origin: '*'
 	}
 ))
+
+app.use(session({
+  key: 'userId',
+  secret: SESSION_SECRET,
+  store: sessionStore,
+  proxy: true,
+  resave: false,
+  saveUninitialized: false,
+  rolling: true,
+  cookie: {
+      maxAge: 120 * 60 * 1000, //minutes * seconds * miliseconds
+      secure: true,
+      httpOnly: true,
+      sameSite: 'none'
+  }
+}));
+
+
 // connection configurations
 var db = mysql.createConnection({
 	host: 'localhost',
@@ -153,21 +178,21 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
  
 } )
 
-app.get('/api/myprofile',
-async (req,res)=> {
+// app.get('/api/myprofile',
+// async (req,res)=> {
 
-  db.query(`SELECT * FROM Users
-  WHERE Username = '${Username}'`,
-  (error,result)=>{
-    if(error){
-      console.log('error');
-      res.send('an error occurred');
-    }else{
-      res.send(result);
-    }
-   }
-  );
-});
+//   db.query(`SELECT * FROM Users
+//   WHERE Username = '${Username}'`,
+//   (error,result)=>{
+//     if(error){
+//       console.log('error');
+//       res.send('an error occurred');
+//     }else{
+//       res.send(result);
+//     }
+//    }
+//   );
+// });
 
 const port = 3000;
 app.listen(port, () => {
