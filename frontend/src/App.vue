@@ -5,12 +5,27 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Header from './components/Header.vue'
+import { store } from '../store.js'
 
 export default {
   name: 'App',
   components: {
     Header,
+  },
+  data() {
+    return {
+      store
+    }
+  },
+  mounted(){
+    console.log(this.store);
+    axios.get('/api/login').then((res) => {
+      store.user = res.data.user;
+      console.log(this.store);
+
+    } )
   }
 }
 </script>

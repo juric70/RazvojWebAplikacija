@@ -1,6 +1,6 @@
     <template>
         <div class="LoginBackground">
-            <div class="LoginCard">
+            <div class="LoginCard" v-if="store.user == null">
                 <h1 class="LoginDescriptionTitle">
                     Prijavite se da bi nastavili!
                 </h1>
@@ -15,6 +15,11 @@
                     Prijavi se!
                 </button>
                 <p>Ukoliko nemate račun <router-link to="/register">Registrirajte se!</router-link></p>
+                
+            </div>
+            <div class="LoginCard" v-else>
+                korisnik je vecprijavljen
+                <button @click="logoutUser"> Logout</button>
             </div>
         </div>
    
@@ -24,32 +29,49 @@
 <script>
 import router from "../router"
 import axios from 'axios';
+import { store } from '../../store.js'
+
 
     export default{
         name: 'Login',
         data(){
             return{
                 Username:"",
-                Password:""
+                Password:"",
+                store
             }
         },
+  
         methods:{
             loginUser: function(){
                 axios.post("/api/loginUser", {
                     Username: this.Username,
                     Password: this.Password
                 }).then((res) => {
-                    if(res.data==false){
-                      alert("Something went wrong");
+                    
+
+                    if(!res.data){
+                      alert(res.data.msg);
                     }
                     else{
                         console.log("nepravi da prebaci na drugu str");
                         this.$cookies.set("LogUsername", this.Username , "2h");
-                        router.push("/");
+                        window.location.replace('/');
+                    
                     }
 
-                }).catch(() => {
-                    alert("Something went wrong");
+                }).catch((error) => {
+                    alert(error);
+                })
+            },
+            logoutUser: function(){
+                axios.delete("/api/logoutUser",)
+                .then((res) => {
+                    window.location.reload();
+
+                  
+                }).catch((error) => {
+                    alert(error);
                 })
             }
         }

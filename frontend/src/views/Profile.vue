@@ -7,15 +7,19 @@
         <div class="profilePersonalData ">
             <div class="personalData">
                 <h4>{{DataForProfile[0]}}</h4>
-                <input class = "profileTextWindow" type="text" value="Kvesa">
+                <p>{{ store.user.username }}</p>
                 <h4>{{DataForProfile[1]}}</h4>
-                <input class = "profileTextWindow" type="text" value="Matej">
+                <p>{{ store.user.name }}</p>
+
                 <h4>{{DataForProfile[2]}}</h4>
-                <input class = "profileTextWindow" type="text" value="Kvesić">
+                <p>{{ store.user.surname }}</p>
+
                 <h4>{{DataForProfile[3]}}</h4>
-                <input class = "profileTextWindow" type="text" value="063/258-229">
+                <p>{{ store.user.phoneNumber }}</p>
+
                 <h4>{{DataForProfile[4]}}</h4>
-                <input class = "profileTextWindow" type="text" value="matejkvesic@gmail.com">
+                <p>{{ store.user.email }}</p>
+                
             </div>
         </div>
         <div class="trainingSchedule">
@@ -33,6 +37,8 @@
 
 <script>
 import axios from 'axios';
+import { store } from '../../store.js'
+
 
 
 export default{
@@ -45,6 +51,7 @@ data () {
         Prezime:null,
         BrojTelefona:null,
         Email:null,
+        store
     }
 },
 // methods:{

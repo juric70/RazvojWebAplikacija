@@ -5,18 +5,18 @@ var mysql = require('mysql');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var fileUpload = require('express-fileupload');
-
+var cors = require('cors');
 const cookieParser = require('cookie-parser');
 const cookie = require('cookie-signature');
-const session = require('express-session');
-var cors = require('cors');
+const jwt = require('jsonwebtoken');
+// const session = require('express-session');
 
 
 // const { response } = require('express');
 app.use(bodyParser.json());
 app.use(fileUpload());
 app.use(express.static('public'))
-
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
@@ -26,21 +26,23 @@ app.use(cors(
 	}
 ))
 
-app.use(session({
-  key: 'userId',
-  secret: SESSION_SECRET,
-  store: sessionStore,
-  proxy: true,
-  resave: false,
-  saveUninitialized: false,
-  rolling: true,
-  cookie: {
-      maxAge: 120 * 60 * 1000, //minutes * seconds * miliseconds
-      secure: true,
-      httpOnly: true,
-      sameSite: 'none'
-  }
-}));
+
+
+// app.use(session({
+//   key: 'userId',
+//   secret: SESSION_SECRET,
+//   store: sessionStore,
+//   proxy: true,
+//   resave: false,
+//   saveUninitialized: false,
+//   rolling: true,
+//   cookie: {
+//       maxAge: 120 * 60 * 1000, //minutes * seconds * miliseconds
+//       secure: true,
+//       httpOnly: true,
+//       sameSite: 'none'
+//   }
+// }));
 
 
 // connection configurations
@@ -125,16 +127,62 @@ app.post('/api/loginUser', function(req, res){
       if(error != null){
         res.status(500).send(error.message);
         console.log(error);
+        res.json(false);
+
       }
       else if(result.length>0){
         bcrypt.compare(Password, result[0].Password)
-        .then(res => {
-          console.log(res) // return true
+        .then(r => {
+          console.log(r) 
+         
+         
+        if(r){
+          console.log(result[0].Username);
+           const token = jwt.sign({
+            
+             user:{
+              username: result[0].Username,
+              name: result[0].FirstName,
+              surname: result[0].LastName,
+              email: result[0].Email,
+              phoneNumber: result[0].PhoneNumber,
+
+            }
+          
+           },
+           'SECRETKEY', {
+             expiresIn: '7d'
+           })
+           res.cookie("kvsum-token", token);
+          res.status(200).json({
+             msg: 'Logged in!',
+             success: true
+             
+           });
+         }
+         else{
+          res.status(403).json({
+            msg: 'Login fail',
+            success: false 
+          })
+         }
+
         })
-        .catch(err => console.error(err.message))
+        .catch(err => {
+          console.error(err.message);
+          res.status(500).json({
+            msg: 'Login fail',
+            success: false 
+          })
+        })
       }
       else{
         console.log("Username not found");
+        res.status(404).json({
+          msg: 'Login fail',
+          success: false 
+        })
+
       }
 
     }
@@ -143,11 +191,40 @@ app.post('/api/loginUser', function(req, res){
 
 })
 
+//Token login provjera
+app.get('/api/login', function(req, res){
+  console.log(req.cookies);
+  
+  let token = req.cookies['kvsum-token'];
+  jwt.verify(token, 'SECRETKEY', (error, decoded) => {
+    if(error){
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(decoded == null){
+      res.status(403).json({
+        msg: "Invalid token"
+      })
+    }else{
+      console.log(decoded);
+      res.status(200).json({
+        msg: "User logged in",
+        user: decoded.user
+      })
+    }
+  })
+})
+
+//Log out usera
+app.delete('/api/logoutUser', function(req, res){
+  res.clearCookie('kvsum-token');
+  res.json(true)
+})
 //Kreiranje novosti
 app.post('/api/createNews',function(req, res){
   console.log(req.body)
   console.log(req.files)
-const myFile = req.files.selectedFile; //OVO NE PREPOZNAJE :(
+const myFile = req.files.selectedFile; 
 var Title = req.body.Title;
 var Description = req.body.Description;
 
@@ -176,23 +253,28 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
 });
 
  
-} )
+})
 
-// app.get('/api/myprofile',
-// async (req,res)=> {
+//slanje novosti
+app.get('/api/news', function(req, res){
+  db.query(`SELECT * FROM News`, function(error, result){
+    if(error){
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(result.length<=0){
+      res.status(404).json({
+        msg: "No news"
+      })
+    }else{
+      res.status(200).json({
+        msg: "News",
+        news: result
+      })
+    }
+  })
+})
 
-//   db.query(`SELECT * FROM Users
-//   WHERE Username = '${Username}'`,
-//   (error,result)=>{
-//     if(error){
-//       console.log('error');
-//       res.send('an error occurred');
-//     }else{
-//       res.send(result);
-//     }
-//    }
-//   );
-// });
 
 const port = 3000;
 app.listen(port, () => {

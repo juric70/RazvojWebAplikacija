@@ -1,6 +1,7 @@
 <template>
     <swiper
     :loop="true"
+    :initial-slide="0"
     :lazy="true"
     :slidesPerView="1"
     :breakpoints="{
@@ -27,19 +28,21 @@
      
       class="mySwiper"
     >
-      <swiper-slide> 
-          <div
-             class=" imgDiv">
+      
+        <swiper-slide v-for="news in newsData" :key="news.Id"> 
+          <div class=" imgDiv" :style="{'background-image': 'url('+ require(`../../../backend/public/${news.ImageName}`) +')'}">
+            <!-- <img :src="require(`../../../backend/public/${news.ImageName}`)" alt=""> -->
              <div class="newsAndBtn">
-              <h1 style="z-index: 1000;">imamo neki naslov koji treba urediti</h1>
 
+              <h1 style="z-index: 1000;">{{news.Title }}</h1>
               <button class="NewsButtonClass">Procitaj Više!</button>
               </div>
              
             </div>
       </swiper-slide>
 
-      <swiper-slide> 
+<!--      
+       <swiper-slide> 
           <div
              class=" imgDiv">
              <div class="newsAndBtn">
@@ -73,7 +76,7 @@
               </div>
              
             </div>
-      </swiper-slide>
+      </swiper-slide>  -->
 
       
 
@@ -94,6 +97,7 @@
   
   // import required modules
   import { Lazy, Autoplay, Pagination, Navigation } from "swiper";
+import axios from "axios";
   
   export default {
     components: {
@@ -108,8 +112,17 @@
     },
     data(){
       return{
-        urlPlivanje: '../assets/plivanje2.jpg'
+        urlPlivanje: '../assets/plivanje2.jpg',
+        newsData: ""
       }
+    },
+    mounted(){
+      axios.get('/api/news').then((res) => {
+        this.newsData = res.data.news;
+        for(var i =0; i<this.newsData.length; i++){
+          console.log (this.newsData[i].Title + "   "  + this.newsData[i].Decsription)
+        }
+      })
     }
   };
   </script>
@@ -170,7 +183,7 @@ body {
 .imgDiv{
   width: 100%;
   height: 100%;
-  background-image: url('../assets/plivanje2.jpg');
+  /* background-image: url('../assets/plivanje2.jpg'); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
