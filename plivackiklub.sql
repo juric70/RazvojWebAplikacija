@@ -44,7 +44,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (1,'gfhjk','gfhgjhkjlčlćkjhgj','˘gift.jpg',NULL,'1671804838894',NULL),(2,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810898068',NULL),(3,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810982081',NULL),(4,'fsfsdfsdfsdffsddsf','asasdasdaswffafwdf','plivanje1.jpg',NULL,'1672238149904',NULL);
+INSERT INTO `news` VALUES (1,'gfhjk','gfhgjhkjlčlćkjhgj','gift.jpg',NULL,'1671804838894',NULL),(2,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810898068',NULL),(3,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810982081',NULL),(4,'fsfsdfsdfsdffsddsf','asasdasdaswffafwdf','plivanje1.jpg',NULL,'1672238149904',NULL);
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-06 10:38:31
+-- Dump completed on 2023-01-12 11:37:57
