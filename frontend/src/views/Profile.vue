@@ -1,32 +1,52 @@
 <template>
     <div class="mainDiv">
-        <div class="profilePersonalImage">
-                 <img src="../assets/MatejKvesic.jpg" alt="">
-                 <h2>MyProfile</h2>
-            </div>
-        <div class="profilePersonalData ">
-            <div class="personalData">
+        <div class="profilePersonalData"> 
+            <h2>MyProfile</h2>
+            <img src="../assets/MatejKvesic.jpg" alt="">
+            <div class="profilePersonalDataStore">
                 <h4>{{DataForProfile[0]}}</h4>
                 <p>{{ store.user.username }}</p>
                 <h4>{{DataForProfile[1]}}</h4>
                 <p>{{ store.user.name }}</p>
-
                 <h4>{{DataForProfile[2]}}</h4>
                 <p>{{ store.user.surname }}</p>
-
                 <h4>{{DataForProfile[3]}}</h4>
                 <p>{{ store.user.phoneNumber }}</p>
-
                 <h4>{{DataForProfile[4]}}</h4>
                 <p>{{ store.user.email }}</p>
-                
             </div>
         </div>
+        
         <div class="trainingSchedule">
-
+            <h2>Training schedule</h2>
+            <div class="trainingScheduleDataStore">
+                <h4>{{DataForTrainingSchedule[0]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForTrainingSchedule[1]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForTrainingSchedule[2]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForTrainingSchedule[3]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForTrainingSchedule[4]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+            </div>
         </div>
-        <div class="monthlyPayments">
 
+        <div class="monthlyPayments">
+            <h2>Monthly payments</h2>
+            <div class="monthlyPaymentsDataStore">
+                <h4>{{DataForMonthlyPayments[0]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForMonthlyPayments[1]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForMonthlyPayments[2]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForMonthlyPayments[3]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+                <h4>{{DataForMonthlyPayments[4]}}</h4>
+                <input class="trainingScheduleWindow" type="text" value="">
+            </div> 
         </div>
     </div>
    
@@ -45,91 +65,139 @@ export default{
 name: 'Profile',
 data () {
     return {
-        DataForProfile:["Korisničko ime", "Ime", "Prezime", "Broj telefona", "Email"],
+        DataForProfile:["Korisničko ime", "Ime", "Prezime", "Broj telefona", "Email",],
         KorisnickoIme:null,
         Ime:null,
         Prezime:null,
         BrojTelefona:null,
         Email:null,
-        store
+        store,
+        DataForTrainingSchedule:["","","","","",],
+        DataForMonthlyPayments:["", "", "", "", "",]
     }
+
 },
-// methods:{
-//     displayMyUser: function(){
-//         axios.get('/api/myprofile')
-//         .then(response => (
-//             this.KorisnickoIme=response.KorisnickoIme,
-//             this.Ime=response.Ime,
-//             this.Prezime=response.Prezime,
-//             this.BrojTelefona=response.BrojTelefona,
-//             this.Email=response.Email
-//         ))
-//     }
-// }
 }
 </script>
 
 <style>
+::-webkit-scrollbar {
+    width: 0px;
+}
 .mainDiv{
     width: 100%;
     height: 100%;
     padding: 0;
-    background-color: antiquewhite;
+    background-color: #cce6ff;
 } 
 .mainDiv img{
-    width: 200px;
-}
-.profilePersonalImage{
-    width: 25%;
-    height: 45%;
-    background-color: blue;
-    position: relative;
-    top: 12%;
-    left: 30%;
-    transform: translateX(-70%);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    width: 50%;
+    border-radius: 10%;
 }
 .profilePersonalData{
-    width: 25%;
-    height: 40%;
-    background-color: blueviolet;
-    overflow: scroll;
+    background-color: #e6f2ff;
+    display: flex;
     position: relative;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    width: 25%;
+    height: 85%;
     top: 12%;
     left: 30%;
     transform: translateX(-70%);
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 15px grey;
 }
-.profileTextWindow {
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: 2px solid black;
-    background-color: blueviolet;
+.profilePersonalDataStore{
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
 }
 .trainingSchedule{
+    background-color: #e6f2ff;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
     width: 45%;
     height: 40%;
     top: -73%;
     left: 45%;
-    position: relative;
-    background-color: orange;
-    border-radius: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 15px grey;
+}
+.trainingScheduleDataStore{
+    overflow: scroll;
+    flex-direction: column;
+    width: 100%;
 }
 .monthlyPayments{
+    background-color: #e6f2ff;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
     width: 45%;
     height: 40%;
     top: -68%;
     left: 45%;
-    position: relative;
-    background-color: pink;
-    border-radius: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 15px grey;
 }
+.monthlyPaymentsDataStore{
+    overflow: scroll;
+    flex-direction: column;
+    width: 100%;
+}
+.trainingScheduleWindow{
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 100%;
+    background-color: #cce6ff;
+    position: relative;
+    border-width: 0px;
+} 
 
-::-webkit-scrollbar {
-    width: 0px;
+/* .trainingHeader{(crop radi, boja, visina radi, samo nije centriran)
+    background-color: #99caff;
+    overflow: hidden;
+    margin-top: 0%;
+    height: 35px;
+} */
+
+
+
+@media(max-width: 800px) {
+    .mainDiv{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+    .profilePersonalData{
+        width: 90%;
+        height: 30%;
+        margin-left: 5%;
+        position: static;
+    }
+    .trainingSchedule{
+        width: 90%;
+        height: 30%;
+        position: inherit;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+    .monthlyPayments{
+        width: 90%;
+        height: 30%;
+        position: inherit;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
 }
 
 </style>

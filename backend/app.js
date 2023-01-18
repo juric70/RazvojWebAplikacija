@@ -64,7 +64,17 @@ app.get('/', function (req, res) {
 //Registracija Usera
 app.post('/api/registerUser', function (req,res){
   var hashPwd;
-  const {Username,FirstName, LastName,  Email, PhoneNumber, Password, RepeatedPassword} = req.body
+  const {Username,FirstName, LastName,  Email, PhoneNumber, Password, RepeatedPassword, selected} = req.body
+  var role;
+  if (selected == 1){
+    role = 1;
+  }
+  else if (selected == 2){
+    role = 2;
+  }
+  else {
+    role = 3;
+  }
   db.query(
     `SELECT Username FROM Users
     WHERE Username = '${Username}'`,
@@ -96,7 +106,7 @@ app.post('/api/registerUser', function (req,res){
               
               console.log(hash);
               db.query(`INSERT INTO Users (Username, FirstName, LastName, Email, PhoneNumber, RoleId, Password)
-              VALUE('${Username}', '${FirstName}', '${LastName}', '${Email}', '${PhoneNumber}', 3 , '${hash}')`,
+              VALUE('${Username}', '${FirstName}', '${LastName}', '${Email}', '${PhoneNumber}', '${role}', '${hash}')`,
               (error, result) => {
                 if (error) {
                   console.log(error)
@@ -146,6 +156,7 @@ app.post('/api/loginUser', function(req, res){
               surname: result[0].LastName,
               email: result[0].Email,
               phoneNumber: result[0].PhoneNumber,
+              role: result[0].RoleId,
 
             }
           
@@ -155,6 +166,7 @@ app.post('/api/loginUser', function(req, res){
            })
            res.cookie("kvsum-token", token);
           res.status(200).json({
+
              msg: 'Logged in!',
              success: true
              
@@ -193,7 +205,7 @@ app.post('/api/loginUser', function(req, res){
 
 //Token login provjera
 app.get('/api/login', function(req, res){
-  console.log(req.cookies);
+  console.log( req.cookies);
   
   let token = req.cookies['kvsum-token'];
   jwt.verify(token, 'SECRETKEY', (error, decoded) => {

@@ -4,7 +4,9 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import AboutUs from '../views/AboutUs.vue'
 import Profile from '../views/Profile.vue'
+import CreateUserWithRoles from '../views/CreateUserWithRoles.vue'
 import CreateNews from '../components/CreatingNews.vue'
+import Calendar from '../views/Calendar.vue'
 
 
 
@@ -39,6 +41,16 @@ const routes = [
     path: '/createNews',
     name: 'CreateNews',
     component: CreateNews,
+  },
+  {
+    path: '/createuser',
+    name: 'CreateUserWithRoles',
+    component: CreateUserWithRoles,
+  },
+  {
+    path: '/calendar',
+    name: 'Calendar',
+    component: Calendar,
   },
  
 ]

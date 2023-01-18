@@ -14,6 +14,7 @@
                <button class="LoginButton" @click="loginUser">
                     Prijavi se!
                 </button>
+                <button class="LoginButton" @click="logoutUser"> Logout</button>
                 <p>Ukoliko nemate račun <router-link to="/register">Registrirajte se!</router-link></p>
                 
             </div>
@@ -23,7 +24,7 @@
             </div>
         </div>
    
-
+   
     </template>
     
 <script>
@@ -55,7 +56,6 @@ import { store } from '../../store.js'
                     }
                     else{
                         console.log("nepravi da prebaci na drugu str");
-                        this.$cookies.set("LogUsername", this.Username , "2h");
                         window.location.replace('/');
                     
                     }

@@ -5,14 +5,18 @@
    
     <div id="headerMenuDiv">
         
-            <a href="#" class="headerItem">{{headerMenuNames[1]}}</a>
-            <a href="#" class="headerItem">{{headerMenuNames[2]}}</a>
-            <a href="#" class="headerItem">{{headerMenuNames[3]}}</a>
-            <a href="#" class="headerItem">{{headerMenuNames[4]}}</a>
-            <a href="#" class="headerItem">{{headerMenuNames[6]}}</a>
-            <router-link  class= "headerItem" to="/login">Login</router-link>
-            <router-link  class= "headerItem" to="/createNews">Napravi novost!</router-link>
-            <router-link  class= "headerItem" to="/aboutUs">O nama</router-link>
+            <a href="#" class = "headerItem">{{headerMenuNames[1]}}</a>
+            <a href="#" class = "headerItem">{{headerMenuNames[2]}}</a>
+            <a href="#" class = "headerItem">{{headerMenuNames[3]}}</a>
+            <a href="#" class = "headerItem">{{headerMenuNames[4]}}</a>
+            <a href="#" class = "headerItem">{{headerMenuNames[6]}}</a>
+            <router-link class = "headerItem" to="/login">Login</router-link>
+            <router-link class = "headerItem" to="/createNews">Napravi novost!</router-link>
+            <router-link class = "headerItem" to="/aboutUs">O nama</router-link>
+            <router-link class = "headerItem" to="/createuser">Kreiraj korisnika!</router-link>
+            <router-link class = "headerItem" to="/calendar">Raspored</router-link>
+
+
     </div>
   <div id="headerIconDiv">
     <div id="headerIcon">
@@ -36,6 +40,7 @@
 
 <script>
 import SideBar from './SideBar.vue'
+import store from '../../store.js'
 export default{
     name: 'Header',
     components:{
@@ -45,7 +50,8 @@ export default{
         return{
             isOpened: false, 
             isOpenedMenu: false,
-            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "login", "o nama"]
+            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "login", "o nama"],
+            store
         }
     },
     
