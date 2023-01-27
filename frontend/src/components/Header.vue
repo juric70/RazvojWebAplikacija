@@ -11,23 +11,18 @@
             <a href="#" class = "headerItem">{{headerMenuNames[4]}}</a>
             <a href="#" class = "headerItem">{{headerMenuNames[6]}}</a>
           
-          
-
-            <router-link class = "headerItem" to="/createNews">Napravi novost!</router-link>
+            <router-link class = "headerItem" to="/createNews"  v-if="store?.user?.role == 2 || store?.user?.role == 1">Napravi novost!</router-link>
             <router-link class = "headerItem" to="/aboutUs">O nama</router-link>
-            <router-link class = "headerItem" to="/createuser">Kreiraj korisnika!</router-link>
+            <router-link class = "headerItem" to="/createuser" v-if="store?.user?.role == 2 || store?.user?.role == 1">Kreiraj korisnika!</router-link>
             <router-link class = "headerItem" to="/calendar">Raspored</router-link>
-
+           
 
     </div>
   <div id="headerIconDiv">
     <div id="headerIcon">
        <img class="headerIcon" id="headerIconProfile" :src="require('../assets/profilePictureIcon.png')"  @click="(isOpenedProfile = !isOpenedProfile)"/>
-       
         <img class="headerIcon" :src="require('../assets/SearchIcon.png')" @click="(isOpened = !isOpened)"/>
         <img class="headerIcon dropdownMenuIcon" :src="require('../assets/menuIcon.png')" @click="(isOpenedMenu = !isOpenedMenu)" />
-  
-
     </div>
     <div id="searchInputDiv" v-if="isOpened" >
         <input type="text" v-model="text" id="searchInput">
@@ -37,24 +32,23 @@
 
   </div>
       
-
-
+  
 </header>
 <div v-if="isOpenedProfile" @click="(isOpenedProfile = !isOpenedProfile)" id="profileOptions">
-    <div>
-        <router-link  to="/profile">Profil</router-link><br> 
-    </div>
-       <router-link  to="/profile">Profil</router-link><br>
-       <router-link class = "headerItem" to="/login">Login</router-link><br>
-        <router-link class = "headerItem" to="/logout">Logout</router-link><br>
+ 
+    <router-link  to="/profile" style="padding: 10px;">Profil</router-link><br>
+    <router-link class = "headerItem" to="/login" style="padding: 10px;" v-if="store?.user == null">Login</router-link><br>
+    <router-link class = "headerItem" to="/logout" style="padding: 10px;" v-if="store?.user != null">Logout</router-link><br>
        
-    </div>
+</div>
+   
+
 
 </template>
 
 <script>
 import SideBar from './SideBar.vue'
-import store from '../../store.js'
+import {store} from '../../store.js'
 export default{
     name: 'Header',
     components:{
@@ -69,6 +63,10 @@ export default{
             store
         }
     },
+   
+    mounted(){
+        console.log(this.store);
+    }
     
 }
 </script>
@@ -84,29 +82,27 @@ header{
     opacity: 0.95;
     width: 100%;
     z-index: 99;
-  font-weight: bold;
-  background-color:  #03A9F4;
-  height: 48px;
-  overflow: hidden;
+    font-weight: bold;
+    background-color:  #03A9F4;
+    height: 48px;
+    overflow: hidden;
 }button{
     background-color: #03A9F4;
     border: 0;
 }
 header a{
-  display:inline-block;
-
-  color: #333333;
-  text-decoration: none;
+    display:inline-block;
+    color: #333333;
+    text-decoration: none;
 }
 #headerMenuDiv{
-  margin: auto;
-  width: 70%;
-  padding: 10px;
-  display: inline;
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+    display: inline;
 }
 header a:hover{
     color:  white;
-
 }
 #headerIconDiv{
     display: inline;
@@ -116,7 +112,6 @@ header a:hover{
     height: 25px;
     float: right;
     padding:15px 15px;
-
 }
 #headerIcon{
     display: inline;
@@ -141,7 +136,6 @@ header a:hover{
 .headerItem{
     padding:16px 15px;
 }
-
 .dropdownMenuIcon{
     display: none;
 }
@@ -149,10 +143,8 @@ header a:hover{
     padding-top: 50px; 
     float: right;
     display: inline;
-    /* margin: 15px; */
     margin-top: 50px;
     padding: 17px;
-    /* text-decoration: none; */
     border: solid;
     position: relative;
     z-index: 4;
