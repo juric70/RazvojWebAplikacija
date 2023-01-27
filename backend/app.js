@@ -64,17 +64,8 @@ app.get('/', function (req, res) {
 //Registracija Usera
 app.post('/api/registerUser', function (req,res){
   var hashPwd;
-  const {Username,FirstName, LastName,  Email, PhoneNumber, Password, RepeatedPassword, selected} = req.body
-  var role;
-  if (selected == 1){
-    role = 1;
-  }
-  else if (selected == 2){
-    role = 2;
-  }
-  else {
-    role = 3;
-  }
+  const {Username,FirstName, LastName,  Email, PhoneNumber, Password, RepeatedPassword} = req.body
+
   db.query(
     `SELECT Username FROM Users
     WHERE Username = '${Username}'`,
@@ -106,7 +97,7 @@ app.post('/api/registerUser', function (req,res){
               
               console.log(hash);
               db.query(`INSERT INTO Users (Username, FirstName, LastName, Email, PhoneNumber, RoleId, Password)
-              VALUE('${Username}', '${FirstName}', '${LastName}', '${Email}', '${PhoneNumber}', '${role}', '${hash}')`,
+              VALUE('${Username}', '${FirstName}', '${LastName}', '${Email}', '${PhoneNumber}', 3, '${hash}')`,
               (error, result) => {
                 if (error) {
                   console.log(error)
@@ -130,63 +121,57 @@ app.post('/api/registerUser', function (req,res){
 //Login Usera
 app.post('/api/loginUser', function(req, res){
   const {Username, Password} = req.body
+  console.log("Username" + Username);
   db.query(
     `SELECT * FROM Users
     WHERE Username = '${Username}'`,
     function (error, result){
+      console.log(result);
       if(error != null){
         res.status(500).send(error.message);
         console.log(error);
         res.json(false);
-
       }
       else if(result.length>0){
-        bcrypt.compare(Password, result[0].Password)
-        .then(r => {
-          console.log(r) 
-         
-         
-        if(r){
-          console.log(result[0].Username);
-           const token = jwt.sign({
+        bcrypt.compare(Password, result[0].Password, function(errorpwd, respwd){
+          if(errorpwd != null){
+            console.error(err.message);
+              res.status(500).json({
+              msg: 'Login fail',
+              success: false 
+            })
+          }
+
+        
+            console.log(result[0].Username);
+             const token = jwt.sign({
+              
+               user:{
+                username: result[0].Username,
+                name: result[0].FirstName,
+                surname: result[0].LastName,
+                email: result[0].Email,
+                phoneNumber: result[0].PhoneNumber,
+                role: result[0].RoleId,
+  
+              }
             
-             user:{
-              username: result[0].Username,
-              name: result[0].FirstName,
-              surname: result[0].LastName,
-              email: result[0].Email,
-              phoneNumber: result[0].PhoneNumber,
-              role: result[0].RoleId,
-
-            }
-          
-           },
-           'SECRETKEY', {
-             expiresIn: '7d'
-           })
-           res.cookie("kvsum-token", token);
-          res.status(200).json({
-
-             msg: 'Logged in!',
-             success: true
-             
-           });
-         }
-         else{
-          res.status(403).json({
-            msg: 'Login fail',
-            success: false 
-          })
-         }
+             },
+             'SECRETKEY', {
+               expiresIn: '7d'
+             })
+             res.cookie("kvsum-token", token);
+            res.status(200).json({
+  
+               msg: 'Logged in!',
+               success: true
+               
+             });
+       
+            
 
         })
-        .catch(err => {
-          console.error(err.message);
-          res.status(500).json({
-            msg: 'Login fail',
-            success: false 
-          })
-        })
+        
       }
       else{
         console.log("Username not found");
