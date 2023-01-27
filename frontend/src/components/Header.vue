@@ -10,7 +10,9 @@
             <a href="#" class = "headerItem">{{headerMenuNames[3]}}</a>
             <a href="#" class = "headerItem">{{headerMenuNames[4]}}</a>
             <a href="#" class = "headerItem">{{headerMenuNames[6]}}</a>
-            <router-link class = "headerItem" to="/login">Login</router-link>
+          
+          
+
             <router-link class = "headerItem" to="/createNews">Napravi novost!</router-link>
             <router-link class = "headerItem" to="/aboutUs">O nama</router-link>
             <router-link class = "headerItem" to="/createuser">Kreiraj korisnika!</router-link>
@@ -20,21 +22,33 @@
     </div>
   <div id="headerIconDiv">
     <div id="headerIcon">
-        <router-link to="/profile" class="headerIcon" > <img class="headerIcon" id="headerIconProfile" :src="require('../assets/profilePictureIcon.png')"/></router-link>
+       <img class="headerIcon" id="headerIconProfile" :src="require('../assets/profilePictureIcon.png')"  @click="(isOpenedProfile = !isOpenedProfile)"/>
        
         <img class="headerIcon" :src="require('../assets/SearchIcon.png')" @click="(isOpened = !isOpened)"/>
         <img class="headerIcon dropdownMenuIcon" :src="require('../assets/menuIcon.png')" @click="(isOpenedMenu = !isOpenedMenu)" />
+  
 
     </div>
     <div id="searchInputDiv" v-if="isOpened" >
         <input type="text" v-model="text" id="searchInput">
     </div>
     <SideBar v-if="isOpenedMenu" @click="(isOpenedMenu = !isOpenedMenu)"></SideBar>
+    
+
   </div>
       
 
 
 </header>
+<div v-if="isOpenedProfile" @click="(isOpenedProfile = !isOpenedProfile)" id="profileOptions">
+    <div>
+        <router-link  to="/profile">Profil</router-link><br> 
+    </div>
+       <router-link  to="/profile">Profil</router-link><br>
+       <router-link class = "headerItem" to="/login">Login</router-link><br>
+        <router-link class = "headerItem" to="/logout">Logout</router-link><br>
+       
+    </div>
 
 </template>
 
@@ -50,7 +64,8 @@ export default{
         return{
             isOpened: false, 
             isOpenedMenu: false,
-            headerMenuNames: ["Novosti", "Treninzi", "Raspored", "Treneri", "Cjenik", "Album", "Podrška", "login", "o nama"],
+            isOpenedProfile: false,
+            headerMenuNames: ["Novosti", "Treninzi", "Treneri", "Cjenik", "Album", "Podrška", ],
             store
         }
     },
@@ -126,11 +141,23 @@ header a:hover{
 .headerItem{
     padding:16px 15px;
 }
-#headerIconProfile{
-    padding: 0;
-}
+
 .dropdownMenuIcon{
     display: none;
+}
+#profileOptions{
+    padding-top: 50px; 
+    float: right;
+    display: inline;
+    /* margin: 15px; */
+    margin-top: 50px;
+    padding: 17px;
+    /* text-decoration: none; */
+    border: solid;
+    position: relative;
+    z-index: 4;
+    margin-right: 5px;
+    border-radius: 5px;
 }
 @media (max-width: 800px) {
     .headerItem{

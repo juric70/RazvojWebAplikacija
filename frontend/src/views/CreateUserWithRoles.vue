@@ -34,7 +34,7 @@
                     </option>
                 </select>
             </div>
-            <button class="RegisterButton" @click="registerUser">
+            <button class="RegisterButton" @click="registerAdmin">
                 Kreiraj račun!
             </button>
         </div>
@@ -71,8 +71,8 @@ export default{
         }
     },
     methods: {
-        registerUser: function(){
-            axios.post("/api/registerUser",{
+        registerAdmin: function(){
+            axios.post("/api/registerAdmin",{
                 Username: this.Username,
                 FirstName: this.FirstName,
                 LastName: this.LastName,

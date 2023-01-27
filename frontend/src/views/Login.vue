@@ -18,10 +18,7 @@
                 <p>Ukoliko nemate račun <router-link to="/register">Registrirajte se!</router-link></p>
                 
             </div>
-            <div class="LoginCard" v-else>
-                korisnik je vecprijavljen
-                <button @click="logoutUser"> Logout</button>
-            </div>
+          
         </div>
    
    
@@ -64,16 +61,7 @@ import { store } from '../../store.js'
                     alert(error);
                 })
             },
-            logoutUser: function(){
-                axios.delete("/api/logoutUser",)
-                .then((res) => {
-                    window.location.reload();
-
-                  
-                }).catch((error) => {
-                    alert(error);
-                })
-            }
+           
         }
     }
 </script>

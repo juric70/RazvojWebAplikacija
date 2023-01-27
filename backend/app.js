@@ -118,6 +118,61 @@ app.post('/api/registerUser', function (req,res){
   )
 })
 
+//Registracija Trenera(role = 2) ili Admina(role = 1)
+app.post('/api/registerAdmin', function (req,res){
+  var hashPwd;
+  const {Username,FirstName, LastName,  Email, PhoneNumber, Password, RepeatedPassword, selected} = req.body
+
+  db.query(
+    `SELECT Username FROM Users
+    WHERE Username = '${Username}'`,
+    function (error, result){
+     
+      if(error != null){
+        console.log(error );
+        res.json(false);
+      }
+      else{
+
+        if(result.length>=1){
+          res.json(false);
+        }
+        else if(FirstName.length==0 || LastName.length==0 || Email.length==0 || PhoneNumber.length==0){
+          res.json(false);
+        }else if(Password != RepeatedPassword){
+          res.json(false);
+        }
+        else{
+          bcrypt
+            .genSalt(saltRounds)
+            .then(salt => {
+              console.log('Salt: ', salt)
+              return bcrypt.hash(Password, salt)
+            })
+            .then(hash => {
+              
+              console.log(hash);
+              db.query(`INSERT INTO Users (Username, FirstName, LastName, Email, PhoneNumber, RoleId, Password)
+              VALUE('${Username}', '${FirstName}', '${LastName}', '${Email}', '${PhoneNumber}', '${selected}', '${hash}')`,
+              (error, result) => {
+                if (error) {
+                  console.log(error)
+                  res.json(false)
+              }
+              else {
+                  res.json(true)
+              }
+              })
+            })
+            .catch(err => console.error(err.message))
+
+   
+        }
+      }
+    }
+
+  )
+})
 //Login Usera
 app.post('/api/loginUser', function(req, res){
   const {Username, Password} = req.body
