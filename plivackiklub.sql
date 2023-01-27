@@ -91,7 +91,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`Id`),
   KEY `RoleId` (`RoleId`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`RoleId`) REFERENCES `roles` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +100,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'sdcfs','dscs','sdc','sdc','123',NULL,''),(2,'','','cvb','','andela',NULL,''),(3,'','','dfghj','','ande',NULL,''),(4,'','','asdfg','','and',NULL,''),(5,'','','qwert','','dfgh',NULL,''),(6,'','','wert','','11234',NULL,''),(7,'','','asx','','alkas',NULL,''),(8,'','','fgn','','an',NULL,''),(9,'','','saas','','skhBXD',NULL,''),(10,'','','asas','','1234',NULL,''),(11,'','','sws','','saww',NULL,''),(12,'ewqqw','qeweq','esdrw','qwe','1212',NULL,''),(13,'J','LK','H','KHJ','an',NULL,''),(14,'Anđela','Jurić','andjela','andjela@gmail.com','063977700',NULL,''),(15,'Anđela','Jurić','andjelaa','andjela1@gmail.com','23456789',3,''),(16,'nesto','neki','netko','neka@neko','0987655',3,'undefined'),(17,'nesto','neki','netkoo','neka@neko','0987655',3,'undefined'),(18,'nko','nko','nkoo','nko@nko','34567',3,'undefined'),(19,'df','fd','fgh','df@ds','56789',3,'undefined'),(20,'df','fd','fghd','df@ds','56789',3,'undefined'),(21,'as','as','sa','as@as','7890',3,'undefined'),(22,'ds','ds','ds','ds@ds','45890',3,'$2b$10$JjyzvczGMqz/aoODgNyFD.g7hbOaccKGNzwkXUyxcYsYKhuGLR9Ni'),(23,'ds','ds','dss','ds@ds','45890',3,'$2b$10$FdUPc8uSzzdhFK3o52U4Ou9maaiZqUdmutGrkf3fFa0S1Wpbrc8UC'),(24,'a','a','a','a@a','5678',3,'$2b$10$E8IGWmlDci8AOW6sgN2ScOVixY2duEJI2STnsBtRDZ7XGF./1WP/m'),(25,'patak','patak','patak','patak@gmail.com','123',3,'$2b$10$1K7CueU63PAEuddvEW5ob.5eF3tOIx6z4LxeyNWCj2K8nBWjdKFpK');
+INSERT INTO `users` VALUES (1,'sdcfs','dscs','sdc','sdc','123',NULL,''),(2,'','','cvb','','andela',NULL,''),(3,'','','dfghj','','ande',NULL,''),(4,'','','asdfg','','and',NULL,''),(5,'','','qwert','','dfgh',NULL,''),(6,'','','wert','','11234',NULL,''),(7,'','','asx','','alkas',NULL,''),(8,'','','fgn','','an',NULL,''),(9,'','','saas','','skhBXD',NULL,''),(10,'','','asas','','1234',NULL,''),(11,'','','sws','','saww',NULL,''),(12,'ewqqw','qeweq','esdrw','qwe','1212',NULL,''),(13,'J','LK','H','KHJ','an',NULL,''),(14,'Anđela','Jurić','andjela','andjela@gmail.com','063977700',NULL,''),(15,'Anđela','Jurić','andjelaa','andjela1@gmail.com','23456789',3,''),(16,'nesto','neki','netko','neka@neko','0987655',3,'undefined'),(17,'nesto','neki','netkoo','neka@neko','0987655',3,'undefined'),(18,'nko','nko','nkoo','nko@nko','34567',3,'undefined'),(19,'df','fd','fgh','df@ds','56789',3,'undefined'),(20,'df','fd','fghd','df@ds','56789',3,'undefined'),(21,'as','as','sa','as@as','7890',3,'undefined'),(22,'ds','ds','ds','ds@ds','45890',3,'$2b$10$JjyzvczGMqz/aoODgNyFD.g7hbOaccKGNzwkXUyxcYsYKhuGLR9Ni'),(23,'ds','ds','dss','ds@ds','45890',3,'$2b$10$FdUPc8uSzzdhFK3o52U4Ou9maaiZqUdmutGrkf3fFa0S1Wpbrc8UC'),(24,'a','a','a','a@a','5678',3,'$2b$10$E8IGWmlDci8AOW6sgN2ScOVixY2duEJI2STnsBtRDZ7XGF./1WP/m'),(25,'patak','patak','patak','patak@gmail.com','123',3,'$2b$10$1K7CueU63PAEuddvEW5ob.5eF3tOIx6z4LxeyNWCj2K8nBWjdKFpK'),(26,'Anđela','Jurić','andjelaa123','andjela@gmail.com','063977700',3,'$2b$10$UZyN7T1spp8v6ji8k3ch1eKAYdb1eMElRKFyNJCDZPVcDhrslOOzG'),(27,'neko','nekic','neko','neko@nekic','0000000',3,'$2b$10$eYuN/LWS.axHuqSVc/ecX..UOQnoseUjUGogxJuNf0eMm3b8dU0qC'),(28,'suncokret','suncokretic','suncokret','Suncokret@gmail.com','1236789',3,'$2b$10$3K/A4n4Df19QRw1ByRZe6.cl8UnFZ..qvKcToZ7NW17VKmIsROE76'),(29,'slika','slika','slika','slika@slika','234567',3,'$2b$10$YczK6.2sEnEtX7816z4YK.lDlWAUFcep7AHJg0MvIJfKzjksQkUZa'),(30,'tv','tv','tv','tv@tv','22',1,'$2b$10$mgyFibKf7y5PTyDyDCYfCeIAPayojmjUT4tEriJrGozYnhATr/sBW'),(31,'tva','tva','tva','tv@tv','22',2,'$2b$10$vXiEzyVeKfPtYCBgqOJnH..Gz6r7rdYNxYVSmavFSvCtL3/q6SllW');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -113,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-12 11:37:57
+-- Dump completed on 2023-01-27 20:02:59
