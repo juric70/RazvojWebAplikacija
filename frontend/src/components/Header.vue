@@ -15,6 +15,7 @@
             <router-link class = "headerItem" to="/aboutUs">O nama</router-link>
             <router-link class = "headerItem" to="/createuser" v-if="store?.user?.role == 2 || store?.user?.role == 1">Kreiraj korisnika!</router-link>
             <router-link class = "headerItem" to="/calendar">Raspored</router-link>
+            <router-link class = "headerItem" to="/training">Treninzi</router-link>
            
 
     </div>

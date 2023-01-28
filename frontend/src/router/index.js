@@ -8,6 +8,7 @@ import Profile from '../views/Profile.vue'
 import CreateUserWithRoles from '../views/CreateUserWithRoles.vue'
 import CreateNews from '../components/CreatingNews.vue'
 import Calendar from '../views/Calendar.vue'
+import Training from '../views/Training.vue'
 
 
 
@@ -58,6 +59,12 @@ const routes = [
     name: 'Calendar',
     component: Calendar,
   },
+  {
+    path: '/training',
+    name: 'Training',
+    component: Training,
+  },
+
  
 ]
 
