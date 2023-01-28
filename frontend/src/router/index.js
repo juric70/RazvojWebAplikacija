@@ -9,6 +9,7 @@ import CreateUserWithRoles from '../views/CreateUserWithRoles.vue'
 import CreateNews from '../components/CreatingNews.vue'
 import Calendar from '../views/Calendar.vue'
 import Training from '../views/Training.vue'
+import Exercises from '../views/Exercises.vue'
 
 
 
@@ -63,6 +64,11 @@ const routes = [
     path: '/training',
     name: 'Training',
     component: Training,
+  },
+  {
+    path: '/exercises',
+    name: 'Exercises',
+    component: Exercises,
   },
 
  
