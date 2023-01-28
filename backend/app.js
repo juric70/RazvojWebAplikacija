@@ -272,6 +272,7 @@ app.delete('/api/logoutUser', function(req, res){
   res.clearCookie('kvsum-token');
   res.json(true)
 })
+
 //Kreiranje novosti
 app.post('/api/createNews',function(req, res){
   console.log(req.body)
@@ -303,8 +304,6 @@ myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
   // returing the response with file path and name
  
 });
-
- 
 })
 
 //slanje novosti
@@ -327,6 +326,113 @@ app.get('/api/news', function(req, res){
   })
 })
 
+//Kreiranje kategorije
+
+//kreiranje vjezbe
+app.post('/api/createexercise',function(req, res){ 
+  const {Title,Description, CreatorId } = req.body
+  var date = Date.now;
+  
+
+  db.query(`INSERT INTO Exercises(Title, Decsription, IsDeleted, CreationDate, CreatorId )
+            VALUES('${Title}', '${Description}', false ,'${date}', '${CreatorId}' )`, 
+            (error, result) => {
+              if(error){
+                console.log(error);
+                res.json(false);
+              }
+              else{
+                return res.json(true);
+              }
+   } ) 
+});
+//prikaz vjezbi
+app.get('api/exercises', function(req, res){
+  db.query(`SELECT * FROM Exercises`, function(error, result){
+    if(error){
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(result.length<=0){
+      res.status(404).json({
+        msg: "No exercises"
+      })
+    }else{
+      res.status(200).json({
+        msg: "Exercises",
+        news: result
+      })
+    }
+  })
+})
+//delete vjezba
+app.delete('api/exercises/:id', function(req, res){
+  db.query(`SELECT * FROM Exercises where id = '${req.params.id}'`, function(error, result){
+    if(error){
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(result.length>0){
+      db.query(`UPDATE Exercises SET isDeleted = true WHERE id = '${req.params.id}'`, function(errorupd, resultupd){
+        if(errorupd){
+          res.status(500).json({
+            msg: "error"
+          })
+        }else if(resultupd > 0){
+          res.status(200).json({
+            msg: "Uspjesno obrisano!",
+          })
+        }else{
+          res.status(404).json({
+            msg: "Nema ga!"
+          })
+        }
+      })
+
+    }else{
+      res.status(404).json({
+        msg: "No exercises"
+      })
+    }
+  })
+})
+//update vjezbi 
+  app.put('/updateexercise/:id', function(req, res){
+    const {Title, Description} = req.body.date;
+    db.query(`UPADTE Exercises set Title = '${Title}', Description = '${Description}' where id = '${req.params.id}'`, function(error,result){
+      if(error){
+        res.status(500).json({
+          msg: "error"
+        })
+      }else if(result>0){
+        res.status(200).json({
+          msg: "Uspjesno Uređeno!",
+        })
+      }else{
+        res.status(404).json({
+          msg: "No exercises"
+        })
+      }
+    })
+  })
+ 
+
+
+//Kreiranje treninga
+
+//Display treninga
+
+//display kategorija 
+
+//Display treninga 
+
+//Uređivanje treninga 
+
+//Uređivanje kategorija 
+
+//Brisanje treninga 
+
+//brisanje kategorija 
 
 const port = 3000;
 app.listen(port, () => {

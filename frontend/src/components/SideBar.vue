@@ -1,12 +1,12 @@
 <template>
     <div id="sider">
       <div id="siderCenter">
-      <RouterLink class="sideBarRouterLinks" to="/">Treninzi</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/training">Treninzi</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/">Raspored</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/">Treneri</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/">Cjenik</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/">Album</RouterLink>
-      <RouterLink class="sideBarRouterLinks" to="/">Podrška</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/createUser">Kreiraj korisnika</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/login">Login</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/aboutUs">O nama</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/createNews">Napravi novost</RouterLink>

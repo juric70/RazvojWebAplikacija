@@ -29,22 +29,16 @@
         <input type="text" v-model="text" id="searchInput">
     </div>
     <SideBar v-if="isOpenedMenu" @click="(isOpenedMenu = !isOpenedMenu)"></SideBar>
-    
-
   </div>
-      
-  
+        
 </header>
 <div v-if="isOpenedProfile" @click="(isOpenedProfile = !isOpenedProfile)" id="profileOptions">
  
-    <router-link  to="/profile" style="padding: 10px;">Profil</router-link><br>
-    <router-link class = "headerItem" to="/login" style="padding: 10px;" v-if="store?.user == null">Login</router-link><br>
-    <router-link class = "headerItem" to="/logout" style="padding: 10px;" v-if="store?.user != null">Logout</router-link><br>
+    <router-link  to="/profile" v-if="store?.user != null"><p>Profil</p></router-link><br>
+    <router-link class = "" to="/login" style="padding: 10px;" v-if="store?.user == null">Login</router-link><br>
+    <router-link class = "" to="/logout" style="padding: 10px;" v-if="store?.user != null">Logout</router-link><br>
        
 </div>
-   
-
-
 </template>
 
 <script>
@@ -60,7 +54,7 @@ export default{
             isOpened: false, 
             isOpenedMenu: false,
             isOpenedProfile: false,
-            headerMenuNames: ["Novosti", "Treninzi", "Treneri", "Cjenik", "Album", "Podrška", ],
+            headerMenuNames: [ "Treneri", "Cjenik", "Album", "Podrška", ],
             store
         }
     },

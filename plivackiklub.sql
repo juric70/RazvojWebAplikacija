@@ -18,6 +18,35 @@ USE `plivackiklub`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `exercises`
+--
+
+DROP TABLE IF EXISTS `exercises`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `exercises` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Title` varchar(100) NOT NULL,
+  `Description` varchar(5000) NOT NULL,
+  `CreationDate` varchar(50) DEFAULT NULL,
+  `isDeleted` tinyint(1) DEFAULT '0',
+  `CreatorId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `CreatorId` (`CreatorId`),
+  CONSTRAINT `exercises_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `exercises`
+--
+
+LOCK TABLES `exercises` WRITE;
+/*!40000 ALTER TABLE `exercises` DISABLE KEYS */;
+/*!40000 ALTER TABLE `exercises` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `news`
 --
 
@@ -73,6 +102,94 @@ INSERT INTO `roles` VALUES (1,'Admin'),(2,'Trener'),(3,'Korisnik');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `training`
+--
+
+DROP TABLE IF EXISTS `training`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `training` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Title` varchar(100) NOT NULL,
+  `CreationDate` varchar(50) DEFAULT NULL,
+  `isDeleted` tinyint(1) DEFAULT '0',
+  `CreatorId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `CreatorId` (`CreatorId`),
+  CONSTRAINT `training_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `training`
+--
+
+LOCK TABLES `training` WRITE;
+/*!40000 ALTER TABLE `training` DISABLE KEYS */;
+/*!40000 ALTER TABLE `training` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trainingcategory`
+--
+
+DROP TABLE IF EXISTS `trainingcategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `trainingcategory` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Title` varchar(100) NOT NULL,
+  `CreationDate` varchar(50) DEFAULT NULL,
+  `CreatorId` int DEFAULT NULL,
+  `isDeleted` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `CreatorId` (`CreatorId`),
+  CONSTRAINT `trainingcategory_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trainingcategory`
+--
+
+LOCK TABLES `trainingcategory` WRITE;
+/*!40000 ALTER TABLE `trainingcategory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `trainingcategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `trainingexercise`
+--
+
+DROP TABLE IF EXISTS `trainingexercise`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `trainingexercise` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `RepetitionNumber` int DEFAULT NULL,
+  `Series` int DEFAULT NULL,
+  `Duration` int DEFAULT NULL,
+  `TrainingId` int DEFAULT NULL,
+  `isDeleted` tinyint(1) DEFAULT '0',
+  `ExerciseId` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `TrainingId` (`TrainingId`),
+  KEY `ExerciseId` (`ExerciseId`),
+  CONSTRAINT `trainingexercise_ibfk_1` FOREIGN KEY (`TrainingId`) REFERENCES `training` (`id`),
+  CONSTRAINT `trainingexercise_ibfk_2` FOREIGN KEY (`ExerciseId`) REFERENCES `exercises` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trainingexercise`
+--
+
+LOCK TABLES `trainingexercise` WRITE;
+/*!40000 ALTER TABLE `trainingexercise` DISABLE KEYS */;
+/*!40000 ALTER TABLE `trainingexercise` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -113,4 +230,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-27 20:02:59
+-- Dump completed on 2023-01-28 18:35:49

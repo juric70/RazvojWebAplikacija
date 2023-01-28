@@ -36,7 +36,7 @@ data () {
 <style>
 body{
     margin-top: 0%;
-    background-color: pink;
+    background-color: #f2f2f2;
 }
 .mainDivTraining{
     height: 100%;
