@@ -202,6 +202,7 @@ app.post('/api/loginUser', function(req, res){
              const token = jwt.sign({
               
                user:{
+                id:result[0].Id,
                 username: result[0].Username,
                 name: result[0].FirstName,
                 surname: result[0].LastName,
@@ -281,8 +282,7 @@ const myFile = req.files.selectedFile;
 var Title = req.body.Title;
 var Description = req.body.Description;
 
-var date = Date.now();
-console.log(date)
+let date = new Date().toJSON().slice(0, 10);
 
 myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
   if (err) {
@@ -330,12 +330,15 @@ app.get('/api/news', function(req, res){
 
 //kreiranje vjezbe
 app.post('/api/createexercise',function(req, res){ 
-  const {Title,Description, CreatorId } = req.body
-  var date = Date.now;
+  const {Title,Description, store } = req.body
+  let date = new Date().toJSON().slice(0, 10);
+
+  var CreatorId = store?.user?.id;
+console.log("kreator id: "  + CreatorId);
   
 
-  db.query(`INSERT INTO Exercises(Title, Decsription, IsDeleted, CreationDate, CreatorId )
-            VALUES('${Title}', '${Description}', false ,'${date}', '${CreatorId}' )`, 
+  db.query(`INSERT INTO Exercises(Title, Description, IsDeleted, CreationDate, CreatorId )
+            VALUES('${Title}', '${Description}', false ,'${date}', ${CreatorId} )`, 
             (error, result) => {
               if(error){
                 console.log(error);
@@ -347,8 +350,8 @@ app.post('/api/createexercise',function(req, res){
    } ) 
 });
 //prikaz vjezbi
-app.get('api/exercises', function(req, res){
-  db.query(`SELECT * FROM Exercises`, function(error, result){
+app.get('/api/exercises', function(req, res){
+  db.query(`SELECT e.*, u.Username FROM Exercises e JOIN Users u on e.CreatorId = u.Id`, function(error, result){
     if(error){
       res.status(500).json({
         msg: "error"
@@ -358,10 +361,11 @@ app.get('api/exercises', function(req, res){
         msg: "No exercises"
       })
     }else{
+      	console.log("rez: ", result)
       res.status(200).json({
         msg: "Exercises",
-        news: result
-      })
+        exercises: result,
+    })
     }
   })
 })

@@ -10,7 +10,7 @@
       <RouterLink class="sideBarRouterLinks" to="/login">Login</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/aboutUs">O nama</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/createNews">Napravi novost</RouterLink>
-
+      <RouterLink class="sideBarRouterLinks" to="/exercises">Vježbe</RouterLink>
 
       </div>
     </div>

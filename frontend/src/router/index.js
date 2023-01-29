@@ -10,7 +10,7 @@ import CreateNews from '../components/CreatingNews.vue'
 import Calendar from '../views/Calendar.vue'
 import Training from '../views/Training.vue'
 import Exercises from '../views/Exercises.vue'
-
+import AddExercise from '../views/AddExercise.vue'
 
 
 
@@ -70,7 +70,11 @@ const routes = [
     name: 'Exercises',
     component: Exercises,
   },
-
+  {
+    path: '/addexercise',
+    name: 'AddExercise',
+    component: AddExercise,
+  },
  
 ]
 

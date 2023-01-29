@@ -1,6 +1,6 @@
 <template>
     <div class="exercisesMainDiv">
-        <button class="addExercises">Dodaj vjezbu</button>
+        <button class="addExercises"><router-link to="/addExercise">Dodaj vježbu</router-link></button>
         <h1>Vjezbe</h1>
         <div class="exerciseCard">
             <table>
@@ -10,18 +10,14 @@
             <th>Kreator Vjezbe</th>
             <th colspan="2">Akcije</th>
         </tr>
-        <tr>
-            <td>Sklekovi</td>
-            <td>Legnete na stomak, stavite zglobove na pod u visini ramena i odgurujete se od pod </td>
-            <td>Broz Tito</td>
+        <tr  v-for="exercise in Exercises" :key="exercise.id">
+            <td>{{ exercise.Title }}</td>
+            <td>{{ exercise.Description }}</td>
+            <td>{{ exercise.Username}}</td>
             <td>Uredi</td>
             <td>Obrisi</td>
         </tr>
-        <tr>
-            <td></td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-        </tr>
+       
         </table>
         </div>
     </div>
@@ -29,19 +25,36 @@
 
 
 <script>
-
+import axios from "axios";
 export default{
 name: 'Exercises',
 data () {
     return {
+        Exercises: ""
+    }
+},
+mounted(){
+      axios.get('/api/exercises').then((res) => {
+        this.Exercises = res.data.exercises;
+        console.log(" ovdje su vjezbe koje dobije", this.Exercises);
+        for(var i =0; i<this.Exercises.length; i++){
+         
+          console.log (this.Exercises[i].Title,  "  OIWEJIOWE "   );
+        }
+      })
     }
 }
-}
-
 </script>
 
 
 <style>
+
+table, th, td {
+    padding: 7px;
+    border-bottom: solid 1px #03A9F4;
+    border-collapse: collapse;
+   
+}
 body{
     margin-top: 0%;
 }
@@ -55,10 +68,13 @@ body{
     border-radius: 10px;
 }
 .exerciseCard{
-    background-color: red;
+   
     height: 100%;
     width: 100%;
     margin: 0%;
     align-items: center;
+}
+.exerciseCard table{
+    width: 100%;
 }
 </style>

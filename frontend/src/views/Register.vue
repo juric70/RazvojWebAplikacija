@@ -144,7 +144,7 @@ font-weight: bold;
     .card{
         width: 80%;
     }
-    .cardInputBox input{
+    .cardInputBox input, #textarea{
         width: 80%;
     }
     .card{
