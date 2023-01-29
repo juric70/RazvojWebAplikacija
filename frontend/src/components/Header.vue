@@ -34,10 +34,13 @@
         
 </header>
 <div v-if="isOpenedProfile" @click="(isOpenedProfile = !isOpenedProfile)" id="profileOptions">
- 
-    <router-link  to="/profile" v-if="store?.user != null"><p>Profil</p></router-link><br>
-    <router-link class = "" to="/login" style="padding: 10px;" v-if="store?.user == null">Login</router-link><br>
-    <router-link class = "" to="/logout" style="padding: 10px;" v-if="store?.user != null">Logout</router-link><br>
+ <button v-if="store?.user != null" class="headerButton"> <router-link  to="/profile" >Profil</router-link></button>
+   
+   <button v-if="store?.user == null" class="headerButton"><router-link class = "" to="/login" style="padding: 2px;" >Login</router-link></button>
+    
+   
+    <button v-if="store?.user != null" class="headerButton"> <router-link class = "" to="/logout" style="padding: 2px;" >Logout</router-link></button>
+    
        
 </div>
 </template>
@@ -82,9 +85,21 @@ header{
     background-color:  #03A9F4;
     height: 48px;
     overflow: hidden;
-}button{
+}
+.headerButton{
+    height: 40px;
+    width: 125px;
+    border: solid 0.5px #03A9F4;
+    border-bottom:solid 0.5px black ;
     background-color: #03A9F4;
-    border: 0;
+    font-weight: bold;
+    border-radius: 2px;
+    display: block;
+}
+.headerButton a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
 }
 header a{
     display:inline-block;
@@ -136,11 +151,11 @@ header a:hover{
     display: none;
 }
 #profileOptions{
-    padding-top: 50px; 
+    
     float: right;
     display: inline;
     margin-top: 50px;
-    padding: 17px;
+    
     border: solid;
     position: relative;
     z-index: 4;

@@ -349,9 +349,9 @@ console.log("kreator id: "  + CreatorId);
               }
    } ) 
 });
-//prikaz vjezbi
+//prikaz svih vjezbi
 app.get('/api/exercises', function(req, res){
-  db.query(`SELECT e.*, u.Username FROM Exercises e JOIN Users u on e.CreatorId = u.Id`, function(error, result){
+  db.query(`SELECT e.*, u.Username FROM Exercises e JOIN Users u on e.CreatorId = u.Id where e.isDeleted = false`, function(error, result){
     if(error){
       res.status(500).json({
         msg: "error"
@@ -361,7 +361,6 @@ app.get('/api/exercises', function(req, res){
         msg: "No exercises"
       })
     }else{
-      	console.log("rez: ", result)
       res.status(200).json({
         msg: "Exercises",
         exercises: result,
@@ -369,52 +368,69 @@ app.get('/api/exercises', function(req, res){
     }
   })
 })
-//delete vjezba
-app.delete('api/exercises/:id', function(req, res){
-  db.query(`SELECT * FROM Exercises where id = '${req.params.id}'`, function(error, result){
+//Prikaz samo određene vjezbe
+app.get('/api/exercise/:id',function(req,res){
+  var id = req.params['id'];
+  db.query(`SELECT  e.*, u.Username FROM Exercises e JOIN Users u on e.CreatorId = u.Id where e.isDeleted = false and e.id = ? LIMIT 1`,[id], function(error, result){
+   
     if(error){
+      console.log(error)
       res.status(500).json({
         msg: "error"
       })
-    }else if(result.length>0){
-      db.query(`UPDATE Exercises SET isDeleted = true WHERE id = '${req.params.id}'`, function(errorupd, resultupd){
-        if(errorupd){
-          res.status(500).json({
-            msg: "error"
-          })
-        }else if(resultupd > 0){
-          res.status(200).json({
-            msg: "Uspjesno obrisano!",
-          })
-        }else{
-          res.status(404).json({
-            msg: "Nema ga!"
-          })
-        }
-      })
-
-    }else{
+    }else if(result.length<=0){
       res.status(404).json({
         msg: "No exercises"
       })
+    }else{
+      res.status(200).json({
+        msg: "Exercises",
+        result: result[0],
+    })
     }
+  })
+
+})
+
+//delete vjezba
+app.get('/api/delexercises/:id', function(req, res){
+   var id = req.params['id'];
+   console.log(id, " je id koji dobijemo")
+      db.query("UPDATE Exercises SET isDeleted = true WHERE id =?", [id], function(errorupd, resultupd){
+        if(errorupd){
+          console.log(errorupd);
+          res.status(500).json({
+            msg: "error"
+          })
+        }else{
+          res.status(200).json({
+            msg: "Uspjesno obrisano!",
+          })
+        }
+
+  
   })
 })
 //update vjezbi 
-  app.put('/updateexercise/:id', function(req, res){
-    const {Title, Description} = req.body.date;
-    db.query(`UPADTE Exercises set Title = '${Title}', Description = '${Description}' where id = '${req.params.id}'`, function(error,result){
+  app.put('/api/updateexercise/:id', function(req, res){
+const {Title, Description} = req.body;
+var id = req.params['id'];
+    db.query(`UPDATE Exercises SET Title = '${Title}', Description = '${Description}' where id = ?`, [id], function(error,result){
       if(error){
+        console.log(error)
         res.status(500).json({
-          msg: "error"
+          msg: "error",
+          result:false
         })
-      }else if(result>0){
+      }else if(result.affectedRows==1){
         res.status(200).json({
           msg: "Uspjesno Uređeno!",
+          result: true
         })
       }else{
         res.status(404).json({
-          msg: "No exercises"
+          msg: "No exercises",
+          result: false
         })
       }
     })

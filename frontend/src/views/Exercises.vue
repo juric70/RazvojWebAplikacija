@@ -11,11 +11,11 @@
             <th colspan="2">Akcije</th>
         </tr>
         <tr  v-for="exercise in Exercises" :key="exercise.id">
-            <td>{{ exercise.Title }}</td>
+            <td><router-link :to = "{name: 'Exercise', params: {id: exercise.id}}">{{ exercise.Title }}</router-link></td>
             <td>{{ exercise.Description }}</td>
             <td>{{ exercise.Username}}</td>
-            <td>Uredi</td>
-            <td>Obrisi</td>
+            <td><router-link :to="{name: 'ModifyExercise', params: {id : exercise.id}}">Uredi</router-link></td>
+            <td><router-link :to="{name: 'DeleteExercise', params: {id : exercise.id}}">Obrisi</router-link></td>
         </tr>
        
         </table>
@@ -63,9 +63,18 @@ body{
 }
 .addExercises{
     float: right;
-    margin-right: 2%;
-    padding: 1%;
-    border-radius: 10px;
+    height: 40px;
+width: 13%;
+margin: 10px;
+border-radius: 15px;
+border: solid 1px #03A9F4;
+background-color: #03A9F4;
+font-weight: bold;
+}
+.addExercises a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;	
 }
 .exerciseCard{
    

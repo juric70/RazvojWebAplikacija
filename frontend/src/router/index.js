@@ -10,9 +10,10 @@ import CreateNews from '../components/CreatingNews.vue'
 import Calendar from '../views/Calendar.vue'
 import Training from '../views/Training.vue'
 import Exercises from '../views/Exercises.vue'
+import Exercise from '../views/Exercise.vue'
 import AddExercise from '../views/AddExercise.vue'
-
-
+import DeleteExercise from '../views/DeleteExercise.vue'
+import ModifyExercise from '../views/ModifyExercise.vue'
 
 const routes = [
    {
@@ -71,9 +72,24 @@ const routes = [
     component: Exercises,
   },
   {
+    path: '/exercise/:id',
+    name: 'Exercise',
+    component: Exercise,
+  },
+  {
     path: '/addexercise',
     name: 'AddExercise',
     component: AddExercise,
+  },
+  {
+    path: '/deleteexercise/:id',
+    name: 'DeleteExercise',
+    component: DeleteExercise,
+  },
+  {
+    path: '/modifyexercise/:id',
+    name: 'ModifyExercise',
+    component: ModifyExercise,
   },
  
 ]

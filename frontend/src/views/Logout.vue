@@ -1,9 +1,15 @@
 <template>
-
-<div class="LoginCard">
-    korisnik je vec prijavljen
-    <button @click="logoutUser"> Logout</button>
-</div>
+<div class="RegisterBackground">
+        <div class="card">
+            <h1 class="RegisterDescriptionTitle">
+               Jeste li sigurni da se želite odjaviti?
+            </h1>
+      
+           <button class="RegisterButton" @click="logoutUser">
+             Odjavi se!
+            </button>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -14,7 +20,7 @@ export default{
         logoutUser: function(){
                 axios.delete("/api/logoutUser",)
                 .then((res) => {
-                    window.location.reload();
+                    window.location.replace('/');
 
                   
                 }).catch((error) => {
