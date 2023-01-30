@@ -14,6 +14,16 @@ import Exercise from '../views/Exercise.vue'
 import AddExercise from '../views/AddExercise.vue'
 import DeleteExercise from '../views/DeleteExercise.vue'
 import ModifyExercise from '../views/ModifyExercise.vue'
+import AllNews from '../views/AllNews.vue'
+import DeleteNews from '../views/DeleteNews.vue'
+import ModifyNews from '../views/ModifyNews.vue'
+import OneNew from '../views/OneNew.vue'
+import AddCategory from '../views/AddCategory.vue'
+import Categories from '../views/Categories.vue'
+import Category from '../views/Category.vue'
+import ModifyCategory from '../views/ModifyCategory.vue'
+import DeleteCategory from '../views/DeleteCategory.vue'
+
 
 const routes = [
    {
@@ -91,7 +101,51 @@ const routes = [
     name: 'ModifyExercise',
     component: ModifyExercise,
   },
- 
+  {
+    path: '/allnews',
+    name: 'Allnews',
+    component: AllNews,
+  },
+  {
+    path: '/deletnews/:id',
+    name: 'DeleteNews',
+    component: DeleteNews,
+  },
+  {
+    path: '/modifynews/:id',
+    name: 'ModifyNews',
+    component: ModifyNews,
+  },
+  {
+    path: '/new/:id',
+    name: 'OneNew',
+    component: OneNew,
+  },
+  {
+    path: '/addcat',
+    name: 'AddCategory',
+    component: AddCategory,
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: Categories,
+  },
+  {
+    path: '/category/:id',
+    name: 'Category',
+    component: Category,
+  },
+  {
+    path: '/modifycategory/:id',
+    name: 'ModifyCategory',
+    component: ModifyCategory,
+  },
+  {
+    path: '/deletecategory/:id',
+    name: 'DeleteCategory',
+    component: DeleteCategory,
+  },
 ]
 
 const router = createRouter({

@@ -11,7 +11,7 @@
       <RouterLink class="sideBarRouterLinks" to="/aboutUs">O nama</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/createNews">Napravi novost</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/exercises">Vježbe</RouterLink>
-
+      <router-link class="sideBarRouterLinks" to="/allnews">Sve novosti</router-link>
       </div>
     </div>
   </template>

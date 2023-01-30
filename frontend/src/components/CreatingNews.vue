@@ -1,32 +1,34 @@
 <template>
 <div class="card">
+    <h1>Napravite novost!</h1>
     <div class="cardInputBox">
-        <p>Title</p>
-        <input type="text" name="Title" id="titleNewsCard"  v-model="Title">
+        <p>Naslov</p>
+        <input type="text" name="Title" id="titleNewsCard" placeholder="Naslov" v-model="Title">
     </div>
     <div class="cardInputBox">
-        <p>Description</p>
-        <input type="text" name="Description" id="NewsCard"  v-model="Description">
+        <p>Sadržaj</p>
+        <textarea  id="textarea" cols="30" rows="10" v-model="Description" placeholder="Sadržaj"></textarea>
+    
     </div>
 
     <div class="">
     <input type="file" @change="onFileChange"  />
     <button @click="onUploadFile" class="upload-button RegisterButton" :disabled="!this.selectedFile">Upload file</button>
   </div>
-
-
 </div>
 </template>
 
 <script>
 import axios from 'axios';
+import { store } from '../../store.js';
 
 export default {
     data(){
         return{
             selectedFile: "",
             Title: "",
-            Description: ""
+            Description: "",
+            store
         };
     },
     methods:{
@@ -39,7 +41,7 @@ export default {
             formData.append("selectedFile", this.selectedFile);
             formData.append("Title", this.Title);
             formData.append("Description", this.Description);
-
+            formData.append("Userid", this.store.user.id);
             axios
             .post("/api/createNews", formData, {headers:{"content-type":"multipart/form-data"}})
             .then(res => {
@@ -48,7 +50,8 @@ export default {
             .catch(err => {
                 console.log(err);
             })
-        }
+        },
+       
     }
 
 }

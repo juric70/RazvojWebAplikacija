@@ -35,7 +35,7 @@
              <div class="newsAndBtn">
 
               <h1 style="z-index: 1000;">{{news.Title }}</h1>
-              <button class="NewsButtonClass">Procitaj Više!</button>
+              <button class="NewsButtonClass"><router-link :to="{name:'OneNew', params:{id: news.Id}}">Procitaj Više!</router-link></button>
               </div>
              
             </div>
