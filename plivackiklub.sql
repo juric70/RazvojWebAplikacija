@@ -34,7 +34,7 @@ CREATE TABLE `exercises` (
   PRIMARY KEY (`id`),
   KEY `CreatorId` (`CreatorId`),
   CONSTRAINT `exercises_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `exercises` (
 
 LOCK TABLES `exercises` WRITE;
 /*!40000 ALTER TABLE `exercises` DISABLE KEYS */;
+INSERT INTO `exercises` VALUES (1,'SADASD','SDEXS','function now() { [native code] }',1,30),(2,'wdx','xwwswd','function now() { [native code] }',1,30),(3,'dewqxs','wxqas','2023-01-28',1,30),(4,'Zgibovi','Okačiti se rukama na prečku koja visi sa zida i povlačiti se rukama prema gore da Vam brada pređe iznad prečke, a ako niste razumjeli opis , te ukoliko Vam je isti trebao možete se ubiti jer ne znate šta su zgibovi. :)','2023-01-28',1,30),(5,'lkfrm wlkwrf','wlrkemcwćšeprov','2023-01-28',1,28),(6,'lwdcm','ewkdfnl','2023-01-29',0,28),(7,'dcasahahhahaha','cwsds','2023-01-29',0,28),(8,'Suhi treninzi','undefined','2023-01-29',0,30),(9,'treninzi u bazenu','undefined','2023-01-29',0,30);
 /*!40000 ALTER TABLE `exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,10 +62,11 @@ CREATE TABLE `news` (
   `CreatorId` int DEFAULT NULL,
   `CreationDate` varchar(20) NOT NULL,
   `ModifcationDate` varchar(20) DEFAULT NULL,
+  `isDeleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`Id`),
   KEY `CreatorId` (`CreatorId`),
   CONSTRAINT `news_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +75,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (1,'gfhjk','gfhgjhkjlčlćkjhgj','gift.jpg',NULL,'1671804838894',NULL),(2,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810898068',NULL),(3,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810982081',NULL),(4,'fsfsdfsdfsdffsddsf','asasdasdaswffafwdf','plivanje1.jpg',NULL,'1672238149904',NULL);
+INSERT INTO `news` VALUES (1,'gfhjk','gfhgjhkjlčlćkjhgj','gift.jpg',NULL,'1671804838894',NULL,0),(2,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810898068',NULL,1),(3,'rzwrtvbd','dfgherteskjskjsjsjsjjsjsjsjjs','Profil1.png',NULL,'1671810982081','2023-01-29',0),(4,'fsfsdfsdfsdffsddsf','asasdasdaswffafwdf','plivanje1.jpg',NULL,'1672238149904',NULL,1),(5,'sdcsd','dsc','preuzmi.jpg',30,'2023-01-29',NULL,0),(6,'sdcsd','dsc','preuzmi.jpg',30,'2023-01-29',NULL,1),(7,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,1),(8,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,0),(9,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,0),(10,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,1);
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,9 +116,12 @@ CREATE TABLE `training` (
   `CreationDate` varchar(50) DEFAULT NULL,
   `isDeleted` tinyint(1) DEFAULT '0',
   `CreatorId` int DEFAULT NULL,
+  `CategoryId` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `CreatorId` (`CreatorId`),
-  CONSTRAINT `training_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
+  KEY `CategoryId` (`CategoryId`),
+  CONSTRAINT `training_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`),
+  CONSTRAINT `training_ibfk_2` FOREIGN KEY (`CategoryId`) REFERENCES `trainingcategory` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -145,7 +150,7 @@ CREATE TABLE `trainingcategory` (
   PRIMARY KEY (`id`),
   KEY `CreatorId` (`CreatorId`),
   CONSTRAINT `trainingcategory_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,6 +159,7 @@ CREATE TABLE `trainingcategory` (
 
 LOCK TABLES `trainingcategory` WRITE;
 /*!40000 ALTER TABLE `trainingcategory` DISABLE KEYS */;
+INSERT INTO `trainingcategory` VALUES (1,'Treninzi u bazenuu','2023-01-29',30,1),(2,'Trening u bazenu','2023-01-29',30,0);
 /*!40000 ALTER TABLE `trainingcategory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,4 +236,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-28 18:35:49
+-- Dump completed on 2023-01-30 15:07:00
