@@ -46,7 +46,7 @@ mounted(){
 
 table, th, td {
     padding: 7px;
-    border-bottom: solid 1px #03A9F4;
+    
     border-collapse: collapse;
    
 }

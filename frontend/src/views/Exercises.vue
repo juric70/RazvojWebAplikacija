@@ -1,8 +1,8 @@
 <template>
     <div class="exercisesMainDiv">
-        <button class="addExercises"><router-link to="/addExercise">Dodaj vježbu</router-link></button>
-        <h1>Vjezbe</h1>
-        <div class="exerciseCard">
+        <button class="addExercises1"><router-link to="/addExercise">+</router-link></button>
+        <h1 class="exercisesTitle">Vjezbe</h1>
+        <div class="exerciseCard1">
             <table>
         <tr>
             <th>Naziv Vjezbe</th>
@@ -50,10 +50,19 @@ mounted(){
 <style>
 
 table, th, td {
-    padding: 7px;
-    border-bottom: solid 1px #03A9F4;
     border-collapse: collapse;
+    overflow: hidden;
    
+}
+th {
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.4;
+    background-color: #03A9F4;
+
+}
+tr:nth-child(odd) {
+    background-color: #e6e6e6;
 }
 body{
     margin-top: 0%;
@@ -61,29 +70,36 @@ body{
 .exercisesMainDiv{
     padding-top: 60px;
 }
-.addExercises{
-    float: right;
-    height: 40px;
-width: 13%;
-margin: 10px;
-border-radius: 15px;
-border: solid 1px #03A9F4;
-background-color: #03A9F4;
-font-weight: bold;
+.exercisesTitle{
+    text-align: left;
+    margin-left: 60px;
+    position: absolute;
+    margin-left: 5%;
 }
-.addExercises a{
+.addExercises1{
+    float: left;
+    height: 40px;
+    width: 40px;
+    margin-top: 0.5%;
+    margin-left: 12%;
+    border-radius: 15px;
+    border: solid 1px #03A9F4;
+    background-color: #03A9F4;
+    font-weight: bold;
+}
+.addExercises1 a{
     text-decoration: none;
     color: white;
     padding: 10px;	
 }
-.exerciseCard{
-   
-    height: 100%;
-    width: 100%;
-    margin: 0%;
-    align-items: center;
+.exerciseCard1{
+    height: 90%;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 40px 0 rgb(0 0 0 / 15%);
+    margin-top: 5%;
 }
-.exerciseCard table{
-    width: 100%;
-}
+
 </style>
