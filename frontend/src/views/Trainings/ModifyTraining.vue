@@ -2,10 +2,10 @@
     <div class="RegisterBackground">
         <div class="card">
             <h1 class="RegisterDescriptionTitle">
-               Dodajte naziv treninga i njegovu kategoriju!
+               Uredite trening!
             </h1>
             <div class="cardInputBox">
-                <input type="text" placeholder="Naslov" v-model="Title" id="title">
+                <input type="text" placeholder="Naslov" v-model="Title" id="title"  >
             </div> 
             <div class="cardInputBox">
                 <select v-model="selected">
@@ -14,64 +14,62 @@
                     </option>
                 </select>
             </div>
-
-           <button class="RegisterButton" @click="addExercise">
-                Kreiraj Trening!
+           <button class="RegisterButton" @click="modifyTraining($route?.params?.id)">
+                Dalje!
             </button>
         </div>
     </div>
-
-
 </template>
 
 <script>
-import axios from 'axios';
-import { store } from '../../store.js';
+import axios from 'axios'
 
 export default{
-name:'AddTraining',
-data(){
-    return{
-        Title: "",
-        Categories:"",
-        select: "",
-        store
-    }
-},
-methods:{
-    addExercise: function(){
-        axios.post("/api/createtraining", {
-           Title:this.Title,
-           Userid: this.store.user.id,
-           selected: this.select
+    name: 'ModifyTraining',
+    data(){
+        return{
+            Title: "",
+            Categories:"",
+            selected: "",
+           
+        }
+    },
+    methods:{
+        modifyTraining(id){
+            axios.put(`/api/updatetraining/${id}`, {
+            Title:this.Title,
+            selected: this.selected
+           
         }).then((res) => {
-            if(res.data == true){
-                alert("Kreiraliste uspjesno :)")
+            if(res.data.result == true){
+                alert(res.data.msg)
                 window.location.replace('/trainings');
             }else{
-                alert("nesto nece!")
+                alert(res.data.msg)
             }
         }).catch(() => {
             alert("e tek sada ne valja :(")
         })
-    }
-},
-mounted(){
+
+        }
+    },
+    mounted(){
+        axios.get(`/api/training/${this.$route.params.id}`).then((res) => {
+        this.Title = res.data.result.Title;
+        this.selected = res.data.result.CategoryId;
+        console.log( this.Title , "  ")
+      })
+      
       axios.get('/api/categories').then((res) => {
         this.Categories = res.data.categories;
         console.log("kategorije:  ", this.Categories[0].Title )
       
       })
+    
     }
 }
+
 </script>
 
 <style>
-.cardInputBox input, #textarea{
-width: 90%;
-margin: 10px;
-border-radius: 15px;
-border: solid 1px #03A9F4;
-padding-left: 7px;
-}
 </style>

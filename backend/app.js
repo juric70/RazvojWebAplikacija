@@ -597,14 +597,15 @@ app.get('/api/delcategory/:id', function(req, res){
  })
 })
 
-
+//TRENINZI
 //Kreiranje treninga
 app.post('/api/createtraining',function(req, res){ 
   const {Title, Userid ,selected} = req.body
   let date = new Date().toJSON().slice(0, 10);
   var CreatorId = Userid;
+  console.log(selected, "selected")
   db.query(`INSERT INTO Training(Title, IsDeleted, CreationDate, CreatorId, CategoryId )
-            VALUES('${Title}', false ,'${date}', ${CreatorId}, ${selected} )`, 
+            VALUES('${Title}', false ,'${date}', ${CreatorId}, ${selected})`, 
             (error, result) => {
               if(error){
                 console.log(error);
@@ -617,7 +618,7 @@ app.post('/api/createtraining',function(req, res){
 });
 //Display treninga
 app.get('/api/trainings', function(req, res){
-  db.query(`SELECT t.*, u.Username, tc.Title FROM Training t JOIN Users u on t.CreatorId = u.Id JOIN TrainingCategory tc on t.CategoryId= tc.id where t.isDeleted = false`, function(error, result){
+  db.query(`SELECT t.*, u.Username, tc.Title as category FROM Training t JOIN Users u on t.CreatorId = u.Id JOIN TrainingCategory tc on t.CategoryId= tc.id where t.isDeleted = false`, function(error, result){
     if(error){
       console.log(error)
       res.status(500).json({
@@ -635,11 +636,10 @@ app.get('/api/trainings', function(req, res){
     }
   })
 })
-//Display treninga 
-app.get('/api/category/:id',function(req,res){
+//Display jednog treninga 
+app.get('/api/training/:id',function(req,res){
   var id = req.params['id'];
-  db.query(`SELECT  t.*, u.Username, tc.Title FROM Training t JOIN Users u on t.CreatorId = u.Id JOIN TrainingCategory tc on t.CategoryId= tc.id where t.isDeleted = false and t.id = ? LIMIT 1`,[id], function(error, result){
-   
+  db.query(`SELECT  t.*, u.Username, tc.Title as category FROM Training t JOIN Users u on t.CreatorId = u.Id JOIN TrainingCategory tc on t.CategoryId= tc.id where t.isDeleted = false and t.id = ? LIMIT 1`,[id], function(error, result){
     if(error){
       console.log(error)
       res.status(500).json({
@@ -656,13 +656,33 @@ app.get('/api/category/:id',function(req,res){
     })
     }
   })
-
+})
+//Prikaz treninga u ovisnosti o kategoriji (top 4)
+app.get('/api/trainingscat/:id', function(req, res){
+    var id = req.params['id'];
+  db.query(`SELECT  t.*, u.Username, tc.Title as category FROM Training t JOIN Users u on t.CreatorId = u.Id JOIN TrainingCategory tc on t.CategoryId= tc.id where t.isDeleted = false and t.CategoryId = ? LIMIT 4`,[id], function(error, result){
+    if(error){
+      console.log(error)
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(result.length<=0){
+      res.status(404).json({
+        msg: "No Trainings"
+      })
+    }else{
+      res.status(200).json({
+        msg: "Categories",
+        category: result,
+    })
+    }
+  })
 })
 //Uređivanje treninga 
 app.put('/api/updatetraining/:id', function(req, res){
-  const {Title, CreatorId, CategoryId} = req.body;
+  const {Title,  selected} = req.body;
   var id = req.params['id'];
-      db.query(`UPDATE Training SET Title = '${Title}', CreatorId = ${CreatorId}, CategoryId = ${CategoryId} where id = ?`, [id], function(error,result){
+      db.query(`UPDATE Training SET Title = '${Title}', CategoryId = ${selected} where id = ?`, [id], function(error,result){
         if(error){
           console.log(error)
           res.status(500).json({
@@ -700,7 +720,119 @@ app.get('/api/deltraining/:id', function(req, res){
  })
 })
 
-//trening-vjezba crud
+//TRENING-VJEZBA
+//Kreiranje treninga-vjezbe
+app.post('/api/createtraexe/:id',function(req, res){ 
+  const {RepetitionNumber, Series ,Duration, ExerciseId} = req.body
+  dur = Duration;
+  rep = RepetitionNumber;
+  if(Duration == ""){
+    dur = 0;
+  };
+  if(RepetitionNumber == ""){
+    rep=0;
+  } 
+
+console.log(Duration, "duration")
+  var id = req.params['id'];
+  db.query(`INSERT INTO TrainingExercise(RepetitionNumber, Series, Duration, TrainingId, ExerciseId, isDeleted )
+            VALUES(${rep} ,${Series}, ${dur}, ${id}, ${ExerciseId}, false)`, 
+            (error, result) => {
+              if(error){
+                console.log(error);
+                res.json(false);
+              }
+              else{
+                return res.json(true);
+              }
+   } ) 
+});
+//Prikaz jedne vjezbe jednog treninga
+app.get('/api/traexe/:id',function(req,res){
+  var id = req.params['id'];
+  db.query(`SELECT  te.*, t.Title as training, e.Title as exercise FROM TrainingExercise te JOIN  Training t on te.TrainingId = t.id JOIN Exercises e on te.ExerciseId= e.id where te.isDeleted = false and te.id = ? LIMIT 1`,[id], function(error, result){
+   
+    if(error){
+      console.log(error)
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(result.length<=0){
+      res.status(404).json({
+        msg: "No training"
+      })
+    }else{
+      res.status(200).json({
+        msg: "Training",
+        result: result[0],
+    })
+    }
+  })
+
+})
+//Prikaz svih vjezbi jednog treninga
+app.get('/api/trainingexe/:id', function(req, res){
+  var id = req.params['id'];
+  db.query(`SELECT te.*, t.Title as training, e.Title as exercise FROM TrainingExercise te JOIN  Training t on te.TrainingId = t.id JOIN Exercises e on te.ExerciseId= e.id where te.isDeleted = false and t.id = ?`,[id] ,function(error, result){
+    if(error){
+      console.log(error)
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(result.length<=0){
+      res.status(404).json({
+        msg: "No Trainings"
+      })
+    }else{
+      res.status(200).json({
+        msg: "Categories",
+        result: result,
+    })
+    }
+  })
+})
+//Uređivanje vjezbe u treningu
+app.put('/api/updateaexe/:id', function(req, res){
+  const {RepetitionNumber, Series, Duration ,ExerciseId} = req.body;
+  var id = req.params['id'];
+      db.query(`UPDATE TrainingExercise SET RepetitionNumber = ${RepetitionNumber}, Series = ${Series}, Duration = ${Duration}, ExerciseId = ${ExerciseId} where id = ?`, [id], function(error,result){
+        if(error){
+          console.log(error)
+          res.status(500).json({
+            msg: "error",
+            result:false
+          })
+        }else if(result.affectedRows==1){
+          res.status(200).json({
+            msg: "Uspjesno Uređeno!",
+            result: true
+          })
+        }else{
+          res.status(404).json({
+            msg: "No exercises",
+            result: false
+          })
+        }
+      })
+})
+//brisanje vjezbe u treningu
+app.get('/api/deltraexe/:id', function(req, res){
+  var id = req.params['id'];
+  console.log(id, " je id koji dobijemo u deletu");
+     db.query("UPDATE TrainingExercise SET isDeleted = true where id = ?", [id], function(errorupd, resultupd){
+       if(errorupd){
+         console.log(errorupd);
+         res.status(500).json({
+           msg: "error"
+         })
+       }else{
+         res.status(200).json({
+           msg: "Uspjesno obrisano!",
+         })
+       }
+ })
+})
+
 
 const port = 3000;
 app.listen(port, () => {

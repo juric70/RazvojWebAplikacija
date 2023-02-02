@@ -11,7 +11,7 @@
         </tr>
         <tr  v-for="category in Categories" :key="category.id">
              <td><router-link :to = "{name: 'Category', params: {id: category.id}}">{{ category.Title }}</router-link></td> 
-            <td>{{ category.Title}}</td>
+            <td>{{ category.Username}}</td>
             <td><router-link :to="{name: 'ModifyCategory', params: {id : category.id}}">Uredi</router-link></td>
             <td><router-link :to="{name: 'DeleteCategory', params: {id : category.id}}">Obrisi</router-link></td> 
         </tr>

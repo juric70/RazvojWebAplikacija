@@ -6,24 +6,39 @@ import Register from '../views/Register.vue'
 import AboutUs from '../views/AboutUs.vue'
 import Profile from '../views/Profile.vue'
 import CreateUserWithRoles from '../views/CreateUserWithRoles.vue'
-import CreateNews from '../components/CreatingNews.vue'
-import Calendar from '../views/Calendar.vue'
-import Training from '../views/Training.vue'
-import Exercises from '../views/Exercises.vue'
-import Exercise from '../views/Exercise.vue'
-import AddExercise from '../views/AddExercise.vue'
-import DeleteExercise from '../views/DeleteExercise.vue'
-import ModifyExercise from '../views/ModifyExercise.vue'
-import AllNews from '../views/AllNews.vue'
-import DeleteNews from '../views/DeleteNews.vue'
-import ModifyNews from '../views/ModifyNews.vue'
-import OneNew from '../views/OneNew.vue'
-import AddCategory from '../views/AddCategory.vue'
-import Categories from '../views/Categories.vue'
-import Category from '../views/Category.vue'
-import ModifyCategory from '../views/ModifyCategory.vue'
-import DeleteCategory from '../views/DeleteCategory.vue'
 
+import Calendar from '../views/Calendar.vue'
+
+import Training from '../views/Training.vue'
+
+import Exercises from '../views/Exercises/Exercises.vue'
+import Exercise from '../views/Exercises/Exercise.vue'
+import AddExercise from '../views/Exercises/AddExercise.vue'
+import DeleteExercise from '../views/Exercises/DeleteExercise.vue'
+import ModifyExercise from '../views/Exercises/ModifyExercise.vue'
+
+import CreateNews from '../components/CreatingNews.vue'
+import AllNews from '../views/News/AllNews.vue'
+import DeleteNews from '../views/News/DeleteNews.vue'
+import ModifyNews from '../views/News/ModifyNews.vue'
+import OneNew from '../views/News/OneNew.vue'
+
+import AddCategory from '../views/Categories/AddCategory.vue'
+import Categories from '../views/Categories/Categories.vue'
+import Category from '../views/Categories/Category.vue'
+import ModifyCategory from '../views/Categories/ModifyCategory.vue'
+import DeleteCategory from '../views/Categories/DeleteCategory.vue'
+
+import Trainings from '../views/Trainings/Trainings.vue'
+import AddTraining from '../views/Trainings/AddTraining.vue'
+import OneTraining from '../views/Trainings/OneTraining.vue'
+import DeleteTraining from '../views/Trainings/DeleteTraining.vue'
+import ModifyTraining from '../views/Trainings/ModifyTraining.vue'
+
+import FullTraining from '../views/TrainingExercises/FullTraining.vue'
+import AddExerciseToTraining from '../views/TrainingExercises/AddExercisesToTraining.vue'
+import ModifyExerciseForTraining from '../views/TrainingExercises/ModifyExerciseForTraining.vue'
+import DeleteExerciseForTraining from '../views/TrainingExercises/DeleteExerciseForTraining.vue'
 
 const routes = [
    {
@@ -76,6 +91,7 @@ const routes = [
     name: 'Training',
     component: Training,
   },
+
   {
     path: '/exercises',
     name: 'Exercises',
@@ -101,6 +117,7 @@ const routes = [
     name: 'ModifyExercise',
     component: ModifyExercise,
   },
+
   {
     path: '/allnews',
     name: 'Allnews',
@@ -121,6 +138,7 @@ const routes = [
     name: 'OneNew',
     component: OneNew,
   },
+
   {
     path: '/addcat',
     name: 'AddCategory',
@@ -145,6 +163,53 @@ const routes = [
     path: '/deletecategory/:id',
     name: 'DeleteCategory',
     component: DeleteCategory,
+  },
+
+  {
+    path: '/addtraining',
+    name: 'AddTraining',
+    component: AddTraining,
+  },
+  {
+    path: '/trainings',
+    name: 'Trainings',
+    component: Trainings,
+  },
+  {
+    path: '/training/:id',
+    name: 'OneTraining',
+    component: OneTraining,
+  },
+  {
+    path: '/modtraining/:id',
+    name: 'ModifyTraining',
+    component: ModifyTraining,
+  },
+  {
+    path: '/deltraining/:id',
+    name: 'DeleteTraining',
+    component: DeleteTraining,
+  },
+
+  {
+    path: '/fullTraining/:id',
+    name: 'FullTraining',
+    component: FullTraining
+  },
+  {
+    path: '/addexetotr/:id',
+    name: 'AddExerciseToTraining',
+    component: AddExerciseToTraining
+  },
+  {
+    path: '/modexetotr/:id',
+    name: 'ModifyExerciseForTraining',
+    component: ModifyExerciseForTraining
+  },
+  {
+    path: '/delexetotr/:id',
+    name: 'DeleteExerciseForTraining',
+    component: DeleteExerciseForTraining
   },
 ]
 

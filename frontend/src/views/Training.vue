@@ -1,35 +1,49 @@
 <template>
     <div class="mainDivTraining">
-        <div class="workoutOne">
-            <h1>Suhi trening</h1>
-            <div class="workoutCardsFlex">
-                <div class="workoutCards"></div>
-                <div class="workoutCards"></div>
-                <div class="workoutCards"></div>
-                <div class="workoutCards"></div>
+        <div class="workoutOne" v-for="cat in Categories" :key="cat.id">
+            <h1>{{cat.Title}}</h1>
+            <p>{{ cat.id }}</p>
+            <div class="workoutCardsFlex" @click="getTrainings(cat.id)" style="height: 50%; width: 70%; background-color: red;">
+                <div class="workoutCards" v-for="tr in Trainings" :key="tr.id">{{ tr.Title }}</div>
+                
             </div>
         </div>
-        <div class="workoutOne">
-            <h1>Treninzi u bazenu</h1>
-            <div class="workoutCardsFlex">
-                <div class="workoutCards"></div>
-                <div class="workoutCards"></div>
-                <div class="workoutCards"></div>
-                <div class="workoutCards"></div>
-            </div>
-        </div>
+        
     </div>
 </template>
 
 
 <script>
+import axios from 'axios';
+
 
 export default{
 name: 'Training',
 data () {
-    return {}
+    return {
+        Categories:"",
+        Trainings:""
+    }
+},
+methods:{
+    getTrainings(id){
+        console.log("udje u funkciju")
+        axios.get(`/api/trainingscat/${id}`).then((res) => {
+            this.Trainings = res.data.training;
+            console.log(this.Trainings[0].Title, "title: ")
+        })
+    }
+},
+mounted(){
+      axios.get('/api/categories').then((res) => {
+        this.Categories = res.data.categories;
+        console.log("kategorije:  ", this.Categories[0].Title )
+      })
+    
+      
+    }
 }
-}
+
 </script>
 
 

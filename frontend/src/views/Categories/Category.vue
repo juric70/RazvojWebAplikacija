@@ -24,7 +24,7 @@
 import axios from 'axios';
 
 export default{
-    name: 'Exercise',
+    name: 'Category',
     data(){
         return{
             Category: ""

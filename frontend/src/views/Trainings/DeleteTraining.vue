@@ -5,7 +5,7 @@
              Jeste li sigurni da želite pobrisati o? {{$route.params.id  }}
           </h1>
     
-         <button class="RegisterButton" @click="deleteCategory($route?.params?.id)">
+         <button class="RegisterButton" @click="deleteTraining($route?.params?.id)">
              Obriši vježbu!
           </button>
       </div>
@@ -18,13 +18,13 @@
 import axios from 'axios';
 
 export default{
-  name: 'DeleteCategory',
+  name: 'DeleteTraining',
   methods:{
-    deleteCategory(id){
+    deleteTraining(id){
          
-          axios.get(`/api/delcategory/${id}`).then((res)=>{
+          axios.get(`/api/deltraining/${id}`).then((res)=>{
               alert(res.data.msg);
-              window.location.replace('/categories');
+              window.location.replace('/trainings');
           }).catch((error) => {
               alert(error);
           })

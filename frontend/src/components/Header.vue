@@ -12,12 +12,13 @@
             <a href="#" class = "headerItem">{{headerMenuNames[6]}}</a>
           
             <router-link class = "headerItem" to="/aboutUs">O nama</router-link>
-            <router-link class = "headerItem" to="/createuser" v-if="store?.user?.role == 2 || store?.user?.role == 1">Kreiraj korisnika!</router-link>
             <router-link class = "headerItem" to="/calendar">Raspored</router-link>
             <router-link class = "headerItem" to="/training">Treninzi</router-link>
-            <router-link class = "headerItem" to="/exercises">Vjezbe</router-link>
             <router-link class = "headerItem" to="/allnews"  v-if="store?.user?.role == 2 || store?.user?.role == 1">Novosti</router-link>
+            <router-link class = "headerItem" to="/exercises" v-if="store?.user?.role == 2 || store?.user?.role == 1">Vjezbe</router-link>
+            <router-link class = "headerItem" to="/trainings" v-if="store?.user?.role == 2 || store?.user?.role == 1">Treninzi</router-link>
             <router-link class = "headerItem" to="/categories"  v-if="store?.user?.role == 2 || store?.user?.role == 1">Categorije</router-link>
+            <router-link class = "headerItem" to="/createuser" v-if="store?.user?.role == 1">Kreiraj korisnika!</router-link>
 
            
 

@@ -122,7 +122,7 @@ border-radius: 85px;
 border: 2px solid #03A9F4 ;
 }
 
-.cardInputBox input{
+.cardInputBox input, .cardInputBox select{
 height: 35px;
 width: 90%;
 margin: 10px;
