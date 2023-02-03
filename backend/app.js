@@ -51,7 +51,11 @@ app.use(cors(
  	user: 'root',
  	password: 'root',
  	database: 'PlivackiKlub'
+<<<<<<< HEAD
  });
+=======
+  });
+>>>>>>> eaedaf090fcd2e66ea7e5983cd933a2e0056bdfd
 
 // var db = mysql.createConnection({
 //   host: 'localhost',
@@ -299,12 +303,11 @@ app.get('/api/coaches', function(req, res){
 //NOVOSTI
 //Kreiranje novosti
 app.post('/api/createNews',function(req, res){
-  console.log(req.body.store.user)
   console.log(req.files)
 const myFile = req.files.selectedFile; 
 var Title = req.body.Title;
 var Description = req.body.Description;
-var CreatorId = req.body.Userid;
+var CreatorId = req.body?.Userid;
 let date = new Date().toJSON().slice(0, 10);
 console.log("body: ", req.body);
 

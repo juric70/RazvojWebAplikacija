@@ -73,27 +73,21 @@ body{
 }
 .LoginBackground{
     width: 100%;
-    height: 100%;
     background-color: #f2f2f2;
+    padding-top: 90px;
 }
 
 .LoginCard{
     border-radius: 5px;
     border: solid 1px #e6e6e6;
-    padding: 50px;
-    align-items: center;
-    justify-content: center; 
     background-color: white;
-    position: relative;
     width: 30%;
-    top: 13%;
-    transform: translateY(-13%);
-    left: 50%;
-    transform: translateX(-50%);
+    margin-left: 35%;
 }
 @media(max-width:800px){
     .LoginCard{
         width: 80%;
+        margin-left: 10%;
     }
     .LoginInputBox input{
         width: 80%;

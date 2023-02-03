@@ -1,18 +1,21 @@
 <template>
   <Header/>
   <RouterView/>
+  <Footer/>
   <Login/>
 </template>
 
 <script>
 import axios from 'axios';
 import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 import { store } from '../store.js'
 
 export default {
   name: 'App',
   components: {
     Header,
+    Footer,
   },
   data() {
     return {
