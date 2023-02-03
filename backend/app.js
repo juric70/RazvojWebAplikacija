@@ -46,11 +46,18 @@ app.use(cors(
 
 
 // connection configurations
+// var db = mysql.createConnection({
+// 	host: 'localhost',
+// 	user: 'root',
+// 	password: 'root',
+// 	database: 'PlivackiKlub'
+// });
+
 var db = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'root',
-	database: 'PlivackiKlub'
+  host: 'localhost',
+  user: 'rwa022023',
+  password: 'csdigital2023',
+  database: 'rwa022023'  
 });
 // connect to database
 db.connect();
@@ -292,7 +299,7 @@ app.get('/trainers', function(req, res){
 //NOVOSTI
 //Kreiranje novosti
 app.post('/api/createNews',function(req, res){
-  console.log(req.body.store?.user)
+  console.log(req.body.store.user)
   console.log(req.files)
 const myFile = req.files.selectedFile; 
 var Title = req.body.Title;
@@ -411,7 +418,7 @@ app.post('/api/createexercise',function(req, res){
   const {Title,Description, store } = req.body
   let date = new Date().toJSON().slice(0, 10);
 
-  var CreatorId = store?.user?.id;
+  var CreatorId = store.user.id;
 console.log("kreator id: "  + CreatorId);
   
 
