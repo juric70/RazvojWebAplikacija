@@ -51,11 +51,8 @@ app.use(cors(
  	user: 'root',
  	password: 'root',
  	database: 'PlivackiKlub'
-<<<<<<< HEAD
  });
-=======
-  });
->>>>>>> eaedaf090fcd2e66ea7e5983cd933a2e0056bdfd
+
 
 // var db = mysql.createConnection({
 //   host: 'localhost',
@@ -281,6 +278,7 @@ app.delete('/api/logoutUser', function(req, res){
   res.clearCookie('kvsum-token');
   res.json(true)
 })
+//Display trenera
 app.get('/api/coaches', function(req, res){
   db.query(`SELECT * FROM Users where RoleId = 2`, function(error, result){
     if(error){
@@ -859,6 +857,27 @@ app.get('/api/deltraexe/:id', function(req, res){
        }
  })
 })
+
+//TRENING-KORISNIK
+//Spajanje korisnika i njihovih treninga
+//Prikaz svih vježbi jednog  korisnika 
+//Prikaz svih korisnika jednog treninga
+//Prikaz svih treninga jednog korisnika
+//Brisanje korisnika sa treninga 
+
+//PROGRAM 
+//Kreiranje programa 
+//prikaz svih programa 
+//prikaz pojedinačnog programa 
+//modificiranje programa 
+//brisanje programa
+
+//KORISNIK-PROGRAM
+//dodavanje korisnika u program 
+//Modificiranje programa korisnika
+//brisanje korisnika iz programa 
+//prikaz svih korisanika određenog programa 
+//
 
 
 const port = 3000;

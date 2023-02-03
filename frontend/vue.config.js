@@ -6,8 +6,8 @@ module.exports = defineConfig({
         "^/api": {
 
              "target": "http://localhost:3000",
+            //"target": "http://kvsum.studenti.sum.ba/",
 
-         
             "changeOrigin": true
         }
     }
