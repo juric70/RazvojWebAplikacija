@@ -6,6 +6,7 @@ import Register from '../views/Register.vue'
 import AboutUs from '../views/AboutUs.vue'
 import Profile from '../views/Profile.vue'
 import CreateUserWithRoles from '../views/CreateUserWithRoles.vue'
+import Coaches from '../views/Coaches/Coaches.vue'
 
 import Calendar from '../views/Calendar.vue'
 
@@ -210,6 +211,11 @@ const routes = [
     path: '/delexetotr/:id',
     name: 'DeleteExerciseForTraining',
     component: DeleteExerciseForTraining
+  },
+  {
+    path: '/coaches',
+    name: 'Coaches',
+    component: Coaches
   },
 ]
 

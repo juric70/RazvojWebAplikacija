@@ -64,7 +64,7 @@ th {
     color: #fff;
     line-height: 1.4;
     background-color: #03A9F4;
-    text-align: center;
+    text-align: left;
 
 
 }
@@ -88,7 +88,14 @@ body{
     height: 40px;
     width: 110px;
     margin-right: 80px;
-    margin-top: 20px;
+    margin-top: 10px;
+    border-radius: 15px;
+    border: solid 1px #03A9F4;
+    background-color: #03A9F4;
+    font-weight: bold;
+}
+.addExercises :hover{
+    float: right;
     border-radius: 15px;
     border: solid 1px #03A9F4;
     background-color: #03A9F4;
@@ -111,7 +118,8 @@ body{
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 40px 0 rgb(0 0 0 / 15%);
-    margin-top: 5%;text-align: left;
+    margin-top: 60px;
+    text-align: left;
 }
 
 </style>

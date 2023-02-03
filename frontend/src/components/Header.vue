@@ -19,6 +19,7 @@
             <router-link class = "headerItem" to="/trainings" v-if="store?.user?.role == 2 || store?.user?.role == 1">Treninzi</router-link>
             <router-link class = "headerItem" to="/categories"  v-if="store?.user?.role == 2 || store?.user?.role == 1">Categorije</router-link>
             <router-link class = "headerItem" to="/createuser" v-if="store?.user?.role == 1">Kreiraj korisnika!</router-link>
+            <router-link class = "headerItem" to="/coaches">Coaches</router-link>
 
            
 

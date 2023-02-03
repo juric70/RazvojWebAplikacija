@@ -277,7 +277,7 @@ app.delete('/api/logoutUser', function(req, res){
   res.clearCookie('kvsum-token');
   res.json(true)
 })
-app.get('/trainers', function(req, res){
+app.get('/api/coaches', function(req, res){
   db.query(`SELECT * FROM Users where RoleId = 2`, function(error, result){
     if(error){
       res.status(500).json({
@@ -289,7 +289,7 @@ app.get('/trainers', function(req, res){
       })
     }else{
       res.status(200).json({
-        msg: "Trainers",
+        msg: "Coaches",
         output: result
       })
     }
