@@ -12,7 +12,7 @@
                 {{ New.Title }}
             </h1>
             <div class="testSlikaZaNews" >
-                              <img v-if="New !== ''" v-bind:src="`http://localhost:3000/${New.ImageName}`" /> 
+                              <img class="pictureForNews" v-if="New !== ''" v-bind:src="`http://localhost:3000/${New.ImageName}`" /> 
             </div>
             <p class="descriptionForNews">{{ New.Decsription }}</p>
             <p style="float:right; margin-right:10%;">{{ New.Username }}</p>
@@ -69,6 +69,7 @@ export default{
     width: 80%;
     margin-left: 10%;
     border-radius: 5px;
+    margin-top: 30px;
     background-color: white;
     overflow: scroll;
 }
@@ -89,6 +90,9 @@ export default{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.pictureForNews{
+    width: 100%;
 }
 .descriptionForNews{
     padding-left: 5%;
