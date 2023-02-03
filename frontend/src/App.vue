@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../axios.js';
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import { store } from '../store.js'

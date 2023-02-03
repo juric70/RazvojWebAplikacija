@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../../axios';
 
 export default{
     name: 'Register',
@@ -63,7 +63,6 @@ export default{
                 Password: this.Password,
                 RepeatedPassword: this.RepeatedPassword
             }).then((res) => {
-                console.log(res.data)
                 if(res.data==false){
                
                         alert("Something went wrong");

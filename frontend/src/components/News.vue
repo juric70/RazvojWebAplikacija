@@ -97,7 +97,7 @@
   
   // import required modules
   import { Lazy, Autoplay, Pagination, Navigation } from "swiper";
-  import axios from "axios";
+  import axios from "../../axios";
   
   export default {
     components: {

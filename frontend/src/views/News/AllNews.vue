@@ -26,7 +26,7 @@
 
 
 <script>
-import axios from "axios";
+import axios from "../../../axios.js";
 export default{
 name: 'AllNews',
 data () {
