@@ -14,19 +14,16 @@
             <router-link class = "headerItem" to="/aboutUs">O nama</router-link>
             <router-link class = "headerItem" to="/calendar">Raspored</router-link>
             <router-link class = "headerItem" to="/training">Treninzi</router-link>
-            <router-link class = "headerItem" to="/allnews"  v-if="store?.user?.role == 2 || store?.user?.role == 1">Novosti</router-link>
-            <router-link class = "headerItem" to="/exercises" v-if="store?.user?.role == 2 || store?.user?.role == 1">Vjezbe</router-link>
-            <router-link class = "headerItem" to="/trainings" v-if="store?.user?.role == 2 || store?.user?.role == 1">Treninzi</router-link>
-            <router-link class = "headerItem" to="/categories"  v-if="store?.user?.role == 2 || store?.user?.role == 1">Categorije</router-link>
-            <router-link class = "headerItem" to="/createuser" v-if="store?.user?.role == 1">Kreiraj korisnika!</router-link>
             <router-link class = "headerItem" to="/coaches">Coaches</router-link>
 
-           
+        
 
     </div>
   <div id="headerIconDiv">
     <div id="headerIcon">
-       <img class="headerIcon" id="headerIconProfile" :src="require('../assets/profilePictureIcon.png')"  @click="(isOpenedProfile = !isOpenedProfile)"/>
+        <img class="adminTools" :src="require('../assets/profilePictureIcon.png')"  @click="(isOpenedAdminTools = !isOpenedAdminTools)"/>
+        <img class="coachTools" :src="require('../assets/profilePictureIcon.png')"  @click="(isOpenedCoachTools = !isOpenedCoachTools)"/>
+        <img class="headerIcon" id="headerIconProfile" :src="require('../assets/profilePictureIcon.png')"  @click="(isOpenedProfile = !isOpenedProfile)"/>
         <img class="headerIcon" :src="require('../assets/SearchIcon.png')" @click="(isOpened = !isOpened)"/>
         <img class="headerIcon dropdownMenuIcon" :src="require('../assets/menuIcon.png')" @click="(isOpenedMenu = !isOpenedMenu)" />
     </div>
@@ -38,14 +35,18 @@
         
 </header>
 <div v-if="isOpenedProfile" @click="(isOpenedProfile = !isOpenedProfile)" id="profileOptions">
- <button v-if="store?.user != null" class="headerButton"> <router-link  to="/profile" >Profil</router-link></button>
-   
-   <button v-if="store?.user == null" class="headerButton"><router-link class = "" to="/login" style="padding: 2px;" >Login</router-link></button>
-    
-   
+    <button v-if="store?.user != null" class="headerButton"> <router-link  to="/profile" >Profil</router-link></button>
+    <button v-if="store?.user == null" class="headerButton"><router-link class = "" to="/login" style="padding: 2px;" >Login</router-link></button>
     <button v-if="store?.user != null" class="headerButton"> <router-link class = "" to="/logout" style="padding: 2px;" >Logout</router-link></button>
-    
-       
+</div>
+<div v-if="isOpenedCoachTools" @click="(isOpenedCoachTools = !isOpenedCoachTools)" id="profileOptions">
+    <button v-if="store?.user != null" class="headerButton"> <router-link  to="/categories" >Kategorije</router-link></button>
+    <button v-if="store?.user != null" class="headerButton"> <router-link  to="/exercises" >Vježbe</router-link></button>
+    <button v-if="store?.user != null" class="headerButton"> <router-link  to="/Trainings" >Trening</router-link></button>
+</div>
+<div v-if="isOpenedAdminTools" @click="(isOpenedAdminTools = !isOpenedAdminTools)" id="profileOptions">
+    <button v-if="store?.user != null" class="headerButton"> <router-link  to="/allnews" >Novosti</router-link></button>
+    <button v-if="store?.user != null" class="headerButton"> <router-link  to="/createuser" >Kreiraj Korisnika</router-link></button>
 </div>
 </template>
 
@@ -62,6 +63,8 @@ export default{
             isOpened: false, 
             isOpenedMenu: false,
             isOpenedProfile: false,
+            isOpenedCoachTools: false,
+            isOpenedAdminTools: false,
             headerMenuNames: [ "Treneri", "Cjenik", "Album", "Podrška", ],
             store
         }
@@ -123,6 +126,18 @@ header a:hover{
     display: inline;
 }
 .headerIcon{
+    width: 25px;
+    height: 25px;
+    float: right;
+    padding:15px 15px;
+}
+.adminTools{
+    width: 25px;
+    height: 25px;
+    float: right;
+    padding:15px 15px;
+}
+.coachTools{
     width: 25px;
     height: 25px;
     float: right;

@@ -120,7 +120,7 @@ padding: 0;
     padding: 50px;
     background-color: white;
     width: 30%;
-    margin-left: 35%;
+    margin-left: 30%;
 }
 
 .RegisterDescriptionTitle{
