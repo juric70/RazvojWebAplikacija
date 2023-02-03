@@ -4,8 +4,8 @@ module.exports = defineConfig({
     "port": 8080,
     "proxy": {
         "^/api": {
-            // "target": "http://localhost:3000",
-            "target": "http://kvsum.studenti.sum.ba/",
+            "target": "http://localhost:3000",
+            // "target": "http://kvsum.studenti.sum.ba/",
             "changeOrigin": true
         }
     }

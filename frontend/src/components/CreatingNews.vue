@@ -46,6 +46,8 @@ export default {
             .post("/api/createNews", formData, {headers:{"content-type":"multipart/form-data"}})
             .then(res => {
                 console.log(res);
+                alert("Uspješno keriran")
+                window.location.replace('/home');
             })
             .catch(err => {
                 console.log(err);

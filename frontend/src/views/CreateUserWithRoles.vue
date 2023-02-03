@@ -1,6 +1,6 @@
 <template>
-    <div class="RegisterBackground">
-        <div class="card">
+    <div class="RegisterBackground2">
+        <div class="card2">
             <h1 class="RegisterDescriptionTitle">
                 Registrirajte se da bi nastavili!
             </h1>
@@ -108,25 +108,19 @@ body{
 margin: 0;
 padding: 0;   
 }
-.RegisterBackground{
-width: 100%;
-height: 100%;
-background-color: #f2f2f2;
+.RegisterBackground2{
+    width: 100%;
+    background-color: #f2f2f2;
+    padding-top: 70px;
 }
 
-.card{
-border-radius: 5px;
-border: solid 1px #e6e6e6;
-padding: 50px;
-align-items: center;
-justify-content: center; 
-background-color: white;
-position: relative;
-width: 30%;
-top: 10%;
-transform: translateY(-10%);
-left: 50%;
-transform: translateX(-50%);
+.card2{
+    border-radius: 5px;
+    border: solid 1px #e6e6e6;
+    padding: 50px;
+    background-color: white;
+    width: 30%;
+    margin-left: 35%;
 }
 
 .RegisterDescriptionTitle{

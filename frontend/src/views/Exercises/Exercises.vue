@@ -76,6 +76,7 @@ body{
 }
 .exercisesMainDiv{
     padding-top: 60px;
+    height: 100%;
 }
 .exercisesTitle{
     text-align: left;
@@ -112,7 +113,6 @@ body{
     height: 100%;
 }
 .exerciseCard{
-    height: 90%;
     width: 90%;
     margin-left: 5%;
     border-radius: 20px;
