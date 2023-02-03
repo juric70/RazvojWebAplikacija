@@ -11,8 +11,8 @@
             <h1 class="RegisterDescriptionTitle1">
                 {{ New.Title }}
             </h1>
-            <div class="testSlikaZaNews" v-bind:style="{'background-image': url('+ (`../../../../backend/public/${New.ImageName}`) +')}">
-                <img v-bind:src="ImgName" />
+            <div class="testSlikaZaNews" >
+                              <img v-if="New !== ''" v-bind:src="`http://localhost:3000/${New.ImageName}`" /> 
             </div>
             <p class="descriptionForNews">{{ New.Decsription }}</p>
             <p style="float:right; margin-right:10%;">{{ New.Username }}</p>
@@ -30,14 +30,16 @@ export default{
     data(){
         return{
             New: "",
-            ImgName: ""
+            ImgName: "",
+           
         }
     },
     mounted(){
         axios.get(`/api/new/${this.$route.params.id}`).then((res) => {
         this.New = res.data.result;
-        this.ImgName = "../../../../backend/public/" + res.data.result.ImageName;
-        console.log(res.data.result, "Ovdje je rezultat")
+        this.ImgName = `../../../../backend/public/${res.data.result.ImageName}`;
+      
+
       })
     }
 }

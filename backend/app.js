@@ -270,7 +270,24 @@ app.delete('/api/logoutUser', function(req, res){
   res.clearCookie('kvsum-token');
   res.json(true)
 })
-
+app.get('/trainers', function(req, res){
+  db.query(`SELECT * FROM Users where RoleId = 2`, function(error, result){
+    if(error){
+      res.status(500).json({
+        msg: "error"
+      })
+    }else if(result.length<=0){
+      res.status(404).json({
+        msg: "No news"
+      })
+    }else{
+      res.status(200).json({
+        msg: "Trainers",
+        output: result
+      })
+    }
+  })
+})
 
 //NOVOSTI
 //Kreiranje novosti
@@ -673,7 +690,7 @@ app.get('/api/trainingscat/:id', function(req, res){
     }else{
       res.status(200).json({
         msg: "Categories",
-        category: result,
+        training: result,
     })
     }
   })

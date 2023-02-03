@@ -4,7 +4,7 @@
             <h1>{{cat.Title}}</h1>
             <p>{{ cat.id }}</p>
             <div class="workoutCardsFlex" @click="getTrainings(cat.id)" style="height: 50%; width: 70%; background-color: red;">
-                <div class="workoutCards" v-for="tr in Trainings" :key="tr.id">{{ tr.Title }}</div>
+                <div class="workoutCards" :key="tr.id">{{ tr.Title }}</div>
                 
             </div>
         </div>
@@ -22,14 +22,15 @@ name: 'Training',
 data () {
     return {
         Categories:"",
-        Trainings:""
+        Trainings:{}
     }
 },
 methods:{
     getTrainings(id){
         console.log("udje u funkciju")
         axios.get(`/api/trainingscat/${id}`).then((res) => {
-            this.Trainings = res.data.training;
+            this.Trainings.id = res.data.training;
+            console.log(res.data.training);
             console.log(this.Trainings[0].Title, "title: ")
         })
     }
@@ -38,6 +39,10 @@ mounted(){
       axios.get('/api/categories').then((res) => {
         this.Categories = res.data.categories;
         console.log("kategorije:  ", this.Categories[0].Title )
+        this.Categories.forEach(cat => {
+             let ind = cat.id;
+            this.Trainings.ind;
+        });
       })
     
       
