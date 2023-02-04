@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from '../axios.js';
+import axios from '../axios';
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import { store } from '../store.js'
@@ -23,10 +23,10 @@ export default {
     }
   },
   mounted(){
-    console.log(this.store);
+    console.log("Pvo je store prije funkcije: ", this.store?.user);
     axios.get('/api/login').then((res) => {
       store.user = res.data.user;
-      console.log(this.store);
+      console.log("Ovo je store:" , this.store?.user);
 
     } )
   }

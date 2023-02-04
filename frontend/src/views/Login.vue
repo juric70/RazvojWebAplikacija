@@ -26,7 +26,7 @@
     
 <script>
 import router from "../router"
-import axios from '../../axios.js';
+import axios from '../../axios';
 import { store } from '../../store.js'
 
 
@@ -48,13 +48,12 @@ import { store } from '../../store.js'
                 }).then((res) => {
                     
 
-                    if(!res.data){
+                    if(res.data.res){
                       alert(res.data.msg);
+                      window.location.replace('/');
                     }
                     else{
-                        console.log("nepravi da prebaci na drugu str");
-                        window.location.replace('/');
-                    
+                        window.location.replace('/login');
                     }
 
                 }).catch((error) => {

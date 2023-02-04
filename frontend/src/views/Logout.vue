@@ -13,14 +13,26 @@
 </template>
 
 <script>
-import axios from '../../axios';
+
+import axios from '../../axios'
+import {store} from '../../store.js'
 export default{
     name: 'Logout',
+    data(){
+        return{
+            store
+        }
+    },
     methods:{
         logoutUser: function(){
-                axios.delete("/api/logoutUser",)
+            axios.delete(`/api/logoutUser`)
                 .then((res) => {
+                    alert("zamjenio" , this.store?.user);
+                    store.user=null;
+                    alert("zamjenio" , this.store?.user);
                     window.location.replace('/');
+               
+
 
                   
                 }).catch((error) => {

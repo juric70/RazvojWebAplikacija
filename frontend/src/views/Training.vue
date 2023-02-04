@@ -3,8 +3,9 @@
         <div class="workoutOne" v-for="cat in Categories" :key="cat.id">
             <h1>{{cat.Title}}</h1>
             <p>{{ cat.id }}</p>
-            <div class="workoutCardsFlex" @click="getTrainings(cat.id)" style="height: 50%; width: 70%; background-color: red;">
-                <div class="workoutCards" :key="tr.id">{{ tr.Title }}</div>
+            <div class="workoutCardsFlex" style="height: 50%; width: 70%; background-color: red;">
+                <div class="workoutCards" v-for="tr in Trainings[`${cat.id}`]" :key="tr.id">
+                    <p>{{ tr.Title }}</p></div>
                 
             </div>
         </div>
@@ -29,9 +30,9 @@ methods:{
     getTrainings(id){
         console.log("udje u funkciju")
         axios.get(`/api/trainingscat/${id}`).then((res) => {
-            this.Trainings.id = res.data.training;
+            this.Trainings[`${id}`] = res.data.training;
             console.log(res.data.training);
-            console.log(this.Trainings[0].Title, "title: ")
+          
         })
     }
 },
@@ -41,7 +42,8 @@ mounted(){
         console.log("kategorije:  ", this.Categories[0].Title )
         this.Categories.forEach(cat => {
              let ind = cat.id;
-            this.Trainings.ind;
+            this.Trainings[`${ind}`] = [];
+            this.getTrainings(ind);
         });
       })
     
