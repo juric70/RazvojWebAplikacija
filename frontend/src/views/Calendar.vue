@@ -1,5 +1,8 @@
 <template>
-<FullCalendar :options="calendarOptions" />
+  <div class="calendarMain">
+    <FullCalendar :options="calendarOptions" />
+  </div>
+
 </template>
 
 <script>
@@ -33,4 +36,9 @@ export default {
 </script>
 
 <style>
+.calendarMain{
+  display: flex;
+  padding-top: 90px;
+  display: block
+}
 </style>

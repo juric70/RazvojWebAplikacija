@@ -46,20 +46,20 @@ app.use(cors(
 
 
 // connection configurations
-//   var db = mysql.createConnection({
-//  	host: 'localhost',
-//  	user: 'root',
-//  	password: 'root',
-//  	database: 'PlivackiKlub'
+   var db = mysql.createConnection({
+  	host: 'localhost',
+  	user: 'root',
+  	password: 'root',
+  	database: 'PlivackiKlub'
+  });
+
+
+//  var db = mysql.createConnection({
+//    host: 'localhost',
+//    user: 'rwa022023',
+//    password: 'csdigital2023',
+//    database: 'rwa022023'  
 //  });
-
-
- var db = mysql.createConnection({
-   host: 'localhost',
-   user: 'rwa022023',
-   password: 'csdigital2023',
-   database: 'rwa022023'  
- });
 // connect to database
 db.connect();
 // default route
