@@ -2,9 +2,8 @@
     <div class="RegisterBackground">
       <div class="card">
           <h1 class="RegisterDescriptionTitle">
-             Jeste li sigurni da želite pobrisati odabrani program za korisnika?
+             Jeste li sigurni da želite pobrisati odabrani trening za korisnika? 
           </h1>
-    
          <button class="RegisterButton" @click="deluserprogram($route.params.id)">
              Obriši!
           </button>
@@ -15,19 +14,17 @@
 import axios from '../../../axios.js';
 
 export default{
-  name: 'DeleteUserProgram',
+  name: 'DeleteTrainingUser',
   data(){
     return{
-    
     }
   },
   methods:{
     deluserprogram(id){
          
-          axios.get(`/api/deleteuserprogram/${id}`).then((res)=>{
+          axios.get(`/api/deleteusertraining/${id}`).then((res)=>{
              if(res.data){
-              window.location.replace(`/usersprograms`);
-
+              window.location.replace(`/userstrainings`);
              }
           }).catch((error) => {
               alert(error);

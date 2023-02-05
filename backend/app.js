@@ -401,6 +401,7 @@ app.get("/api/news", function (req, res) {
     `SELECT n.*, u.Username FROM news n JOIN users u on n.CreatorId = u.id where isDeleted = false`,
     function (error, result) {
       if (error) {
+        console.log(error);
         res.status(500).json({
           msg: "error",
         });
@@ -1164,11 +1165,10 @@ app.get("/api/deleteuserprogram/:id", function (req, res) {
     }
   );
 });
-
 //prikaz svih korisanika-programa
 app.get("/api/programsandusers", function (req, res) {
   db.query(
-    `SELECT up.*, p.Title as ProgramTitle, p.Cost as ProgramPrice ,u.Username as Username FROM user_program up join users u on u.id = up.UserId join programs p on p.id = up.ProgramId where up.IsDeleted = false`,
+    `SELECT up.*, p.Title as ProgramTitle, p.Cost as ProgramPrice ,u.Username as Username FROM user_program up join users u on u.id = up.UserId join programs p on p.id = up.ProgramId where up.IsDeleted = false order by str_to_date(CreationDate, '%y-%m-%d')`,
     function (error, result) {
       if (error) {
         console.log(error);
@@ -1216,7 +1216,7 @@ app.get("/api/programuser/:id", function (req, res) {
 app.get("/api/programforusers/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `SELECT up.*, p.Title, u.Username as Username, p.Title as ProgramTitle FROM user_program up join users u on u.id = up.UserId join programs p on up.ProgramId = p.id where ProgramId = ${id} and up.IsDeleted = false`,
+    `SELECT up.*, p.Title, u.Username as Username, p.Title as ProgramTitle FROM user_program up join users u on u.id = up.UserId join programs p on up.ProgramId = p.id where ProgramId = ${id} and up.IsDeleted = false order by str_to_date(CreationDate, '%y-%m-%d')`,
     function (error, result) {
       if (error) {
         console.log(error);
@@ -1279,12 +1279,11 @@ app.put("/api/userpayment/:id", function (req, res) {
 
 //TRENING-KORISNIK
 //Spajanje treninga sa korisnicima
-app.post("/api/training_for_user/:id", function (req, res) {
-  const { UserId, DateOfTraining, startAt, EndsAt } = req.body;
-  var id = req.params["id"];
+app.post("/api/trainingforusers", function (req, res) {
+  const { UserId, DateOfTraining, startAt, EndsAt, TrainingId } = req.body;
   db.query(
-    `INSERT INTO training_user(UserId, TrainingId, DateOfTraining, startAt, EndsAt, IsDeleted) WHERE UserId = ${id}
-           VALUES(${UserId} ,${id} ,${DateOfTraining}, ${startAt}, ${EndsAt}, false)`,
+    `INSERT INTO training_user(UserId, TrainingId, DateOfTraining, startAt, EndsAt, IsDeleted)
+           VALUES(${UserId} ,${TrainingId} ,${DateOfTraining}, ${startAt}, ${EndsAt}, false)`,
     (error, result) => {
       if (error) {
         console.log(error);
@@ -1295,28 +1294,58 @@ app.post("/api/training_for_user/:id", function (req, res) {
     }
   );
 });
-//Spajanje korisnika sa trenerom
-app.post("/api/user_for_trainings/:id", function (req, res) {
-  const { TrainingId, DateOfTraining, startAt, EndsAt } = req.body;
-  var id = req.params["id"];
+//prikaz svih treninga korisnika
+app.get("/api/trainingsusers", function (req, res) {
   db.query(
-    `INSERT INTO training_user(UserId, TrainingId, DateOfTraining, startAt, EndsAt, IsDeleted) WHERE UserId = ${id}
-           VALUES(${id} ,${TrainingId} ,${DateOfTraining}, ${startAt}, ${EndsAt}, false)`,
-    (error, result) => {
+    `SELECT ut.*, u.Username as Username, t.Title as TrainingTitle FROM user_training ut join users u on u.Id = ut.UserId join training t on t.id= ut.TrainingId where ut.IsDeleted = false order by str_to_date(ut.DateOfTraining, '%y-%m-%d')`,
+    function (error, result) {
       if (error) {
         console.log(error);
-        res.json(false);
+        res.status(500).json({
+          msg: "error",
+        });
+      } else if (result.length <= 0) {
+        res.status(404).json({
+          msg: "Not found",
+        });
       } else {
-        return res.json(true);
+        res.status(200).json({
+          msg: "Users and programs",
+          output: result,
+        });
+      }
+    }
+  );
+});
+//prikaz jednog treninga korisnika
+app.get("/api/traininguser/:id", function (req, res) {
+  var id = req.params["id"];
+  db.query(
+    `SELECT ut.*, u.Username as Username, t.Title as TrainingTitle FROM user_training ut join users u on u.Id = ut.UserId join training t on t.id= ut.TrainingId where IsDeleted = false and id = ${id} order by str_to_date(DateOfTraining, '%y-%m-%d') limit 1`,
+    function (error, result) {
+      if (error) {
+        console.log(error);
+        res.status(500).json({
+          msg: "error",
+        });
+      } else if (result.length <= 0) {
+        res.status(404).json({
+          msg: "Not found",
+        });
+      } else {
+        res.status(200).json({
+          msg: "Users and programs",
+          output: result[0],
+        });
       }
     }
   );
 });
 //Prikaz svih treninga jednog  korisnika
-app.get("/api/allexerciasesofuser/:id", function (req, res) {
+app.get("/api/alltrainingsofuser/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `SELECT * FROM user_training where UserId = ${id}`,
+    `SELECT ut.*, u.Username as Username, t.Title as TrainingTitle FROM user_training ut join users u on u.Id = ut.UserId join training t on t.id= ut.TrainingId where UserId = ${id} and IsDeleted = false order by str_to_date(DateOfTraining, '%y-%m-%d') `,
     function (error, result) {
       if (error) {
         console.log(error);
@@ -1340,7 +1369,7 @@ app.get("/api/allexerciasesofuser/:id", function (req, res) {
 app.get("/api/allusersoftraining/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `SELECT * FROM user_training where TrainingId = ${id}`,
+    `SELECT ut.*, u.Username as Username, t.Title as TrainingTitle FROM user_training ut join users u on u.Id = ut.UserId join training t on t.id= ut.TrainingId where TrainingId = ${id} and IsDeleted = false order by str_to_date(DateOfTraining, '%y-%m-%d')`,
     function (error, result) {
       if (error) {
         console.log(error);
