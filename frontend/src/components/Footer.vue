@@ -45,33 +45,27 @@ export default{
 
 <style>
 footer{
-    background-color: lightgray;
+    background-color: #e6e6e6;
     margin-top: 20px;
     display: table;
     width: 100%;
 }
-.footerCopyright{
-    place-content: center;
-}
-.spanFont{
-    font-weight: bold;
-}
-.footerLogo{
-    height: 80px;
-    width: 80px;
-}
 .footerComponents{
     display: flex;
     place-content: center;
-}
-.footerLink{
-    text-align: center;
 }
 .footerLogoAndLink{
     padding: 20px;
     padding-top: 50px;
     padding-bottom: 50px;
     border-bottom: solid 1px;
+}
+.footerLogo{
+    height: 80px;
+    width: 80px;
+}
+.footerLink{
+    text-align: center;
 }
 .footerTextOne{
     text-align: left;
@@ -91,16 +85,21 @@ footer{
 .textPadding{
     padding-top: 30px;
 }
-.footerIconLink{
-    width: 40px;
-    height: 40px;
-    padding-left: 10px;
-    padding-top: 5px;
+.spanFont{
+    font-weight: bold;
 }
 .footerMediaLink{
     padding-top: 5px;
     display: flex;
     float: right;
 }
-
+.footerIconLink{
+    width: 40px;
+    height: 40px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+.footerCopyright{
+    place-content: center;
+}
 </style>

@@ -3,10 +3,8 @@
     
     <div id="MiddleContentImg">
         <div id="MiddleContentImgH1">
-    <h1>KVSUM</h1>
         </div>
         <div id="MiddleContentImgH4">
-    <h4>Klub vodenih sportova Sveučilišta u Mostaru</h4>
 
         </div>
     </div>
@@ -45,7 +43,7 @@ export default{
 #MiddleContentImg{
     width: 100%;
     height: 500px;
-    background-image: url('../assets/plivanje1.jpg');
+    background-image: url('../assets/homeCover1.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

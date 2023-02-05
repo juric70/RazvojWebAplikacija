@@ -1,6 +1,6 @@
 <template>
-    <div class="RegisterBackground2">
-        <div class="card2">
+    <div class="RegisterBackground">
+        <div class="registerCard">
             <h1 class="RegisterDescriptionTitle">
                 Registrirajte se da bi nastavili!
             </h1>
@@ -104,29 +104,6 @@ export default{
 </script>
 
 <style>
-body{
-margin: 0;
-padding: 0;   
-}
-.RegisterBackground2{
-    width: 100%;
-    background-color: #f2f2f2;
-    padding-top: 70px;
-}
-
-.card2{
-    border-radius: 5px;
-    border: solid 1px #e6e6e6;
-    padding: 50px;
-    background-color: white;
-    width: 30%;
-    margin-left: 30%;
-}
-
-.RegisterDescriptionTitle{
-color: #333333;
-}
-
 #RegisterPhoto{
 margin: 20px;
 width: 170px;
@@ -135,24 +112,6 @@ border-radius: 85px;
 border: 2px solid #03A9F4 ;
 }
 
-.cardInputBox input{
-height: 35px;
-width: 90%;
-margin: 10px;
-border-radius: 15px;
-border: solid 1px #03A9F4;
-padding-left: 7px;
-}
-
-.RegisterButton{
-height: 40px;
-width: 93%;
-margin: 10px;
-border-radius: 15px;
-border: solid 1px #03A9F4;
-background-color: #03A9F4;
-font-weight: bold;
-}
 @media(max-width:800px){
     .card{
         width: 80%;
