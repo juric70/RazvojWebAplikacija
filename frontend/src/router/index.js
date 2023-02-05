@@ -54,6 +54,13 @@ import AllUsersPrograms from "../views/UsersPrograms/AllUsersPrograms.vue";
 import DeleteUserProgram from "../views/UsersPrograms/DeleteUserProgram.vue";
 import ModifyPayment from "../views/UsersPrograms/ModifyPayment.vue";
 import ModifyProgramForUser from "../views/UsersPrograms/ModifyProgramForUser.vue";
+
+import AddTrainingUser from "../views/TrainingUser/AddTrainingUser.vue";
+import AllTrainingsOfUser from "../views/TrainingUser/AllTrainingsOfUser.vue";
+import AllTrainingsUsers from "../views/TrainingUser/AllTrainingsUsers.vue";
+import AllUsersOfTraining from "../views/TrainingUser/AllUsersOfTraining.vue";
+import DeleteTrainingUser from "../views/TrainingUser/DeleteTrainingUser.vue";
+
 const routes = [
   {
     path: "/",
@@ -291,6 +298,32 @@ const routes = [
     path: "/editpayment/:id",
     name: "ModifyPayment",
     component: ModifyPayment,
+  },
+
+  {
+    path: "/addtruser",
+    name: "AddTrainingUser",
+    component: AddTrainingUser,
+  },
+  {
+    path: "/trofuser/:id",
+    name: "AllTrainingsOfUser",
+    component: AllTrainingsOfUser,
+  },
+  {
+    path: "/trusers",
+    name: "AllTrainingsUsers",
+    component: AllTrainingsUsers,
+  },
+  {
+    path: "/usersoftr/:id",
+    name: "AllUsersOfTraining",
+    component: AllUsersOfTraining,
+  },
+  {
+    path: "/deltrusers/:id",
+    name: "DeleteTrainingUser",
+    component: DeleteTrainingUser,
   },
 ];
 

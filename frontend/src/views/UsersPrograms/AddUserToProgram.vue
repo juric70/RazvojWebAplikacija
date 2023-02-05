@@ -62,9 +62,7 @@ export default{
     },
     methods:{
         addusersprograms(){
-            console.log(this.UserId.length , "JE PROGRAM ID")
            for(let i = 0; i<this.UserId.length; i++){
-            console.log("ovdje udje")
                 axios.post(`/api/createuserprogram`, {
                 isPayed:this.isPayed, 
                 MonthOfPayment: this.MonthOfPayment , 

@@ -47,7 +47,7 @@ export default {
             .then(res => {
                 console.log(res);
                 alert("Uspješno keriran")
-                window.location.replace('/home');
+                window.location.replace('/allnews');
             })
             .catch(err => {
                 console.log(err);
