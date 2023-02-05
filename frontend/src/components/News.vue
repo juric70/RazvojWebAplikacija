@@ -137,7 +137,7 @@ h1{
 
 .swiper {
   width: 100%;
-  height: 70%;
+  height: 500px;
 }
 @media 	(max-width: 700px) {
   .swiper{

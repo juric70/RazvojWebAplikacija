@@ -37,6 +37,7 @@ export default {
 body{
   margin: 0;
   padding: 0;
+  color: aliceblue;
   background-color: #01427b;
 }
 template{

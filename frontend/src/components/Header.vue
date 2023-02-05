@@ -26,10 +26,10 @@
 
         <div class="headerButtonOne">
             <router-link class = "headerItem" to="/calendar">Raspored</router-link>
-            <router-link class = "headerItem" to="/training">Trening</router-link>
+            <router-link class = "headerItem" to="/training">Treninzi</router-link>
             <router-link class = "headerItem" to="/coaches">Treneri</router-link>
-            <router-link class = "headerItem" to="/programs">Članarina</router-link>
-            <router-link class = "headerItem" to="/support">Podrška</router-link>
+            <router-link class = "headerItem" to="/programs">Programi</router-link>
+           
         </div>
 
         <div class="headerButtonTwo">
@@ -39,7 +39,7 @@
                     <button class="dropdownRouterButton"><router-link  to="/allnews" >Novosti</router-link></button>
                     <button class="dropdownRouterButton"><router-link  to="/createuser" >Kreiraj Korisnika</router-link></button>
                     <button class="dropdownRouterButton"><router-link  to="/programs" >Programi</router-link></button>
-                    <button class="dropdownRouterButton"><router-link :to="{name: 'AllUsersPrograms'}">Programi22</router-link></button>
+                    <button class="dropdownRouterButton"><router-link :to="{name: 'AllUsersPrograms'}">Članstva</router-link></button>
                 </div>
                 </div>
                 <div class="dropdownButton">

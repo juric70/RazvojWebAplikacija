@@ -34,7 +34,7 @@
         </div>
 
         <div class="monthlyPayments">
-            <h2>Monthly payments</h2>
+            <h2><router-link :to="{name: 'AllProgramsOfUser', params: {id : store?.user?.id}}">Mjesečne uplate</router-link></h2>
             <div class="monthlyPaymentsDataStore">
                 <table>
                     <tr>

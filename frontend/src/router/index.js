@@ -7,8 +7,6 @@ import AboutUs from "../views/AboutUs.vue";
 import Profile from "../views/Profile.vue";
 import CreateUserWithRoles from "../views/CreateUserWithRoles.vue";
 import Coaches from "../views/Coaches/Coaches.vue";
-import Membership from "../views/Membership/Membership.vue";
-import Support from "../views/Support/Support.vue";
 
 import Calendar from "../views/Calendar.vue";
 
@@ -231,16 +229,6 @@ const routes = [
     path: "/coaches",
     name: "Coaches",
     component: Coaches,
-  },
-  {
-    path: "/membership",
-    name: "Membership",
-    component: Membership,
-  },
-  {
-    path: "/support",
-    name: "Support",
-    component: Support,
   },
 
   {
