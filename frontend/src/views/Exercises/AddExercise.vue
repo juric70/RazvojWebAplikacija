@@ -58,16 +58,16 @@ methods:{
     margin-top: 20px;
     border-radius: 30px;
     border: solid 1px #e6e6e6;
-    padding: 40px;
     background-color: #e6e6e6;
     width: 20%;
-    margin-left: 40%;
+    margin-left: 36%;
+    padding: 4%;
 }
 .cardInputBox input, #textarea{
-width: 90%;
-margin: 10px;
-border-radius: 15px;
-border: solid 1px #01427b;
-padding-left: 7px;
+    width: 90%;
+    margin: 10px;
+    border-radius: 15px;
+    border: solid 1px #01427b;
+    padding-left: 7px;
 } 
 </style>

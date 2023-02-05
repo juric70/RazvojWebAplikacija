@@ -90,10 +90,10 @@ padding-top: 20px;
 .registerCard{
     border-radius: 30px;
     border: solid 1px #e6e6e6;
-    padding: 40px;
     background-color: #e6e6e6;
     width: 20%;
-    margin-left: 40%;
+    margin-left: 36%;
+    padding: 4%;
 }
 .RegisterDescriptionTitle{
     color: #01427b;

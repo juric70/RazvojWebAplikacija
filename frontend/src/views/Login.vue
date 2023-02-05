@@ -77,8 +77,8 @@ import { store } from '../../store.js'
     border: solid 1px #e6e6e6;
     background-color: #e6e6e6;
     width: 20%;
-    margin-left: 40%;
-    padding: 40px;
+    margin-left: 36%;
+    padding: 4%;
 }
 @media(max-width:800px){
     .LoginCard{
