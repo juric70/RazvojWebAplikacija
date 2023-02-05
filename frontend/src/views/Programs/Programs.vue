@@ -1,26 +1,28 @@
 <template>
-    <div class="exercisesMainDiv">
-        <button class="addExercises" v-if="store?.user?.role === 1 "><router-link to="/addprogram">Dodaj! +</router-link></button>
-        <h1 class="exercisesTitle">Programi:</h1>
-        <div class="exerciseCard">
-            <table>
-        <tr>
-            <th>Naziv </th>
-            <th>Opis </th>
-            <th>Cijena </th>
-            <th>Kreator</th>
-            <th v-if="store?.user?.role === 1 " colspan="2">Akcije</th>
-        </tr>
-        <tr  v-for="program in Programs" :key="program.id">
-             <td><router-link :to = "{name: 'Program', params: {id: program.id}}">{{ program.Title }}</router-link></td> 
-            <td>{{ program.Description}}</td>
-            <td>{{ program.Cost}} KM</td>
-            <td>{{ program.Username}}</td>
-            <td v-if="store?.user?.role === 1 "><router-link :to="{name: 'ModifyProgram', params: {id : program.id}}">Uredi</router-link></td>
-            <td v-if="store?.user?.role === 1 "><router-link :to="{name: 'DeletePrograms', params: {id : program.id}}">Obrisi</router-link></td> 
-        </tr>
-       
-        </table>
+    <div class="testDiv">
+        <div class="exercisesMainDiv">
+            <button class="addExercises" v-if="store?.user?.role === 1 "><router-link to="/addprogram">Dodaj! +</router-link></button>
+            <h1 class="exercisesTitle">Programi:</h1>
+            <div class="exerciseCard">
+                <table>
+            <tr>
+                <th>Naziv </th>
+                <th>Opis </th>
+                <th>Cijena </th>
+                <th>Kreator</th>
+                <th v-if="store?.user?.role === 1 " colspan="2">Akcije</th>
+            </tr>
+            <tr  v-for="program in Programs" :key="program.id">
+                <td><router-link :to = "{name: 'Program', params: {id: program.id}}">{{ program.Title }}</router-link></td> 
+                <td>{{ program.Description}}</td>
+                <td>{{ program.Cost}} KM</td>
+                <td>{{ program.Username}}</td>
+                <td v-if="store?.user?.role === 1 "><router-link :to="{name: 'ModifyProgram', params: {id : program.id}}">Uredi</router-link></td>
+                <td v-if="store?.user?.role === 1 "><router-link :to="{name: 'DeletePrograms', params: {id : program.id}}">Obrisi</router-link></td> 
+            </tr>
+        
+            </table>
+            </div>
         </div>
     </div>
 </template>
@@ -48,4 +50,7 @@ mounted(){
 
 
 <style>
+.testDiv{
+    display: block;
+}
 </style>

@@ -54,11 +54,20 @@ methods:{
 </script>
 
 <style>
- .cardInputBox input, #textarea{
+.card{
+    margin-top: 20px;
+    border-radius: 30px;
+    border: solid 1px #e6e6e6;
+    padding: 40px;
+    background-color: #e6e6e6;
+    width: 20%;
+    margin-left: 40%;
+}
+.cardInputBox input, #textarea{
 width: 90%;
 margin: 10px;
 border-radius: 15px;
-border: solid 1px #03A9F4;
+border: solid 1px #01427b;
 padding-left: 7px;
 } 
 </style>

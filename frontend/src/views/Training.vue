@@ -57,7 +57,7 @@ mounted(){
 <style>
 
 .mainDivTraining{
-    height: 100%;
+    margin-bottom: 20%;
 }
 .workoutOne h1{
     text-align: left;

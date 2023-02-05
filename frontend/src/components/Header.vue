@@ -93,11 +93,10 @@ header{
     font-weight: bold;
     display: table;
 }
-.headerComponents{
-    /* display: flex; */
-}
+/* .headerComponents{
+    display: flex;
+} */
 .headerLogo{
-    /* Visinu postavit da se slika ne deformira vec sa se smanjuje jednako sa svake strane */
     margin-left: 1%;
     width: 60px;
     height: 60px;
