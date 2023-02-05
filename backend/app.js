@@ -975,30 +975,33 @@ app.post("/api/createprogram", function (req, res) {
 });
 //prikaz svih programa
 app.get("/api/programs", function (req, res) {
-  db.query(`SELECT * FROM programs`, function (error, result) {
-    if (error) {
-      console.log(error);
-      res.status(500).json({
-        msg: "error",
-      });
-    } else if (result.length <= 0) {
-      res.status(404).json({
-        msg: "Not found",
-      });
-    } else {
-      res.status(200).json({
-        msg: "Categories",
-        output: result,
-      });
+  db.query(
+    `SELECT p.* , u.Username as Username FROM programs p join users u on p.CreatorId=u.id WHERE p.IsDeleted = false `,
+    function (error, result) {
+      if (error) {
+        console.log(error);
+        res.status(500).json({
+          msg: "error",
+        });
+      } else if (result.length <= 0) {
+        res.status(404).json({
+          msg: "Not found",
+        });
+      } else {
+        res.status(200).json({
+          msg: "Categories",
+          output: result,
+        });
+      }
     }
-  });
+  );
 });
 //prikaz pojedinačnog programa
 app.get("/api/program/:id", function (req, res) {
   var id = req.params["id"];
+  console.log(id, "ovo je id");
   db.query(
-    `SELECT * FROM programs WHERE id=? LIMIT[1]`,
-    [id],
+    `SELECT p.* , u.Username as Username FROM programs p join users u on p.CreatorId=u.Id WHERE p.IsDeleted = false AND p.id=${id}  LIMIT 1`,
     function (error, result) {
       if (error) {
         console.log(error);
@@ -1019,7 +1022,7 @@ app.get("/api/program/:id", function (req, res) {
   );
 });
 //modificiranje programa
-app.put("/api/updatetraining/:id", function (req, res) {
+app.put("/api/updateprogram/:id", function (req, res) {
   const { Title, Description, Cost } = req.body;
   var id = req.params["id"];
   db.query(
