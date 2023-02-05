@@ -7,14 +7,14 @@
         <tr>
             <th>Naziv </th>
             <th>Opis </th>
-            <th>Cijena</th>
+            <th>Cijena </th>
             <th>Kreator</th>
             <th colspan="2">Akcije</th>
         </tr>
         <tr  v-for="program in Programs" :key="program.id">
              <td><router-link :to = "{name: 'Program', params: {id: program.id}}">{{ program.Title }}</router-link></td> 
             <td>{{ program.Description}}</td>
-            <td>{{ program.Cost}}</td>
+            <td>{{ program.Cost}} KM</td>
             <td>{{ program.Username}}</td>
             <td><router-link :to="{name: 'ModifyProgram', params: {id : program.id}}">Uredi</router-link></td>
             <td><router-link :to="{name: 'DeletePrograms', params: {id : program.id}}">Obrisi</router-link></td> 

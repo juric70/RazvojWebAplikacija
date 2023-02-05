@@ -303,8 +303,31 @@ app.delete("/api/logoutUser", function (req, res) {
 });
 //Display trenera
 app.get("/api/coaches", function (req, res) {
-  db.query(`SELECT * FROM users where RoleId = 2`, function (error, result) {
+  db.query(
+    `SELECT * FROM users where RoleId = 2 and isDeleted = false`,
+    function (error, result) {
+      if (error) {
+        res.status(500).json({
+          msg: "error",
+        });
+      } else if (result.length <= 0) {
+        res.status(404).json({
+          msg: "No news",
+        });
+      } else {
+        res.status(200).json({
+          msg: "Coaches",
+          output: result,
+        });
+      }
+    }
+  );
+});
+//Display svih korisnika
+app.get("/api/users", function (req, res) {
+  db.query(`SELECT * FROM users where RoleId = 3`, function (error, result) {
     if (error) {
+      console.log(error);
       res.status(500).json({
         msg: "error",
       });
@@ -314,11 +337,34 @@ app.get("/api/coaches", function (req, res) {
       });
     } else {
       res.status(200).json({
-        msg: "Coaches",
+        msg: "Users",
         output: result,
       });
     }
   });
+});
+//Display jednog korisnika
+app.get("/api/user/:id", function (req, res) {
+  var id = req.params["id"];
+  db.query(
+    `SELECT * FROM users where RoleId = 3 and isDeleted = false and id = ${id} LIMIT 1`,
+    function (error, result) {
+      if (error) {
+        res.status(500).json({
+          msg: "error",
+        });
+      } else if (result.length <= 0) {
+        res.status(404).json({
+          msg: "No news",
+        });
+      } else {
+        res.status(200).json({
+          msg: "Users",
+          result: result[0],
+        });
+      }
+    }
+  );
 });
 
 //NOVOSTI
@@ -1073,13 +1119,12 @@ app.get("/api/delprograms/:id", function (req, res) {
 
 //KORISNIK-PROGRAM
 //dodavanje korisnika u program
-app.post("/api/createuserprogram/:id", function (req, res) {
-  const { isPayed, MonthOfPayment, ProgramId } = req.body;
-  console.log(Duration, "duration");
+app.post("/api/createuserprogram", function (req, res) {
+  const { isPayed, MonthOfPayment, UserId, ProgramId } = req.body;
   var id = req.params["id"];
   db.query(
-    `INSERT INTO user_program(IsPayed, MonthOfPayment, ProgramId, IsDeleted) WHERE UserId = ${id}
-           VALUES(${isPayed} ,${MonthOfPayment}, ${ProgramId}, false)`,
+    `INSERT INTO user_program(IsPayed, MonthOfPayment, UserId, IsDeleted, ProgramId)
+           VALUES(${isPayed} ,${MonthOfPayment}, ${UserId}, false, ${ProgramId})`,
     (error, result) => {
       if (error) {
         console.log(error);
@@ -1095,7 +1140,7 @@ app.put("/api/modifyuserprogram/:id", function (req, res) {
   const { isPayed, MonthOfPayment, ProgramId } = req.body;
   var id = req.params["id"];
   db.query(
-    `UPDATE TABLE user_program SET IsPayed = ${isPayed}, MonthOfPayment = ${MonthOfPayment}, ProgramId = ${ProgramId} WHERE UserId = ${id}`,
+    `UPDATE TABLE user_program SET IsPayed = ${isPayed}, MonthOfPayment = ${MonthOfPayment}, ProgramId = ${ProgramId} WHERE id = ${id}`,
     (error, result) => {
       if (error) {
         console.log(error);
@@ -1107,7 +1152,7 @@ app.put("/api/modifyuserprogram/:id", function (req, res) {
   );
 });
 //brisanje korisnika iz programa
-app.get("/api/deleteuserinprogram/:id", function (req, res) {
+app.get("/api/deleteuserprogram/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
     `UPDATE TABLE user_program SET IsDeleted = true WHERE id = ${id}`,
@@ -1121,10 +1166,11 @@ app.get("/api/deleteuserinprogram/:id", function (req, res) {
     }
   );
 });
+
 //prikaz svih korisanika-programa
 app.get("/api/programsandusers", function (req, res) {
   db.query(
-    `SELECT * FROM user_program where IsDeleted = false`,
+    `SELECT up.*, p.Title as ProgramTitle, p.Cost as ProgramPrice ,u.Username as Username FROM user_program up join users u on u.id = up.UserId join programs p on p.id = up.ProgramId where up.IsDeleted = false`,
     function (error, result) {
       if (error) {
         console.log(error);
@@ -1144,7 +1190,31 @@ app.get("/api/programsandusers", function (req, res) {
     }
   );
 });
-//prikaz svih korisnika u programu
+//prikaz jednog program-korisnika
+app.get("/api/programuser/:id", function (req, res) {
+  var id = req.params["id"];
+  db.query(
+    `SELECT up.*, u.Username as Username FROM user_program up join users u on u.id = up.UserId where up.IsDeleted = false and up.id = ${id} limit 1`,
+    function (error, result) {
+      if (error) {
+        console.log(error);
+        res.status(500).json({
+          msg: "error",
+        });
+      } else if (result.length <= 0) {
+        res.status(404).json({
+          msg: "Not found",
+        });
+      } else {
+        res.status(200).json({
+          msg: "Users and programs",
+          output: result[0],
+        });
+      }
+    }
+  );
+});
+//prikaz svih korisnika u programu STAVITI U PROGRAM JOS JEDNU AKCIJU za prikaz svih korisnia toga programa
 app.get("/api/programforusers/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
@@ -1193,10 +1263,11 @@ app.get("/api/programsofuser/:id", function (req, res) {
   );
 });
 //Placanje clanarina
-app.get("/api/userpayment/:id", function (req, res) {
+app.put("/api/userpayment/:id", function (req, res) {
   var id = req.params["id"];
+  const { isPayed } = req.body;
   db.query(
-    `UPDATE TABLE user_program SET IsPayed = true WHERE id = ${id}`,
+    `UPDATE user_program SET IsPayed = ${isPayed} WHERE id = ${id}`,
     (error, result) => {
       if (error) {
         console.log(error);

@@ -7,8 +7,27 @@
                 {{ Program.Title }}
             </h1>
             <p>{{ Program.Description }}</p>
-            <p>{{ Program.Cost }}</p>
+            <p>{{ Program.Cost }} KM</p>
             <p>{{ Program.Username }}</p>
+            <table>
+            <tr>
+                <th>Username korisnika </th>
+                <th>Mijesec za članstvo</th>
+                <th>Uplaćeno: </th>
+                <th colspan="2">Akcije</th>
+            </tr>
+            <tr  v-for="up in UsersPrograms" :key="up.id">
+                <td>{{ up.Username }}</td>
+                <td>{{ up.MonthOfPayment }}</td>
+                <td v-if="up.IsPayed === true">DA</td>
+                <td v-if="up.IsPayed !== true">NE</td>
+                <td><router-link :to="{name: 'ModifyPayment', params: {id : up.id}}">Uredi plaćanje</router-link></td>
+                <td><router-link :to="{name: 'ModifyProgramUser', params: {id : up.id}}">Uredi</router-link></td>
+                <td><router-link :to="{name: 'DeletePrograms', params: {id : up.id}}">Obrisi</router-link></td> 
+            </tr>
+        
+            </table>
+
             <button class="RegisterButton" >
                 <router-link :to="{name: 'ModifyProgram'}">Uredi</router-link>
             </button>
@@ -28,14 +47,16 @@ export default{
     name: 'Program',
     data(){
         return{
-            Program: ""
+            Program: "",
+            UsersPrograms: "", 
         }
     },
     mounted(){
         axios.get(`/api/program/${this.$route.params.id}`).then((res) => {
         this.Program = res.data.result;
-    
-       
+        })
+        axios.get(`/api/programforusers/${this.$route?.params?.id}`).then((res) => {
+        this.UsersPrograms = res.data.output;
       })
     }
 }

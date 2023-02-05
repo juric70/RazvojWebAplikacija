@@ -12,7 +12,7 @@
 
             </div>            
             <div class="cardInputBox">
-                <input type="text" placeholder="Naslov" v-model="Cost" id="Cijena">
+                <input type="text" placeholder="Cijena" v-model="Cost" id="Cijena">
             </div>
            <button class="RegisterButton" @click="addProgram">
                 Kreiraj program!

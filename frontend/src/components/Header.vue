@@ -27,7 +27,7 @@
             <button class="dropdownRouterButton"><router-link  to="/allnews" >Novosti</router-link></button>
             <button class="dropdownRouterButton"><router-link  to="/createuser" >Kreiraj Korisnika</router-link></button>
             <button class="dropdownRouterButton"><router-link  to="/programs" >Programi</router-link></button>
-
+            <button class="dropdownRouterButton"><router-link :to="{name: 'AllUsersPrograms'}">Programi22</router-link></button>
         </div>
         </div>
         <div class="dropdownButton">

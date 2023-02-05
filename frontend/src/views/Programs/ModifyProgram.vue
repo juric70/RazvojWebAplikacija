@@ -11,7 +11,7 @@
                 <textarea  id="textarea" cols="30" rows="10" v-model="Description" placeholder="Opis"></textarea>
             </div>
             <div class="cardInputBox">
-                <input type="text" placeholder="Naslov" v-model="Cost" id="Cijena"  >
+                <input type="text" placeholder="Cijena" v-model="Cost" id="Cijena"  >
             </div> 
            <button class="RegisterButton" @click="modifyProgram($route?.params?.id)">
                 Uredi program!

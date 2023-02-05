@@ -49,6 +49,13 @@ import ModifyProgram from "../views/Programs/ModifyProgram.vue";
 import DeletePrograms from "../views/Programs/DeletePrograms.vue";
 import Programs from "../views/Programs/Programs.vue";
 
+import AddUserToProgram from "../views/UsersPrograms/AddUserToProgram.vue";
+import AllProgramsOfUser from "../views/UsersPrograms/AllProgramsOfUser.vue";
+import AllUsersOfProgram from "../views/UsersPrograms/AllUsersOfProgram.vue";
+import AllUsersPrograms from "../views/UsersPrograms/AllUsersPrograms.vue";
+import DeleteUserProgram from "../views/UsersPrograms/DeleteUserProgram.vue";
+import ModifyPayment from "../views/UsersPrograms/ModifyPayment.vue";
+import ModifyProgramForUser from "../views/UsersPrograms/ModifyProgramForUser.vue";
 const routes = [
   {
     path: "/",
@@ -260,6 +267,42 @@ const routes = [
     path: "/deleteprograms/:id",
     name: "DeletePrograms",
     component: DeletePrograms,
+  },
+
+  {
+    path: "/addtoprogram",
+    name: "AddUserToProgram",
+    component: AddUserToProgram,
+  },
+  {
+    path: "/programsofuser/:id",
+    name: "AllProgramsOfUser",
+    component: AllProgramsOfUser,
+  },
+  {
+    path: "/usersofprogram/:id",
+    name: "AllUsersOfProgram",
+    component: AllUsersOfProgram,
+  },
+  {
+    path: "/usersprograms",
+    name: "AllUsersPrograms",
+    component: AllUsersPrograms,
+  },
+  {
+    path: "/delmembership/:id",
+    name: "DeleteUserProgram",
+    component: DeleteUserProgram,
+  },
+  {
+    path: "/editmembership/:id",
+    name: "ModifyProgramForUser",
+    component: ModifyProgramForUser,
+  },
+  {
+    path: "/editpayment/:id",
+    name: "ModifyPayment",
+    component: ModifyPayment,
   },
 ];
 
