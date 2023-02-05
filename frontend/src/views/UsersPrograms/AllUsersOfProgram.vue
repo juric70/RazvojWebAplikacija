@@ -8,7 +8,7 @@
             <th>Username korisnika </th>
             <th>Mijesec za članstvo</th>
             <th>UplaĆeno: </th>
-            <th colspan="2">Akcije</th>
+            <th colspan="3">Akcije</th>
         </tr>
         <tr  v-for="up in UsersPrograms" :key="up.id">
             <td>{{ up.Username }}</td>
@@ -16,7 +16,7 @@
             <td v-if="up.IsPayed === true">DA</td>
             <td v-if="up.IsPayed !== true">NE</td>
             <td><router-link :to="{name: 'ModifyPayment', params: {id : up.id}}">Uredi plaćanje</router-link></td>
-            <td><router-link :to="{name: 'ModifyProgramUser', params: {id : up.id}}">Uredi</router-link></td>
+            <td><router-link :to="{name: 'ModifyProgramForUser', params: {id : up.id}}">Uredi</router-link></td>
             <td><router-link :to="{name: 'DeletePrograms', params: {id : up.id}}">Obrisi</router-link></td> 
         </tr>
        

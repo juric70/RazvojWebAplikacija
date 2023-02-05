@@ -303,25 +303,22 @@ app.delete("/api/logoutUser", function (req, res) {
 });
 //Display trenera
 app.get("/api/coaches", function (req, res) {
-  db.query(
-    `SELECT * FROM users where RoleId = 2 and isDeleted = false`,
-    function (error, result) {
-      if (error) {
-        res.status(500).json({
-          msg: "error",
-        });
-      } else if (result.length <= 0) {
-        res.status(404).json({
-          msg: "No news",
-        });
-      } else {
-        res.status(200).json({
-          msg: "Coaches",
-          output: result,
-        });
-      }
+  db.query(`SELECT * FROM users where RoleId = 2 `, function (error, result) {
+    if (error) {
+      res.status(500).json({
+        msg: "error",
+      });
+    } else if (result.length <= 0) {
+      res.status(404).json({
+        msg: "No news",
+      });
+    } else {
+      res.status(200).json({
+        msg: "Coaches",
+        output: result,
+      });
     }
-  );
+  });
 });
 //Display svih korisnika
 app.get("/api/users", function (req, res) {
@@ -347,7 +344,7 @@ app.get("/api/users", function (req, res) {
 app.get("/api/user/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `SELECT * FROM users where RoleId = 3 and isDeleted = false and id = ${id} LIMIT 1`,
+    `SELECT * FROM users where RoleId = 3 and Id = ${id} LIMIT 1`,
     function (error, result) {
       if (error) {
         res.status(500).json({
@@ -1122,9 +1119,10 @@ app.get("/api/delprograms/:id", function (req, res) {
 app.post("/api/createuserprogram", function (req, res) {
   const { isPayed, MonthOfPayment, UserId, ProgramId } = req.body;
   var id = req.params["id"];
+  let date = new Date().toJSON().slice(0, 10);
   db.query(
-    `INSERT INTO user_program(IsPayed, MonthOfPayment, UserId, IsDeleted, ProgramId)
-           VALUES(${isPayed} ,${MonthOfPayment}, ${UserId}, false, ${ProgramId})`,
+    `INSERT INTO user_program(IsPayed, MonthOfPayment, UserId, IsDeleted, ProgramId, CreationDate)
+           VALUES(${isPayed} ,'${MonthOfPayment}', ${UserId}, false, ${ProgramId}, '${date}')`,
     (error, result) => {
       if (error) {
         console.log(error);
@@ -1140,7 +1138,7 @@ app.put("/api/modifyuserprogram/:id", function (req, res) {
   const { isPayed, MonthOfPayment, ProgramId } = req.body;
   var id = req.params["id"];
   db.query(
-    `UPDATE TABLE user_program SET IsPayed = ${isPayed}, MonthOfPayment = ${MonthOfPayment}, ProgramId = ${ProgramId} WHERE id = ${id}`,
+    `UPDATE user_program SET IsPayed = ${isPayed}, MonthOfPayment = '${MonthOfPayment}', ProgramId = ${ProgramId} WHERE id = ${id}`,
     (error, result) => {
       if (error) {
         console.log(error);
@@ -1155,7 +1153,7 @@ app.put("/api/modifyuserprogram/:id", function (req, res) {
 app.get("/api/deleteuserprogram/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `UPDATE TABLE user_program SET IsDeleted = true WHERE id = ${id}`,
+    `UPDATE user_program SET IsDeleted = true WHERE id = ${id}`,
     (error, result) => {
       if (error) {
         console.log(error);
@@ -1218,7 +1216,7 @@ app.get("/api/programuser/:id", function (req, res) {
 app.get("/api/programforusers/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `SELECT * FROM user_program where ProgramId = ${id}`,
+    `SELECT up.*, p.Title, u.Username as Username, p.Title as ProgramTitle FROM user_program up join users u on u.id = up.UserId join programs p on up.ProgramId = p.id where ProgramId = ${id} and up.IsDeleted = false`,
     function (error, result) {
       if (error) {
         console.log(error);
@@ -1242,7 +1240,7 @@ app.get("/api/programforusers/:id", function (req, res) {
 app.get("/api/programsofuser/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `SELECT * FROM user_program where UserId = ${id}`,
+    `SELECT up.*, p.Title as ProgramTitle FROM user_program up join programs p on p.id = up.ProgramId where UserId = ${id} and up.IsDeleted = false order by str_to_date(CreationDate, '%y-%m-%d')`,
     function (error, result) {
       if (error) {
         console.log(error);

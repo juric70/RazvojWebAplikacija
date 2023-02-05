@@ -52,12 +52,12 @@ export default{
     },
     methods:{
         modifyprogramUser(id){
-            axios.put(`/api/updateaexe/${id}`, {
+            axios.put(`/api/modifyuserprogram/${id}`, {
                 isPayed:this.isPayed, 
                 MonthOfPayment: this.MonthOfPayment , 
                 ProgramId: this.ProgramId
             }).then((res) => {
-            if(res.data.result == true){
+            if(res.data == true){
                 window.location.replace(`/programsofuser/${this.userId}`);
             }else{
                 alert(res.data.msg)
@@ -76,7 +76,7 @@ export default{
             this.Username = res.data.output.Username
        })
       axios.get('/api/programs').then((res) => {
-        this.Programs = res.data.result;
+        this.Programs = res.data.output;
       })
     }  
 }

@@ -36,16 +36,20 @@
         <div class="monthlyPayments">
             <h2>Monthly payments</h2>
             <div class="monthlyPaymentsDataStore">
-                <h4>{{DataForMonthlyPayments[0]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForMonthlyPayments[1]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForMonthlyPayments[2]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForMonthlyPayments[3]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForMonthlyPayments[4]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
+                <table>
+                    <tr>
+                        <th>Naziv programa </th>
+                        <th>Mijesec za članstvo</th>
+                        <th>Uplaćeno: </th>
+                        
+                    </tr>
+                    <tr  v-for="up in UsersPrograms" :key="up.id">
+                        <td>{{ up.ProgramTitle }}</td>
+                        <td>{{ up.MonthOfPayment }}</td>
+                        <td v-if="up.IsPayed == true">DA</td>
+                        <td v-if="up.IsPayed != true">NE</td>
+                    </tr>
+                </table>
             </div> 
         </div>
     </div>
@@ -72,11 +76,17 @@ data () {
         BrojTelefona:null,
         Email:null,
         store,
-        DataForTrainingSchedule:["","","","","",],
-        DataForMonthlyPayments:["", "", "", "", "",]
+        DataForTrainingSchedule:["nesto","","","","",],
+        DataForMonthlyPayments:["dd", "ss", "", "", "",],
+        UsersPrograms: "", 
     }
 
 },
+mounted(){
+    axios.get(`/api/programsofuser/${this.store?.user?.id}`).then((res) => {
+        this.UsersPrograms = res.data.output;
+      })
+}
 }
 </script>
 

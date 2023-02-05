@@ -25,8 +25,10 @@ export default{
     deluserprogram(id){
          
           axios.get(`/api/deleteuserprogram/${id}`).then((res)=>{
-              alert(res.data.msg);
-              window.location.replace(`/usersprograms}`);
+             if(res.data){
+              window.location.replace(`/usersprograms`);
+
+             }
           }).catch((error) => {
               alert(error);
           })

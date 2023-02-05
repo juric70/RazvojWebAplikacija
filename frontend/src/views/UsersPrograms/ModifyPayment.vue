@@ -34,7 +34,7 @@ export default{
             isPayed:"", 
             userId:"",
             Username: "",
-            id:""
+            is:""
         }
     },
     methods:{
@@ -58,6 +58,7 @@ export default{
             this.userId = res.data.output.UserId;
             this.Username = res.data.output.Username
             this.id = res.data.output.id
+            
        })
    
     }  

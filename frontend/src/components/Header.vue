@@ -7,7 +7,7 @@
             <router-link class = "headerItem" to="/calendar">Raspored</router-link>
             <router-link class = "headerItem" to="/training">Trening</router-link>
             <router-link class = "headerItem" to="/coaches">Treneri</router-link>
-            <router-link class = "headerItem" to="/membership">Članarina</router-link>
+            <router-link class = "headerItem" to="/programs">Članarina</router-link>
             <router-link class = "headerItem" to="/support">Podrška</router-link>
     </div>
   <div id="headerIconDiv">
