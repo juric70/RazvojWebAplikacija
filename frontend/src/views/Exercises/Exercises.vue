@@ -71,9 +71,7 @@ th {
 tr:nth-child(odd) {
     background-color: #e6e6e6;
 }
-body{
-    margin-top: 0%;
-}
+
 .exercisesMainDiv{
     padding-top: 60px;
     height: 100%;

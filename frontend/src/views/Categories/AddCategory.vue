@@ -49,11 +49,11 @@ methods:{
 </script>
 
 <style>
-.cardInputBox input, #textarea{
+/* .cardInputBox input, #textarea{
 width: 90%;
 margin: 10px;
 border-radius: 15px;
 border: solid 1px #03A9F4;
 padding-left: 7px;
-}
+} */
 </style>

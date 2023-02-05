@@ -1,6 +1,6 @@
 <template>
     <div class="RegisterBackground">
-        <div class="card">
+        <div class="registerCard">
             <h1 class="RegisterDescriptionTitle">
                 Registrirajte se da bi nastavili!
             </h1>
@@ -84,61 +84,49 @@ export default{
 </script>
 
 <style>
-body{
-margin: 0;
-padding: 0;   
-}
 .RegisterBackground{
-width: 100%;
-height: 100%;
-background-color: #f2f2f2;
+padding-top: 20px;
 }
-
-.card{
-border-radius: 5px;
-border: solid 1px #e6e6e6;
-padding: 50px;
-align-items: center;
-justify-content: center; 
-background-color: white;
-position: relative;
-width: 30%;
-top: 10%;
-transform: translateY(-10%);
-left: 50%;
-transform: translateX(-50%);
+.registerCard{
+    border-radius: 30px;
+    border: solid 1px #e6e6e6;
+    padding: 40px;
+    background-color: #e6e6e6;
+    width: 20%;
+    margin-left: 40%;
 }
-
 .RegisterDescriptionTitle{
-color: #333333;
+    color: #01427b;
+}
+.RegisterButton{
+    height: 40px;
+    width: 93%;
+    margin: 10px;
+    border-radius: 15px;
+    border: solid 1px #01427b;
+    background-color: #01427b;
+    font-weight: bold;
+    color: white;
 }
 
 #RegisterPhoto{
-margin: 20px;
-width: 170px;
-height: 170px;
-border-radius: 85px;
-border: 2px solid #03A9F4 ;
+    margin: 20px;
+    width: 170px;
+    height: 170px;
+    border-radius: 85px;
+    border: 2px solid #03A9F4 ;
 }
 
 .cardInputBox input, .cardInputBox select{
-height: 35px;
-width: 90%;
-margin: 10px;
-border-radius: 15px;
-border: solid 1px #03A9F4;
-padding-left: 7px;
+    height: 35px;
+    width: 90%;
+    margin: 10px;
+    border-radius: 15px;
+    border: solid 1px #01427b;
+    padding-left: 7px;
 }
 
-.RegisterButton{
-height: 40px;
-width: 93%;
-margin: 10px;
-border-radius: 15px;
-border: solid 1px #03A9F4;
-background-color: #03A9F4;
-font-weight: bold;
-}
+
 @media(max-width:800px){
     .card{
         width: 80%;

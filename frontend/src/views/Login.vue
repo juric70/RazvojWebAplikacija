@@ -1,10 +1,11 @@
     <template>
         <div class="LoginBackground">
-            <div class="LoginCard" v-if="store.user == null">
+            <div class="loginCard" v-if="store.user == null">
+                <div class="LoginCardPhoto"><img id="LoginPhoto" src="../assets/KVSUM-Logo.png"></div>
                 <h1 class="LoginDescriptionTitle">
                     Prijavite se da bi nastavili!
                 </h1>
-                <div class="LoginCardPhoto"><img id="LoginPhoto" src="../assets/PlivacProfilnaSlika.jpg"></div>
+                
                 <div class="LoginInputBox">
                     <input type="text" placeholder="Korisničko ime" v-model="Username">
                 </div>  
@@ -14,7 +15,7 @@
                <button class="LoginButton" @click="loginUser">
                     Prijavi se!
                 </button>
-                <button class="LoginButton" @click="logoutUser"> Logout</button>
+                <!-- <button class="LoginButton" @click="logoutUser"> Logout</button> -->
                 <p>Ukoliko nemate račun <router-link to="/register">Registrirajte se!</router-link></p>
                 
             </div>
@@ -66,22 +67,18 @@ import { store } from '../../store.js'
 </script>
 
 <style>
-body{
-    margin: 0;
-    padding: 0;   
-}
+
 .LoginBackground{
-    width: 100%;
-    background-color: #f2f2f2;
-    padding-top: 90px;
+    padding-top: 20px;
 }
 
-.LoginCard{
-    border-radius: 5px;
+.loginCard{
+    border-radius: 30px;
     border: solid 1px #e6e6e6;
-    background-color: white;
-    width: 30%;
-    margin-left: 35%;
+    background-color: #e6e6e6;
+    width: 20%;
+    margin-left: 40%;
+    padding: 40px;
 }
 @media(max-width:800px){
     .LoginCard{
@@ -93,15 +90,12 @@ body{
     }
 }
 .LoginDescriptionTitle{
-    color: #333333;
+    color: #01427b;
 }
 
 #LoginPhoto{
-    margin: 20px;
-    width: 170px;
-    height: 170px;
-    border-radius: 85px;
-    border: 2px solid #03A9F4 ;
+    width: 200px;
+    height: 200px;
 }
 
 .LoginInputBox input{
@@ -109,17 +103,18 @@ body{
     width: 90%;
     margin: 10px;
     border-radius: 15px;
-    border: solid 1px #03A9F4;
+    border: solid 1px #01427b;
     padding-left: 7px;
 }
 
 .LoginButton{
+    color: white;
     height: 40px;
     width: 93%;
     margin: 10px;
     border-radius: 15px;
-    border: solid 1px #03A9F4;
-    background-color: #03A9F4;
+    border: solid 1px #01427b;
+    background-color: #01427b;
     font-weight: bold;
     }
     /* router-link{
