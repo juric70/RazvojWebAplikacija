@@ -73,13 +73,11 @@ tr:nth-child(odd) {
 }
 
 .exercisesMainDiv{
-    padding-top: 60px;
-    height: 100%;
+    margin-bottom: 20%;
 }
 .exercisesTitle{
     text-align: left;
     margin-left: 60px;
-    position: absolute;
     margin-left: 5%;
 }
 .addExercises{

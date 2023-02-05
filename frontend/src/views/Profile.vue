@@ -1,56 +1,61 @@
 <template>
+    <div class="mainMainDiv">
     <div class="mainDiv">
         <div class="profilePersonalData"> 
             <h2>MyProfile</h2>
             <img src="../assets/MatejKvesic.jpg" alt="">
             <div class="profilePersonalDataStore">
-                <h4>{{DataForProfile[0]}}</h4>
-                <p>{{ store.user.username }}</p>
-                <h4>{{DataForProfile[1]}}</h4>
-                <p>{{ store.user.name }}</p>
-                <h4>{{DataForProfile[2]}}</h4>
-                <p>{{ store.user.surname }}</p>
-                <h4>{{DataForProfile[3]}}</h4>
-                <p>{{ store.user.phoneNumber }}</p>
-                <h4>{{DataForProfile[4]}}</h4>
-                <p>{{ store.user.email }}</p>
+                <h4 class="profileInfo">{{DataForProfile[0]}}</h4>
+                <p class="profileInfoData">{{ store.user.username }}</p>
+                <h4 class="profileInfo">{{DataForProfile[1]}}</h4>
+                <p class="profileInfoData">{{ store.user.name }}</p>
+                <h4 class="profileInfo">{{DataForProfile[2]}}</h4>
+                <p class="profileInfoData">{{ store.user.surname }}</p>
+                <h4 class="profileInfo">{{DataForProfile[3]}}</h4>
+                <p class="profileInfoData">{{ store.user.phoneNumber }}</p>
+                <h4 class="profileInfo">{{DataForProfile[4]}}</h4>
+                <p class="profileInfoData">{{ store.user.email }}</p>
             </div>
         </div>
         
-        <div class="trainingSchedule">
-            <h2>Training schedule</h2>
-            <div class="trainingScheduleDataStore">
-                <h4>{{DataForTrainingSchedule[0]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForTrainingSchedule[1]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForTrainingSchedule[2]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForTrainingSchedule[3]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-                <h4>{{DataForTrainingSchedule[4]}}</h4>
-                <input class="trainingScheduleWindow" type="text" value="">
-            </div>
-        </div>
+    </div>
 
-        <div class="monthlyPayments">
-            <h2><router-link :to="{name: 'AllProgramsOfUser', params: {id : store?.user?.id}}">Mjesečne uplate</router-link></h2>
-            <div class="monthlyPaymentsDataStore">
-                <table>
-                    <tr>
-                        <th>Naziv programa </th>
-                        <th>Mijesec za članstvo</th>
-                        <th>Uplaćeno: </th>
-                        
-                    </tr>
-                    <tr  v-for="up in UsersPrograms" :key="up.id">
-                        <td>{{ up.ProgramTitle }}</td>
-                        <td>{{ up.MonthOfPayment }}</td>
-                        <td v-if="up.IsPayed == true">DA</td>
-                        <td v-if="up.IsPayed != true">NE</td>
-                    </tr>
-                </table>
-            </div> 
+    <div class="paymentsAndSchedule">
+            <div class="trainingSchedule">
+                <h2>Training schedule</h2>
+                <div class="trainingScheduleDataStore">
+                    <h4>{{DataForTrainingSchedule[0]}}</h4>
+                    <input class="trainingScheduleWindow" type="text" value="">
+                    <h4>{{DataForTrainingSchedule[1]}}</h4>
+                    <input class="trainingScheduleWindow" type="text" value="">
+                    <h4>{{DataForTrainingSchedule[2]}}</h4>
+                    <input class="trainingScheduleWindow" type="text" value="">
+                    <h4>{{DataForTrainingSchedule[3]}}</h4>
+                    <input class="trainingScheduleWindow" type="text" value="">
+                    <h4>{{DataForTrainingSchedule[4]}}</h4>
+                    <input class="trainingScheduleWindow" type="text" value="">
+                </div>
+            </div>
+
+            <div class="monthlyPayments">
+                <h2><router-link :to="{name: 'AllProgramsOfUser', params: {id : store?.user?.id}}">Mjesečne uplate</router-link></h2>
+                <div class="monthlyPaymentsDataStore">
+                    <table>
+                        <tr>
+                            <th>Naziv programa </th>
+                            <th>Mijesec za članstvo</th>
+                            <th>Uplaćeno: </th>
+                            
+                        </tr>
+                        <tr  v-for="up in UsersPrograms" :key="up.id">
+                            <td>{{ up.ProgramTitle }}</td>
+                            <td>{{ up.MonthOfPayment }}</td>
+                            <td v-if="up.IsPayed == true">DA</td>
+                            <td v-if="up.IsPayed != true">NE</td>
+                        </tr>
+                    </table>
+                </div> 
+            </div>
         </div>
     </div>
    
@@ -94,49 +99,62 @@ mounted(){
 ::-webkit-scrollbar {
     width: 0px;
 }
+.mainMainDiv{
+    display: flex;
+    justify-content: center;
+    margin-bottom: -20px;
+}
 .mainDiv{
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    background-color: #cce6ff;
+    display: block;
+    padding: 50px;
+    width: 400px;
 } 
 .mainDiv img{
     width: 50%;
     border-radius: 10%;
 }
 .profilePersonalData{
-    background-color: #e6f2ff;
+    background-color: #e6e6e6;
     display: flex;
     position: relative;
     align-items: center;
     flex-direction: column;
     overflow: hidden;
-    width: 25%;
-    height: 85%;
-    top: 12%;
-    left: 30%;
-    transform: translateX(-70%);
+    height: 650px;
     border-radius: 30px;
-    box-shadow: 0px 0px 15px grey;
+    box-shadow: 0px 0px 15px #01294c;
+    color: #01427b;
+}
+.paymentsAndSchedule{
+    display: block;
+    width: 800px;
+    float: right;
+    padding: 50px;
 }
 .profilePersonalDataStore{
     overflow: scroll;
     display: flex;
     flex-direction: column;
+    width: 300px;
+}
+.profileInfo{
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+}
+.profileInfoData{
+    display: flex;
+    border-bottom: solid 1px black;
 }
 .trainingSchedule{
-    background-color: #e6f2ff;
-    display: flex;
-    position: relative;
-    align-items: center;
-    flex-direction: column;
+    background-color: #e6e6e6;
     overflow: hidden;
-    width: 45%;
-    height: 40%;
-    top: -73%;
-    left: 45%;
+    display: flex;
+    height: 300px;
     border-radius: 30px;
-    box-shadow: 0px 0px 15px grey;
+    box-shadow: 0px 0px 15px #01294c;
+    margin-bottom: 50px;
+    flex-direction: column;
 }
 .trainingScheduleDataStore{
     overflow: scroll;
@@ -144,18 +162,11 @@ mounted(){
     width: 100%;
 }
 .monthlyPayments{
-    background-color: #e6f2ff;
-    display: flex;
-    position: relative;
-    align-items: center;
-    flex-direction: column;
+    background-color: #e6e6e6;
     overflow: hidden;
-    width: 45%;
-    height: 40%;
-    top: -68%;
-    left: 45%;
+    height: 300px;
     border-radius: 30px;
-    box-shadow: 0px 0px 15px grey;
+    box-shadow: 0px 0px 15px #01294c;
 }
 .monthlyPaymentsDataStore{
     overflow: scroll;
