@@ -1,7 +1,9 @@
 <template>
     <div class="exercisesMainDiv">
-        <button class="addExercises"><router-link to="/addprogram">addtoprogram! +</router-link></button>
-        <h1 class="exercisesTitle">Svi korisnici programa: {{ Program.Title }}  </h1>
+        <div class="titleAndButton">
+            <h1 class="exercisesTitle">Svi korisnici programa: {{ Program.Title }}  </h1>
+            <button class="addExercises"><router-link to="/addprogram">addtoprogram! +</router-link></button>
+        </div>
         <div class="exerciseCard">
         <table>
         <tr>

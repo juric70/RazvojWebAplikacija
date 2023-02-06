@@ -84,62 +84,62 @@ watch:{
   margin: auto;
 }
 .fc .fc-timegrid-slot-minor {
-    border-top-style: dotted;
-   background-color: lightgray;
+    border-top-style: dotted !important;
+    background-color: lightgray !important;
 }
 
 .fc-theme-standard .fc-scrollgrid {
-    border:0;
+    border:0 !important;
 }
 .fc .fc-daygrid-day.fc-day-today {
-    background-color: #01427b;
+    background-color: #01427b !important;
 }
 tr:nth-child(odd) {
-    background-color: #d9d9d9;
+    background-color: #d9d9d9 !important;
 }
 .fc-theme-standard .fc-scrollgrid {
-    border: 0;
-    width: 80%;
-    margin: auto;
-    height: 800px;
+    border: 0 !important;
+    width: 80% !important;
+    margin: auto !important;
+    height: 800px !important;
 }
 .fc-theme-standard .fc-scrollgrid {
-    border: 0;
-    width: 70%;
-    margin: auto;
-    height: 600px;
+    border: 0 !important;
+    width: 70% !important;
+    margin: auto !important;
+    height: 600px !important;
 }
 .fc-timegrid-event-harness-inset .fc-timegrid-event, .fc-timegrid-event.fc-event-mirror, .fc-timegrid-more-link {
     /* box-shadow: 0 0 0 1px var(--fc-page-bg-color); */
-    background: #e6373a;
-    border: #e6373a;
+    background: #e6373a !important;
+    border: #e6373a !important;
 }
 .fc .fc-toolbar-title {
-    font-size: 1.75em;
-    margin: 0;
-    color: #e6373a;
+    font-size: 1.75em !important;
+    margin: 0 !important;
+    color: #e6373a !important;
     /* boja naslova
 } */
 }
 .fc .fc-button-primary:hover {
-    background-color: lightgray;
-    border-color: lightgray;
-    color: var(--fc-button-text-color);
+    background-color: lightgray !important;
+    border-color: lightgray !important;
+    color: var(--fc-button-text-color) !important;
 }
 .fc .fc-button-primary:disabled {
-     background-color: #e6e6e6; 
-     border-color: #e6e6e6; 
-    color:#01427b;
+     background-color: #e6e6e6 !important; 
+     border-color: #e6e6e6 !important; 
+    color:#01427b !important;
 }
 .fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
-    background-color: #d9d9d9;
-    border-color: #d9d9d9; 
-    color: #01427b;
+    background-color: #d9d9d9 !important;
+    border-color: #d9d9d9 !important; 
+    color: #01427b !important;
 }
 
 .fc .fc-button-primary {
-  background-color: #e6e6e6; 
-     border-color: #e6e6e6; 
-    color:#01427b;
+  background-color: #e6e6e6 !important; 
+     border-color: #e6e6e6 !important; 
+    color:#01427b !important;
 }
 </style>

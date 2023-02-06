@@ -1,8 +1,10 @@
 <template>
     <div class="testDiv">
         <div class="exercisesMainDiv">
-            <button class="addExercises" v-if="store?.user?.role === 1 "><router-link to="/addprogram">Dodaj! +</router-link></button>
-            <h1 class="exercisesTitle">Programi:</h1>
+            <div class="titleAndButton">
+                <h1 class="exercisesTitle">Programi:</h1>
+                <button class="addExercises" v-if="store?.user?.role === 1 "><router-link to="/addprogram">Dodaj! +</router-link></button>
+            </div>
             <div class="exerciseCard">
                 <table>
             <tr>

@@ -1,7 +1,9 @@
 <template>
     <div class="exercisesMainDiv">
-        <button class="addExercises"><router-link to="/addtruser">Dodaj! +</router-link></button>
-        <h1 class="exercisesTitle">Treninzi od korisnika: </h1>
+        <div class="titleAndButton">
+            <h1 class="exercisesTitle">Treninzi od korisnika: </h1>
+            <button class="addExercises"><router-link to="/addtruser">Dodaj! +</router-link></button>
+        </div>
         <div class="exerciseCard">
             <table>
                 <tr>

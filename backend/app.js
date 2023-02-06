@@ -893,18 +893,22 @@ app.post("/api/createtraexe/:id", function (req, res) {
   const { RepetitionNumber, Series, Duration, ExerciseId } = req.body;
   dur = Duration;
   rep = RepetitionNumber;
+  ser = Series;
   if (Duration == "") {
     dur = 0;
   }
   if (RepetitionNumber == "") {
     rep = 0;
   }
+  if (Series == "") {
+    ser = 0;
+  }
 
   console.log(Duration, "duration");
   var id = req.params["id"];
   db.query(
     `INSERT INTO training_exercise(RepetitionNumber, Series, Duration, TrainingId, ExerciseId, isDeleted )
-            VALUES(${rep} ,${Series}, ${dur}, ${id}, ${ExerciseId}, false)`,
+            VALUES(${rep} ,${ser}, ${dur}, ${id}, ${ExerciseId}, false)`,
     (error, result) => {
       if (error) {
         console.log(error);

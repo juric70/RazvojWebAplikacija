@@ -1,6 +1,8 @@
 <template>
     <div class="exercisesMainDiv">
-        <h1 class="exercisesTitle">Treninzi od: {{ User.Username }} </h1>
+        <div class="titleAndButton">
+            <h1 class="exercisesTitle">Treninzi od: {{ User.Username }} </h1>
+        </div>
         <div class="exerciseCard">
             <table>
                 <tr>
