@@ -1,9 +1,9 @@
 <template>
     <div class="mainDivTraining">
         <div class="workoutOne" v-for="cat in Categories" :key="cat.id">
-            <h1>{{cat.Title}}</h1>
-            <p>{{ cat.id }}</p>
-            <div class="workoutCardsFlex" style="height: 50%; width: 70%; background-color: red;">
+            <h1 class="trainingTitleBox">{{cat.Title}}</h1>
+            <!-- <p>{{ cat.id }}</p> -->
+            <div class="workoutCardsFlex">
                 <div class="workoutCards" v-for="tr in Trainings[`${cat.id}`]" :key="tr.id">
                     <p>{{ tr.Title }}</p></div>
                 
@@ -55,48 +55,39 @@ mounted(){
 
 
 <style>
-
+.trainingTitleBox{
+    display: block;
+    width: 50%;
+}
 .mainDivTraining{
-    margin-bottom: 20%;
+    margin-top: 50px;
+    display: block;
+    padding: 40px;
 }
 .workoutOne h1{
+    color: #01427b;
     text-align: left;
-    margin-left: 5%;
+    margin-left: 30px;
     font-size: 300%;
-    margin-top: 5%;
-    margin-bottom: 5%;
 }
 .workoutOne{
-    background-color: #80ccff;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
+    background-color: #e6e6e6;
     overflow: hidden;
-    width: 90%;
-    height: 75%;
-    top: 12%;
-    left: 5%;
+    height: fit-content;
     border-radius: 30px;
-    box-shadow: 0px 0px 15px grey;
+    box-shadow: 0px 0px 15px #01294c;
     margin-bottom: 5%;
+    display: flex;
 }
 .workoutCardsFlex{
     height: 50%;
     width: 90%;
-    left: 5%;
-    position: relative;
-    display: inline-block;
-    justify-content: space-around;
-    display: flex;
 }
 .workoutCards{
-    background-color: orange;
-    height: 100%;
-    width: 23%;
-    position: relative;
-    display: inline-block;
-    justify-content: space-between;
-    border-radius: 30px;
+    background-color: #e6373a;
+    width: 150px;
+    display: flex;
+    justify-content: center
 }
 
 
