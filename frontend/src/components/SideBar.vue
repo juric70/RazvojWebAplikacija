@@ -2,7 +2,7 @@
     <div id="sider">
       <div id="siderCenter">
       <RouterLink class="sideBarRouterLinks" to="/trainings" v-if="store?.user?.role == 2 || store?.user?.role == 1">Treninzi</RouterLink>
-      <RouterLink class="sideBarRouterLinks" to="/">Raspored</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/calendar">Raspored</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/">Treneri</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/">Cjenik</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/">Album</RouterLink>
