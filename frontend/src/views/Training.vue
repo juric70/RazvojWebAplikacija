@@ -5,7 +5,13 @@
             <!-- <p>{{ cat.id }}</p> -->
             <div class="workoutCardsFlex">
                 <div class="workoutCards" v-for="tr in Trainings[`${cat.id}`]" :key="tr.id">
-                    <p>{{ tr.Title }}</p></div>
+                    <div class="cardContent">
+                        <h2><router-link :to="{name: 'FullTraining', params:{id: tr.id}}">{{ tr.Title }}</router-link></h2>
+                        <p>{{ tr.Username }}</p>
+                        <p>{{ tr.CreationDate }}</p>
+                    </div>
+                </div>
+
                 
             </div>
         </div>
@@ -36,6 +42,7 @@ methods:{
         })
     }
 },
+
 mounted(){
       axios.get('/api/categories').then((res) => {
         this.Categories = res.data.categories;
@@ -60,9 +67,8 @@ mounted(){
     width: 50%;
 }
 .mainDivTraining{
-    margin-top: 50px;
     display: block;
-    padding: 40px;
+    padding: 30px 100px;
 }
 .workoutOne h1{
     color: #01427b;
@@ -73,21 +79,39 @@ mounted(){
 .workoutOne{
     background-color: #e6e6e6;
     overflow: hidden;
-    height: fit-content;
+    height: 250px;
     border-radius: 30px;
     box-shadow: 0px 0px 15px #01294c;
     margin-bottom: 5%;
     display: flex;
 }
+.cardContent{
+
+}
+.workoutCards h2 a{
+    text-decoration: none;
+    color: #01427b;
+}
+.workoutCards h2 a:hover{
+    text-decoration: none;
+    color: #e6373a;
+}
 .workoutCardsFlex{
-    height: 50%;
-    width: 90%;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-right: 30px;
 }
 .workoutCards{
-    background-color: #e6373a;
-    width: 150px;
+    margin-right: 10px;
+    background-color: #d9d9d9;
+    width: 24%;
     display: flex;
-    justify-content: center
+    flex-direction: column;
+    margin: 20px 5px;
+    border-radius: 10px;
+    justify-content: center;
 }
 
 

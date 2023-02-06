@@ -246,9 +246,10 @@ app.post("/api/loginUser", function (req, res) {
               });
             } else {
               res.cookie("kvsum-token", token, {
-                secure: true,
+                secure: false,
                 httpOnly: true,
                 sameSite: "lax",
+                domain: 'studenti.sum.ba',
               });
             }
 
