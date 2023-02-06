@@ -2,22 +2,22 @@
     <div class="exercisesMainDiv">
         <div class="titleAndButton">
             <h1 class="exercisesTitle">Korisnici sa {{ Training.Title }} treninga </h1>
-            <button class="addExercises"><router-link to="/addtrainingtouser">Dodaj! +</router-link></button>
+            <button class="addExercises"  v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link to="/addtrainingtouser">Dodaj! +</router-link></button>
         </div>
         <div class="exerciseCard">
-            <table>
+            <table> 
                 <tr>
                     
                     <th>Korisničko ime</th>
                     <th>Datum treninga</th>
                     <th>Početak - Kraj</th>
-                    <th >Akcije</th>
+                    <th  v-if="store?.user?.role === 1 || store?.user?.role === 2">Akcije</th>
                 </tr>
                 <tr  v-for="ut in TrainingUsers" :key="ut.id">
                     <td>{{ ut.Username}}</td>
                     <td>{{ ut.DateOfTraining }}</td>
                     <td>{{ ut.startAt }} - {{ ut.EndsAt }}</td>
-                    <td><router-link :to="{name: 'DeleteUserProgram', params: {id : up.id}}">Obrisi</router-link></td> 
+                    <td  v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link :to="{name: 'DeleteUserProgram', params: {id : up.id}}">Obrisi</router-link></td> 
                 </tr>
         
             </table>
@@ -28,12 +28,14 @@
 
 <script>
 import axios from "../../../axios.js";
+import {store} from "../../../store.js"
 export default{
 name: 'AllUsersOfTraining',
 data () {
     return {
         TrainingUsers: "",
-        Training: ""
+        Training: "",
+        store
     }
 },
 mounted(){

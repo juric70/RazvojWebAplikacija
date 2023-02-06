@@ -9,10 +9,10 @@
             <p>{{ Training.Username }}</p>
             <p>{{ Training.category }}</p>
             <p>{{ Training.CreationDate }}</p>
-            <button class="RegisterButton" >
+            <button class="RegisterButton" v-if="store?.user?.role === 1 || store?.user?.role === 2" >
                 <router-link :to="{name: 'ModifyTraining'}">Uredi</router-link>
             </button>
-            <button class="RegisterButton" >
+            <button class="RegisterButton" v-if="store?.user?.role === 1 || store?.user?.role === 2">
                 <router-link class="linkDeco" :to="{name: 'DeleteTraining'}">Obrisi</router-link> 
             </button>
         </div>
@@ -23,12 +23,14 @@
 
 <script>
 import axios from '../../../axios.js';
+import {store} from "../../../store.js"
 
 export default{
     name: 'OneTraining',
     data(){
         return{
-            Training: ""
+            Training: "",
+            store
         }
     },
     mounted(){

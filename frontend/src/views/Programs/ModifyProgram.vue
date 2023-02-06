@@ -13,7 +13,7 @@
             <div class="cardInputBox">
                 <input type="text" placeholder="Cijena" v-model="Cost" id="Cijena"  >
             </div> 
-           <button class="RegisterButton" @click="modifyProgram($route?.params?.id)">
+           <button v-if="store?.user?.role === 1" class="RegisterButton" @click="modifyProgram($route?.params?.id)">
                 Uredi program!
             </button>
         </div>
@@ -22,14 +22,16 @@
 
 <script>
 import axios from '../../../axios.js'
+import {store} from "../../../store.js"
 
 export default{
     name: 'ModifyProgram',
     data(){
-        return{
+        return{ 
             Title:"", 
             Description:"", 
-            Cost:""
+            Cost:"",
+            store
         }
     },
     methods:{

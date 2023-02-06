@@ -7,7 +7,7 @@
             <div class="cardInputBox">
                 <input type="text" placeholder="Naslov" v-model="Title" id="title"  >
             </div> 
-           <button class="RegisterButton" @click="modifyCategory($route?.params?.id)">
+           <button  v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="modifyCategory($route?.params?.id)">
                 Uredi kategoriju!
             </button>
         </div>
@@ -16,12 +16,14 @@
 
 <script>
 import axios from '../../../axios.js'
+import {store} from "../../../store.js"
 
 export default{
     name: 'ModifyCategory',
     data(){
         return{
             Title: "",
+            store
         }
     },
     methods:{

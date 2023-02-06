@@ -6,7 +6,7 @@
         <div class="exerciseCard">
             <table>
                 <tr>
-                    
+                     
                     <th>Naziv treninga</th>
                     <th>Datum treninga</th>
                     <th>Početak - Kraj</th>

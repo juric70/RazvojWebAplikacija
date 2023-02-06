@@ -21,12 +21,12 @@
                         {{ exe.Title }}
                     </option>
                 </select>
-            </div>
+            </div> 
 
-           <button class="RegisterButton" @click="addExercise">
+           <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="addExercise">
                 Dodaj još vježbi!
             </button>
-            <button class="RegisterButton" @click="addExerciseAndExit">
+            <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="addExerciseAndExit">
                 Završi kreiranje treninga!
             </button>
         </div>
@@ -37,6 +37,7 @@
 
 <script>
 import axios from '../../../axios.js';
+import {store} from "../../../store.js"
 
 export default{
 name:'AddExercisesToTraining',
@@ -47,6 +48,7 @@ data(){
         Duration:"",
         ExerciseId: "",
         Exercises:"",
+        store
 
     }
 },

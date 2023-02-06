@@ -8,10 +8,10 @@
             </h1>
             <p>{{ Category.Username }}</p>
             <p>{{ Category.CreationDate }}</p>
-            <button class="RegisterButton" >
+            <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" >
                 <router-link :to="{name: 'ModifyCategory'}">Uredi</router-link>
             </button>
-            <button class="RegisterButton" >
+            <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" >
                 <router-link class="linkDeco" :to="{name: 'DeleteCategory'}">Obrisi</router-link> 
             </button>
         </div>
@@ -22,12 +22,13 @@
 
 <script>
 import axios from '../../../axios.js';
-
+import {store} from "../../../store.js"
 export default{
     name: 'Category',
     data(){
         return{
-            Category: ""
+            Category: "",
+            store
         }
     },
     mounted(){

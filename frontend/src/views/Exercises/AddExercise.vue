@@ -10,7 +10,7 @@
             <div class="cardInputBox">
                 <textarea  id="textarea" cols="30" rows="10" v-model="Description" placeholder="Description"></textarea>
             </div>
-           <button class="RegisterButton" @click="addExercise">
+           <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="addExercise">
                 Kreiraj vježbu!
             </button>
         </div>

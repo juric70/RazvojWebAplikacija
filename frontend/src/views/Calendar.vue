@@ -26,7 +26,7 @@ export default {
           center: 'title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        weekends: false,
+       
         initialView: 'timeGridWeek',
         navLinks: true,
         dateClick: this.handleDateClick,

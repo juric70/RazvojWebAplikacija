@@ -10,7 +10,7 @@
             <div class="cardInputBox">
                 <textarea  id="textarea" cols="30" rows="10" v-model="Description" placeholder="Description"></textarea>
             </div>
-           <button class="RegisterButton" @click="modifyExercise($route?.params?.id)">
+           <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="modifyExercise($route?.params?.id)">
                 Kreiraj vježbu!
             </button>
         </div>
@@ -19,6 +19,7 @@
 
 <script>
 import axios from '../../../axios.js'
+import {store} from "../../../store.js"
 
 export default{
     name: 'ModifyExercise',
@@ -26,6 +27,7 @@ export default{
         return{
             Title: "",
             Description: "",
+            store
         }
     },
     methods:{

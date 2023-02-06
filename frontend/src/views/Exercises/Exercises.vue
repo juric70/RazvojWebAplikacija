@@ -2,7 +2,7 @@
     <div class="exercisesMainDiv">
         <div class="titleAndButton">
             <h1 class="exercisesTitle">Vjezbe</h1>
-            <button class="addExercises"><router-link to="/addexercise">Dodaj! +</router-link></button>
+            <button class="addExercises"  v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link to="/addexercise">Dodaj! +</router-link></button>
         </div>
         <div class="exerciseCard">
             <table>
@@ -10,14 +10,14 @@
             <th>Naziv Vjezbe</th>
             <th>Opis Vjezbe</th>
             <th>Kreator Vjezbe</th>
-            <th colspan="2">Akcije</th>
+            <th  v-if="store?.user?.role === 1 || store?.user?.role === 2" colspan="2">Akcije</th>
         </tr>
         <tr  v-for="exercise in Exercises" :key="exercise.id">
             <td><router-link :to = "{name: 'Exercise', params: {id: exercise.id}}">{{ exercise.Title }}</router-link></td>
             <td>{{ exercise.Description }}</td>
             <td>{{ exercise.Username}}</td>
-            <td><router-link :to="{name: 'ModifyExercise', params: {id : exercise.id}}">Uredi</router-link></td>
-            <td><router-link :to="{name: 'DeleteExercise', params: {id : exercise.id}}">Obrisi</router-link></td>
+            <td  v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link :to="{name: 'ModifyExercise', params: {id : exercise.id}}">Uredi</router-link></td>
+            <td  v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link :to="{name: 'DeleteExercise', params: {id : exercise.id}}">Obrisi</router-link></td>
         </tr>
        
         </table>
@@ -28,11 +28,14 @@
 
 <script>
 import axios from "../../../axios.js";
+import {store} from "../../../store.js"
+
 export default{
 name: 'Exercises',
 data () {
     return {
-        Exercises: ""
+        Exercises: "",
+        store
     }
 },
 mounted(){

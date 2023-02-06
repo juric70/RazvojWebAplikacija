@@ -17,7 +17,7 @@
                 </select>
             </div>
 
-           <button class="RegisterButton" @click="modifypayment($route?.params?.id)">
+           <button v-if="store?.user?.role === 1" class="RegisterButton" @click="modifypayment($route?.params?.id)">
                 Uredi!
             </button>
         </div>
@@ -26,6 +26,7 @@
 
 <script>
 import axios from '../../../axios.js'
+import {store} from "../../../store.js"
 
 export default{
     name: 'ModifyPayment',
@@ -34,7 +35,8 @@ export default{
             isPayed:"", 
             userId:"",
             Username: "",
-            is:""
+            is:"",
+            store
         }
     },
     methods:{

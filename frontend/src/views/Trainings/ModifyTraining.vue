@@ -12,9 +12,9 @@
                     <option v-for="cat in Categories" v-bind:value="cat.id" v-bind:key="cat.id">
                         {{ cat.Title }}
                     </option>
-                </select>
+                </select> 
             </div>
-           <button class="RegisterButton" @click="modifyTraining($route?.params?.id)">
+           <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="modifyTraining($route?.params?.id)">
                 Dalje!
             </button>
         </div>
@@ -23,6 +23,9 @@
 
 <script>
 import axios from '../../../axios.js'
+import {store} from "../../../store.js"
+
+
 
 export default{
     name: 'ModifyTraining',
@@ -31,6 +34,7 @@ export default{
             Title: "",
             Categories:"",
             selected: "",
+            store
            
         }
     },

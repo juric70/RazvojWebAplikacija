@@ -7,7 +7,7 @@
             <div class="cardInputBox">
                 <input type="text" placeholder="Naslov" v-model="Title" id="title">
             </div> 
-           <button class="RegisterButton" @click="addExercise">
+           <button  v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="addExercise">
                 Kreiraj Kategoriju!
             </button>
         </div>

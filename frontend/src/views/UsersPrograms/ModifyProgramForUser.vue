@@ -28,7 +28,7 @@
                 </select>
             </div>
 
-           <button class="RegisterButton" @click="modifyprogramUser($route?.params?.id)">
+           <button v-if="store?.user?.role === 1" class="RegisterButton" @click="modifyprogramUser($route?.params?.id)">
                 Uredi!
             </button>
         </div>
@@ -37,7 +37,7 @@
 
 <script>
 import axios from '../../../axios.js'
-
+import {store} from "../../../store.js"
 export default{
     name: 'ModifyProgramForUser',
     data(){
@@ -47,7 +47,8 @@ export default{
             ProgramId:"",
             userId:"",
             Username: "",
-            Programs: ""
+            Programs: "",
+            store
         }
     },
     methods:{

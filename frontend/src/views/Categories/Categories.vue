@@ -2,20 +2,20 @@
     <div class="exercisesMainDiv">
         <div class="titleAndButton">
             <h1 class="exercisesTitle">Categories</h1>
-            <button class="addExercises"><router-link to="/addcat">Dodaj! +</router-link></button>
+            <button class="addExercises" v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link to="/addcat">Dodaj! +</router-link></button>
         </div>
         <div class="exerciseCard">
-            <table>
+            <table> 
         <tr>
             <th>Naziv Kategorije</th>
             <th>Kreator Vjezbe</th>
-            <th colspan="2">Akcije</th>
+            <th v-if="store?.user?.role === 1 || store?.user?.role === 2" colspan="2">Akcije</th>
         </tr>
         <tr  v-for="category in Categories" :key="category.id">
              <td><router-link :to = "{name: 'Category', params: {id: category.id}}">{{ category.Title }}</router-link></td> 
             <td>{{ category.Username}}</td>
-            <td><router-link :to="{name: 'ModifyCategory', params: {id : category.id}}">Uredi</router-link></td>
-            <td><router-link :to="{name: 'DeleteCategory', params: {id : category.id}}">Obrisi</router-link></td> 
+            <td v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link :to="{name: 'ModifyCategory', params: {id : category.id}}">Uredi</router-link></td>
+            <td v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link :to="{name: 'DeleteCategory', params: {id : category.id}}">Obrisi</router-link></td> 
         </tr>
        
         </table>
@@ -26,11 +26,13 @@
 
 <script>
 import axios from "../../../axios.js";
+import {store} from "../../../store.js"
 export default{
 name: 'Categories',
 data () {
     return {
-        Categories: ""
+        Categories: "",
+        store
     }
 },
 mounted(){

@@ -13,10 +13,10 @@
                     <option v-for="cat in Categories" v-bind:value="cat.id" v-bind:key="cat.id">
                         {{ cat.Title }}
                     </option>
-                </select>
+                </select> 
             </div>
 
-           <button class="RegisterButton" @click="addExercise">
+           <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="addExercise">
                 Dalje!
             </button>
         </div>

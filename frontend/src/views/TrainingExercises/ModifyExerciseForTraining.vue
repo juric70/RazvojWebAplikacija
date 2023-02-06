@@ -13,7 +13,7 @@
             <div class="cardInputBox">
                 <input type="text" placeholder="Vremenski " v-model="Duration" id="title">
             </div> 
-        
+         
             <div class="cardInputBox">
                 <select v-model="ExerciseId" >
                     <option v-for="exe in Exercises" v-bind:value="exe.id" v-bind:key="exe.id">
@@ -22,7 +22,7 @@
                 </select>
             </div>
 
-           <button class="RegisterButton" @click="modifyTraining($route?.params?.id)">
+           <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="modifyTraining($route?.params?.id)">
                 Uredi!
             </button>
         </div>
@@ -31,6 +31,7 @@
 
 <script>
 import axios from '../../../axios.js'
+import {store} from "../../../store.js"
 
 export default{
     name: 'ModifyExerciseForTraining',
@@ -41,7 +42,8 @@ export default{
         Duration:"",
         ExerciseId: "",
         Exercises:"",
-        TrainingId:""
+        TrainingId:"",
+        store
         }
     },
     methods:{

@@ -25,9 +25,9 @@
         </div>
 
         <div class="headerButtonOne">
-            <router-link class = "headerItem" to="/calendar">Raspored</router-link>
+            <router-link v-if="store?.user != null && store?.user?.role ===3 " class = "headerItem" to="/calendar">Raspored</router-link>
             <router-link class = "headerItem" to="/training">Treninzi</router-link>
-            <router-link v-if="store?.user != null " class = "headerItem" :to="{name: 'AllTrainingsOfUser', params: {id: store?.user?.id}}">Moji treninzi!</router-link>
+            <router-link v-if="store?.user != null && store?.user?.role ===3 " class = "headerItem" :to="{name: 'AllTrainingsOfUser', params: {id: store?.user?.id}}">Moji treninzi!</router-link>
             <router-link class = "headerItem" to="/coaches">Treneri</router-link>
             <router-link class = "headerItem" to="/programs">Programi</router-link>
            
@@ -35,7 +35,7 @@
 
         <div class="headerButtonTwo">
             <div class="dropdownButton">
-                <button class="dropbtn">Admin Alati</button>
+                <button  v-if="store?.user?.role === 1" class="dropbtn">Admin Alati</button>
                 <div class="dropdown-content">
                     <button class="dropdownRouterButton"><router-link  to="/allnews" >Novosti</router-link></button>
                     <button class="dropdownRouterButton"><router-link  to="/createuser" >Kreiraj Korisnika</router-link></button>
@@ -44,7 +44,7 @@
                 </div>
                 </div>
                 <div class="dropdownButton">
-                <button class="dropbtn">Trener Alati</button>
+                <button class="dropbtn"  v-if="store?.user?.role === 1 || store?.user?.role === 2" >Trener Alati</button>
                 <div class="dropdown-content">
                     <button class="dropdownRouterButton"><router-link  to="/categories" >Kategorije</router-link></button>
                     <button class="dropdownRouterButton"><router-link  to="/exercises" >Vježbe</router-link></button>

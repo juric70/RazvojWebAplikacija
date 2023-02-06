@@ -14,12 +14,12 @@
             <div class="cardInputBox">
                 <input type="text" placeholder="Cijena" v-model="Cost" id="Cijena">
             </div>
-           <button class="RegisterButton" @click="addProgram">
+           <button v-if="store?.user?.role === 1" class="RegisterButton" @click="addProgram">
                 Kreiraj program!
             </button>
         </div>
     </div>
-
+ 
 
 </template>
 

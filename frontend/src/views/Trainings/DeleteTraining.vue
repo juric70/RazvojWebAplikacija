@@ -5,7 +5,7 @@
              Jeste li sigurni da želite pobrisati o? {{$route.params.id  }}
           </h1>
     
-         <button class="RegisterButton" @click="deleteTraining($route?.params?.id)">
+         <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="deleteTraining($route?.params?.id)">
              Obriši vježbu!
           </button>
       </div>
@@ -13,12 +13,18 @@
 
 
 
-</template>
+</template> 
 <script>
 import axios from '../../../axios.js';
+import {store} from "../../../store.js"
 
 export default{
   name: 'DeleteTraining',
+  data(){
+    return{
+        store
+    }
+  },
   methods:{
     deleteTraining(id){
          

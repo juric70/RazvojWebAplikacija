@@ -19,7 +19,7 @@
 
              
             <div class="cardInputBox">
-                <select v-model="UserId"  style="height: 300px;" multiple>
+                <select v-model="UserId"  style="height: 150px;" multiple>
                     <option v-for="u in Users" v-bind:value="u.Id" v-bind:key="u.Id">
                         {{ u.Username }}
                     </option>
@@ -37,7 +37,7 @@
                 </select>
             </div>
 
-           <button class="RegisterButton" @click="addusersprograms()">
+           <button  v-if="store?.user?.role === 1" class="RegisterButton" @click="addusersprograms()">
                 Kreiraj!
             </button>
         </div>
@@ -46,7 +46,7 @@
 
 <script>
 import axios from '../../../axios.js'
-
+import {store} from "../../../store.js"
 export default{
     name: 'AddUserToProgram',
     data(){
@@ -57,7 +57,8 @@ export default{
             UserId: [],
             Username: "",
             Programs: "",
-            Users:""
+            Users:"",
+            store
         }
     },
     methods:{

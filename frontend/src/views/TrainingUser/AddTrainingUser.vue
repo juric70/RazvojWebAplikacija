@@ -2,7 +2,7 @@
     <div class="RegisterBackground">
         <div class="card">
             <h1 class="RegisterDescriptionTitle">
-              Dodajte Korisnike u program!
+              Dodajte Korisnike u program! 
             </h1>
         
             <div class="cardInputBox">
@@ -34,7 +34,7 @@
                 </select>
             </div>
 
-           <button class="RegisterButton" @click="addtraininguser()">
+           <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" @click="addtraininguser()">
                 Kreiraj!
             </button>
         </div>
@@ -43,6 +43,7 @@
 
 <script>
 import axios from '../../../axios.js'
+import {store} from "../../../store.js"
 
 export default{
     name: 'AddTrainingUser',
@@ -54,7 +55,8 @@ export default{
             UserId: [],
             DateOfTraining:"", 
             startAt:"", 
-            EndsAt:""
+            EndsAt:"",
+            store
         }
     },
     methods:{

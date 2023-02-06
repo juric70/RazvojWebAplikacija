@@ -5,7 +5,7 @@
              Jeste li sigurni da želite pobrisati odabrani program? {{$route.params.id  }}
           </h1>
     
-         <button class="RegisterButton" @click="deleteProgram($route?.params?.id)">
+         <button v-if="store?.user?.role === 1" class="RegisterButton" @click="deleteProgram($route?.params?.id)">
              Obriši vježbu!
           </button>
       </div>
@@ -13,12 +13,17 @@
 
 
 
-</template>
+</template> 
 <script>
 import axios from '../../../axios.js';
-
+import {store} from "../../../store.js"
 export default{
   name: 'DeletePrograms',
+  data(){
+    return{
+        store
+    }
+  },
   methods:{
     deleteProgram(id){
          

@@ -13,10 +13,10 @@
                 <tr>
                     <th>Vježba</th>
                     <th >Količina</th>
-                    <th>Broj serija</th>
+                    <th>Broj serija</th> 
 
 
-                    <th colspan="2">Akcije</th>
+                    <th v-if="store?.user?.role === 1 || store?.user?.role === 2" colspan="2">Akcije</th>
                 </tr>
                 <tr  v-for="trexe in TrainingExe" :key="trexe.id">
                     <td><router-link :to="{name: 'Exercise', params: {id: trexe.ExerciseId}}">{{ trexe.exercise }}</router-link></td> 
@@ -24,12 +24,12 @@
                      <td v-if="trexe.Duration != 0">{{ trexe.Duration }}sec</td>
                     <td >{{ trexe.Series }}</td>
                    
-                    <td><router-link :to="{name: 'ModifyExerciseForTraining', params: {id : trexe.id}}">Uredi</router-link></td>
-                    <td><router-link :to="{name: 'DeleteExerciseForTraining', params: {id : trexe.id}}">Obrisi</router-link></td> 
+                    <td v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link :to="{name: 'ModifyExerciseForTraining', params: {id : trexe.id}}">Uredi</router-link></td>
+                    <td v-if="store?.user?.role === 1 || store?.user?.role === 2"><router-link :to="{name: 'DeleteExerciseForTraining', params: {id : trexe.id}}">Obrisi</router-link></td> 
                 </tr>
             </table>
 
-            <button class="RegisterButton" >
+            <button v-if="store?.user?.role === 1 || store?.user?.role === 2" class="RegisterButton" >
                 <router-link :to="{name: 'AddExerciseToTraining'}">Dodaj vjezbu u trening Trening!</router-link>
             </button>
             <!-- <button class="RegisterButton" >
@@ -43,13 +43,14 @@
 
 <script>
 import axios from '../../../axios.js';
-
+import {store} from "../../../store.js"
 export default{
     name: 'FullTraining',
     data(){
         return{
             Training: "",
-            TrainingExe:""
+            TrainingExe:"",
+            store
         }
     },
     mounted(){
