@@ -174,8 +174,8 @@ header{
     display: inline;
 }
 .headerIcon{
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 15px;
 }
 #headerIcon{
     display: inline;
@@ -185,7 +185,7 @@ header{
 .dropdownMenuIcon{
     display: none;
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .headerItem{
         display: none;
     }

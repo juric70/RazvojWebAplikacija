@@ -71,15 +71,6 @@ import { store } from '../../store.js'
 /* .LoginBackground{
     padding-top: 20px;
 } */
-
-.loginCard{
-    border-radius: 30px;
-    border: solid 1px #e6e6e6;
-    background-color: #e6e6e6;
-    width: 20%;
-    margin-left: 36%;
-    padding: 4%;
-}
 @media(max-width:400px){
     .loginCard{
         width: 80%;
@@ -89,6 +80,15 @@ import { store } from '../../store.js'
         width: 80%;
     }
 }
+.loginCard{
+    border-radius: 30px;
+    border: solid 1px #e6e6e6;
+    background-color: #e6e6e6;
+    width: 20%;
+    margin-left: 36%;
+    padding: 4%;
+}
+
 .LoginDescriptionTitle{
     color: #01427b;
 }

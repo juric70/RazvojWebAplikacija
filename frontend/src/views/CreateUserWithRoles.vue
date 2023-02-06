@@ -105,8 +105,6 @@ export default{
 </script>
 
 <style>
-
-
 @media(max-width:800px){
  
     .card{

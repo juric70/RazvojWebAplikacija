@@ -104,6 +104,33 @@ mounted(){
 </script>
 
 <style>
+@media(max-width: 900px) {
+    .mainDiv{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+    }
+    .profilePersonalData{
+        width: 90%;
+        height: 30%;
+        margin-left: 5%;
+        position: static;
+    }
+    .trainingSchedule{
+        width: 90%;
+        height: 30%;
+        position: inherit;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+    .monthlyPayments{
+        width: 90%;
+        height: 30%;
+        position: inherit;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+}
 ::-webkit-scrollbar {
     width: 0px;
 }
@@ -119,17 +146,13 @@ mounted(){
     text-decoration: none;
     color: #01427b;
 }
-.profilesubtitle a:hover{
-    text-decoration: none;
-    color: #e6373a;
-}
 .mainDiv{
     display: block;
     padding: 50px;
     width: 400px;
 } 
 .mainDiv img{
-    width: 70%;
+    width: 50%;
     border-radius: 10%;
 }
 .profilePersonalData{
@@ -212,7 +235,7 @@ mounted(){
 
 
 
-@media(max-width: 800px) {
+@media(max-width: 900px) {
     .mainDiv{
         width: 100%;
         height: 100%;

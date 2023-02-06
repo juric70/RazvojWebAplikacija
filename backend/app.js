@@ -249,7 +249,7 @@ app.post("/api/loginUser", function (req, res) {
                 secure: false,
                 httpOnly: true,
                 sameSite: "lax",
-                domain: 'studenti.sum.ba',
+                domain: "studenti.sum.ba",
               });
             }
 
@@ -297,6 +297,15 @@ app.get("/api/login", function (req, res) {
 //Log out usera
 app.delete("/api/logoutUser", function (req, res) {
   console.log("zali uci u login: ", res.cookies);
+  if (ENVIRONMENT === "local") {
+    res.cookie("kvsum-token", token, {
+      expires: "2020-01-01",
+    });
+  } else {
+    res.cookie("kvsum-token", token, {
+      expires: "2020-01-01",
+    });
+  }
   res.clearCookie("kvsum-token");
   console.log("zali uci u login: ", res.cookies);
 

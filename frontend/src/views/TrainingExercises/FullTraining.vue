@@ -87,7 +87,7 @@ export default{
 .cardTraining  table {
     width: 100%;
 }
-@media(max-width:800px){
+@media(max-width:900px){
     .cardTraining{
         width: 80%;
     }
