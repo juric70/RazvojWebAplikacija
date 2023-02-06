@@ -6,11 +6,14 @@
             </h1>
         
             <div class="cardInputBox">
-                <input type="text" placeholder="Mijesec plaćanja " v-model="MonthOfPayment" id="title">
+                <label for="">Mjesec (mm-yyyy)</label>
+                <input type="text" placeholder="Mjesec plaćanja " v-model="MonthOfPayment" id="title">
             </div> 
         
             <div class="cardInputBox">
+                <label for="">Program</label>
                 <select v-model="ProgramId" >
+                    <option disabled value="">Molimo odaberite program!</option>
                     <option v-for="program in Programs" v-bind:value="program.id" v-bind:key="program.id">
                         {{ program.Title }}
                     </option>
@@ -19,6 +22,7 @@
 
              
             <div class="cardInputBox">
+                <label>Molimo odaberite korisnike</label>
                 <select v-model="UserId"  style="height: 150px;" multiple>
                     <option v-for="u in Users" v-bind:value="u.Id" v-bind:key="u.Id">
                         {{ u.Username }}
@@ -27,6 +31,7 @@
             </div>
 
             <div class="cardInputBox">
+                <label for="">Plaćena članarina</label>
                 <select v-model="isPayed" >
                     <option v-bind:value="false" >
                        Članarina nije plaćena

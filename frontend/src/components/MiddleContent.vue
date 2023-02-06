@@ -1,11 +1,8 @@
 <template>
-
-    
     <div id="MiddleContentImg">
         <div id="MiddleContentImgH1">
         </div>
         <div id="MiddleContentImgH4">
-
         </div>
     </div>
 
