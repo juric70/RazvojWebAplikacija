@@ -43,7 +43,7 @@ CREATE TABLE `exercises` (
 
 LOCK TABLES `exercises` WRITE;
 /*!40000 ALTER TABLE `exercises` DISABLE KEYS */;
-INSERT INTO `exercises` VALUES (1,'SADASD','SDEXS','function now() { [native code] }',1,30),(2,'wdx','xwwswd','function now() { [native code] }',1,30),(3,'dewqxs','wxqas','2023-01-28',1,30),(4,'Zgibovi','Okačiti se rukama na prečku koja visi sa zida i povlačiti se rukama prema gore da Vam brada pređe iznad prečke, a ako niste razumjeli opis , te ukoliko Vam je isti trebao možete se ubiti jer ne znate šta su zgibovi. :)','2023-01-28',1,30),(5,'lkfrm wlkwrf','wlrkemcwćšeprov','2023-01-28',1,28),(6,'lwdcm','ewkdfnl','2023-01-29',0,28),(7,'dcasahahhahaha','cwsds','2023-01-29',0,28),(8,'Suhi treninzi','undefined','2023-01-29',0,30),(9,'treninzi u bazenu','undefined','2023-01-29',0,30);
+INSERT INTO `exercises` VALUES (1,'SADASD','SDEXS','function now() { [native code] }',1,30),(2,'wdx','xwwswd','function now() { [native code] }',1,30),(3,'dewqxs','wxqas','2023-01-28',1,30),(4,'Zgibovi','Okačiti se rukama na prečku koja visi sa zida i povlačiti se rukama prema gore da Vam brada pređe iznad prečke, a ako niste razumjeli opis , te ukoliko Vam je isti trebao možete se ubiti jer ne znate šta su zgibovi. :)','2023-01-28',1,30),(5,'lkfrm wlkwrf','wlrkemcwćšeprov','2023-01-28',1,28),(6,'lwdcm','ewkdfnl','2023-01-29',0,28),(7,'dcasahahhahaha','cwsds','2023-01-29',1,28),(8,'Suhi treninzi','ssadaa ga ima hahahha','2023-01-29',0,30),(9,'treninzi u bazenu','undefined','2023-01-29',0,30);
 /*!40000 ALTER TABLE `exercises` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,11 +62,11 @@ CREATE TABLE `news` (
   `CreatorId` int DEFAULT NULL,
   `CreationDate` varchar(20) NOT NULL,
   `ModifcationDate` varchar(20) DEFAULT NULL,
-  `isDeleted` tinyint(1) DEFAULT '0',
+  `isDeleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `CreatorId` (`CreatorId`),
   CONSTRAINT `news_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `news` (
 
 LOCK TABLES `news` WRITE;
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
-INSERT INTO `news` VALUES (1,'gfhjk','gfhgjhkjlčlćkjhgj','gift.jpg',NULL,'1671804838894',NULL,0),(2,'rzwrtvbd','dfgherte','Profil1.png',NULL,'1671810898068',NULL,1),(3,'rzwrtvbd','dfgherteskjskjsjsjsjjsjsjsjjs','Profil1.png',NULL,'1671810982081','2023-01-29',0),(4,'fsfsdfsdfsdffsddsf','asasdasdaswffafwdf','plivanje1.jpg',NULL,'1672238149904',NULL,1),(5,'sdcsd','dsc','preuzmi.jpg',30,'2023-01-29',NULL,0),(6,'sdcsd','dsc','preuzmi.jpg',30,'2023-01-29',NULL,1),(7,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,1),(8,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,0),(9,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,0),(10,'skjaw','sakj','preuzmi.jpg',30,'2023-01-29',NULL,1);
+INSERT INTO `news` VALUES (5,'neki tekst jer mi se sada ne da pisati o zlatnoj ribici','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae faucibus felis. Suspendisse dapibus, mi ut semper laoreet, libero tellus ultricies nisi, vitae laoreet odio turpis vel enim. Nunc justo augue, ullamcorper non pulvinar nec, rutrum ac orci. Donec tempus metus sapien, vel aliquet lectus sagittis eget. Pellentesque sed lacus sed odio pellentesque ullamcorper eu vitae odio. Fusce pharetra scelerisque leo, sit amet feugiat libero egestas a. Integer et dolor enim. Sed nulla enim, facilisis molestie nisl sed, suscipit efficitur tellus. Sed euismod, metus ut consequat dictum, purus eros aliquam massa, at scelerisque sapien metus ac purus. Cras iaculis quam eget nunc dignissim pretium.\r\n\r\nInteger malesuada risus in porta ultrices. Donec vitae lorem facilisis, molestie odio quis, hendrerit mi. Maecenas sed maximus nisi. Curabitur varius enim sed sem fermentum, eget tempor nisi auctor. In id elit eget urna posuere tempor. Nam pellentesque velit quis arcu vulputate, sed egestas velit dictum. Suspendisse eget mi sit amet odio porta porta. Integer accumsan, urna ornare pretium pellentesque, elit elit interdum eros, id sollicitudin purus mi eu tellus. Etiam vel quam nulla. Vestibulum congue congue dui quis ullamcorper.','wallpaperflare.com_wallpaper.jpg',30,'2023-02-05',NULL,0),(6,'zlatna ribica vise nije zlatna jer nije uspjela da mi baterija izdrži','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae faucibus felis. Suspendisse dapibus, mi ut semper laoreet, libero tellus ultricies nisi, vitae laoreet odio turpis vel enim. Nunc justo augue, ullamcorper non pulvinar nec, rutrum ac orci. Donec tempus metus sapien, vel aliquet lectus sagittis eget. Pellentesque sed lacus sed odio pellentesque ullamcorper eu vitae odio. Fusce pharetra scelerisque leo, sit amet feugiat libero egestas a. Integer et dolor enim. Sed nulla enim, facilisis molestie nisl sed, suscipit efficitur tellus. Sed euismod, metus ut consequat dictum, purus eros aliquam massa, at scelerisque sapien metus ac purus. Cras iaculis quam eget nunc dignissim pretium.\r\n\r\nInteger malesuada risus in porta ultrices. Donec vitae lorem facilisis, molestie odio quis, hendrerit mi. Maecenas sed maximus nisi. Curabitur varius enim sed sem fermentum, eget tempor nisi auctor. In id elit eget urna posuere tempor. Nam pellentesque velit quis arcu vulputate, sed egestas velit dictum. Suspendisse eget mi sit amet odio porta porta. Integer accumsan, urna ornare pretium pellentesque, elit elit interdum eros, id sollicitudin purus mi eu tellus. Etiam vel quam nulla. Vestibulum congue congue dui quis ullamcorper.','wallpaperflare.com_wallpaper.jpg',30,'2023-02-05',NULL,0),(7,'jdehcbnxider','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae faucibus felis. Suspendisse dapibus, mi ut semper laoreet, libero tellus ultricies nisi, vitae laoreet odio turpis vel enim. Nunc justo augue, ullamcorper non pulvinar nec, rutrum ac orci. Donec tempus metus sapien, vel aliquet lectus sagittis eget. Pellentesque sed lacus sed odio pellentesque ullamcorper eu vitae odio. Fusce pharetra scelerisque leo, sit amet feugiat libero egestas a. Integer et dolor enim. Sed nulla enim, facilisis molestie nisl sed, suscipit efficitur tellus. Sed euismod, metus ut consequat dictum, purus eros aliquam massa, at scelerisque sapien metus ac purus. Cras iaculis quam eget nunc dignissim pretium.\r\n\r\nInteger malesuada risus in porta ultrices. Donec vitae lorem facilisis, molestie odio quis, hendrerit mi. Maecenas sed maximus nisi. Curabitur varius enim sed sem fermentum, eget tempor nisi auctor. In id elit eget urna posuere tempor. Nam pellentesque velit quis arcu vulputate, sed egestas velit dictum. Suspendisse eget mi sit amet odio porta porta. Integer accumsan, urna ornare pretium pellentesque, elit elit interdum eros, id sollicitudin purus mi eu tellus. Etiam vel quam nulla. Vestibulum congue congue dui quis ullamcorper.','flw.png',30,'2023-02-05',NULL,0);
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +96,7 @@ CREATE TABLE `programs` (
   PRIMARY KEY (`id`),
   KEY `CreatorId` (`CreatorId`),
   CONSTRAINT `programs_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +105,7 @@ CREATE TABLE `programs` (
 
 LOCK TABLES `programs` WRITE;
 /*!40000 ALTER TABLE `programs` DISABLE KEYS */;
-INSERT INTO `programs` VALUES (1,'Studentski program','Program za studente koji su u statusu redovnoga studenta. Korisnik mora imati studentsku karticu i mora biti član studentske knjižnice!',332,30,1),(2,'Studentski program','Porgram predviđen za sve redovne studente Sveučilišta u Mostaru. Korisnik može odabrati ovaj program samo uz predočenu potvrdu o studiranju (indeks ili potvrda). Treninzi su od 3-5 puta tjedno.',10,30,0);
+INSERT INTO `programs` VALUES (1,'Studentski program','Program za studente koji su u statusu redovnoga studenta. Korisnik mora imati studentsku karticu i mora biti član studentske knjižnice!',332,30,1),(2,'Studentski program','Porgram predviđen za sve redovne studente Sveučilišta u Mostaru. Korisnik može odabrati ovaj program samo uz predočenu potvrdu o studiranju (indeks ili potvrda). Treninzi su od 3-5 puta tjedno.',10,30,0),(3,'Penzionerski program','Moras se dobro paziti kako ulazis u vodu da slucajno ne bi bilo nesto ali osim toga svi zainteresirani sa potvrdom o umirovljenju',2,30,0);
 /*!40000 ALTER TABLE `programs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,7 @@ CREATE TABLE `training` (
   KEY `CategoryId` (`CategoryId`),
   CONSTRAINT `training_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`),
   CONSTRAINT `training_ibfk_2` FOREIGN KEY (`CategoryId`) REFERENCES `training_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `training` (
 
 LOCK TABLES `training` WRITE;
 /*!40000 ALTER TABLE `training` DISABLE KEYS */;
-INSERT INTO `training` VALUES (1,'sdc','2023-01-30',1,30,2),(2,'neki tres','2023-01-30',0,30,2),(3,'Kondicijski trening','2023-01-30',1,30,2),(4,'fff','2023-01-30',0,30,2),(5,'fdf','2023-01-30',0,30,2);
+INSERT INTO `training` VALUES (1,'sdc','2023-01-30',1,30,2),(2,'neki tres','2023-01-30',0,30,2),(3,'Kondicijski trening','2023-01-30',1,30,2),(4,'fff','2023-01-30',0,30,2),(5,'fdf','2023-01-30',0,30,2),(6,'neki naslov','2023-02-05',0,30,3),(7,'novi trening','2023-02-05',0,30,4),(8,'Novi naslov','2023-02-05',0,30,3),(9,'Novi naslov','2023-02-05',0,30,3),(10,'novi tr','2023-02-05',0,30,4),(11,'novi neki tr','2023-02-05',0,30,4),(12,'','2023-02-05',0,30,4),(13,'neki naslov','2023-02-05',0,30,4),(14,'novi tr','2023-02-05',0,30,4);
 /*!40000 ALTER TABLE `training` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `training_category` (
   PRIMARY KEY (`id`),
   KEY `CreatorId` (`CreatorId`),
   CONSTRAINT `training_category_ibfk_1` FOREIGN KEY (`CreatorId`) REFERENCES `users` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `training_category` (
 
 LOCK TABLES `training_category` WRITE;
 /*!40000 ALTER TABLE `training_category` DISABLE KEYS */;
-INSERT INTO `training_category` VALUES (1,'Treninzi u bazenuu','2023-01-29',30,1),(2,'Trening u bazenu','2023-01-29',30,0),(3,'Suhi trening','2023-01-30',30,0),(4,'Kondicijski trening','2023-01-30',30,0);
+INSERT INTO `training_category` VALUES (1,'Treninzi u bazenuu','2023-01-29',30,1),(2,'Trening u bazenu','2023-01-29',30,0),(3,'Suhi trening','2023-01-30',30,0),(4,'Kondicijski trening','2023-01-30',30,0),(5,'Trening snage','2023-02-05',30,0);
 /*!40000 ALTER TABLE `training_category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,7 +214,7 @@ CREATE TABLE `training_exercise` (
   KEY `ExerciseId` (`ExerciseId`),
   CONSTRAINT `training_exercise_ibfk_1` FOREIGN KEY (`TrainingId`) REFERENCES `training` (`id`),
   CONSTRAINT `training_exercise_ibfk_2` FOREIGN KEY (`ExerciseId`) REFERENCES `exercises` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,40 +223,8 @@ CREATE TABLE `training_exercise` (
 
 LOCK TABLES `training_exercise` WRITE;
 /*!40000 ALTER TABLE `training_exercise` DISABLE KEYS */;
-INSERT INTO `training_exercise` VALUES (1,3,2,33,2,1,7),(2,33,33,22,2,1,9),(3,33,33,33,2,1,9),(4,2,2,2,2,1,7),(5,2,2,2,2,1,8),(6,2,2,2,2,1,8),(7,2,22,22,2,1,8),(8,22,2222,22,2,1,8),(9,4,4,4,2,1,9),(10,201,2,2,3,0,9),(11,3,3,0,3,0,8),(12,22,3,0,2,1,6),(13,0,3,4,2,0,7);
+INSERT INTO `training_exercise` VALUES (1,3,2,33,2,1,7),(2,33,33,22,2,1,9),(3,33,33,33,2,1,9),(4,2,2,2,2,1,7),(5,2,2,2,2,1,8),(6,2,2,2,2,1,8),(7,2,22,22,2,1,8),(8,22,2222,22,2,1,8),(9,4,4,4,2,1,9),(10,201,2,2,3,0,9),(11,3,3,0,3,0,8),(12,22,3,0,2,1,6),(13,0,3,4,2,0,7),(14,20,4,0,14,0,6),(15,33,3,0,14,0,9);
 /*!40000 ALTER TABLE `training_exercise` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `traininguser`
---
-
-DROP TABLE IF EXISTS `traininguser`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `traininguser` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `UserId` int DEFAULT NULL,
-  `TrainingId` int DEFAULT NULL,
-  `DateOfTraining` varchar(30) NOT NULL,
-  `startAt` varchar(10) NOT NULL,
-  `EndsAt` varchar(10) NOT NULL,
-  `IsDeleted` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `UserId` (`UserId`),
-  KEY `TrainingId` (`TrainingId`),
-  CONSTRAINT `traininguser_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`Id`),
-  CONSTRAINT `traininguser_ibfk_2` FOREIGN KEY (`TrainingId`) REFERENCES `training` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `traininguser`
---
-
-LOCK TABLES `traininguser` WRITE;
-/*!40000 ALTER TABLE `traininguser` DISABLE KEYS */;
-/*!40000 ALTER TABLE `traininguser` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -270,15 +238,16 @@ CREATE TABLE `user_program` (
   `id` int NOT NULL AUTO_INCREMENT,
   `UserId` int DEFAULT NULL,
   `ProgramId` int DEFAULT NULL,
-  `MonthOfPayment` int NOT NULL,
+  `MonthOfPayment` varchar(30) NOT NULL,
   `IsPayed` tinyint(1) NOT NULL,
   `IsDeleted` tinyint(1) NOT NULL,
+  `CreationDate` varchar(30) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `UserId` (`UserId`),
   KEY `ProgramId` (`ProgramId`),
   CONSTRAINT `user_program_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`Id`),
   CONSTRAINT `user_program_ibfk_2` FOREIGN KEY (`ProgramId`) REFERENCES `programs` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,8 +256,41 @@ CREATE TABLE `user_program` (
 
 LOCK TABLES `user_program` WRITE;
 /*!40000 ALTER TABLE `user_program` DISABLE KEYS */;
-INSERT INTO `user_program` VALUES (1,19,2,3,0,0),(2,23,2,3,1,0),(3,24,2,3,1,0),(4,17,2,3,0,0),(5,19,2,3,0,0),(6,24,2,3,0,0),(7,25,2,5,1,0);
+INSERT INTO `user_program` VALUES (1,19,2,'333',0,0,''),(2,23,2,'3',1,0,''),(3,24,2,'3',1,0,''),(4,17,2,'3',1,0,''),(5,19,2,'3',0,1,''),(6,24,2,'3',0,0,''),(7,25,2,'5',1,1,''),(8,15,2,'533',0,0,''),(9,16,2,'5',0,0,''),(10,17,2,'5',0,1,''),(11,28,2,'2',1,0,''),(12,28,2,'3',0,0,''),(13,28,2,'4',0,0,''),(14,16,2,'3-2023',0,0,''),(15,20,2,'3-2023',0,0,''),(16,25,2,'3-2023',0,0,''),(17,28,2,'3-2023',0,0,''),(18,28,2,'3-2023',1,0,'2023-02-05');
 /*!40000 ALTER TABLE `user_program` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_training`
+--
+
+DROP TABLE IF EXISTS `user_training`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_training` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `UserId` int DEFAULT NULL,
+  `TrainingId` int DEFAULT NULL,
+  `DateOfTraining` varchar(30) NOT NULL,
+  `startAt` varchar(10) NOT NULL,
+  `EndsAt` varchar(10) NOT NULL,
+  `IsDeleted` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `UserId` (`UserId`),
+  KEY `TrainingId` (`TrainingId`),
+  CONSTRAINT `user_training_ibfk_1` FOREIGN KEY (`UserId`) REFERENCES `users` (`Id`),
+  CONSTRAINT `user_training_ibfk_2` FOREIGN KEY (`TrainingId`) REFERENCES `training` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_training`
+--
+
+LOCK TABLES `user_training` WRITE;
+/*!40000 ALTER TABLE `user_training` DISABLE KEYS */;
+INSERT INTO `user_training` VALUES (1,16,7,'2013','17.3','19.3',0),(2,18,7,'2013','17.3','19.3',1),(3,17,7,'2013','17.3','19.3',0),(4,19,7,'2013','17.3','19.3',1),(5,20,7,'2013','17.3','19.3',1),(6,15,7,'2012','19','20',0),(7,17,7,'2012','19','20',0),(8,15,6,'2005','1','2',1),(9,17,6,'2005','1','2',0),(10,17,10,'2013','1','1',0),(11,17,4,'2012','1','1',1),(12,17,6,'2023-02-08','2','2',0),(13,28,11,'2023-02-08','17.3','19.2',0),(14,17,6,'2023-02-08','22','222',0),(15,20,6,'2023-02-08','22','222',0),(16,16,6,'2023-02-08','22','222',0),(17,17,4,'2023-02-07','20:25','22:25',0),(18,28,2,'2023-02-24','22:00','23:59',0);
+/*!40000 ALTER TABLE `user_training` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -332,4 +334,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-05 14:47:34
+-- Dump completed on 2023-02-06  9:24:51

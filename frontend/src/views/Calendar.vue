@@ -43,27 +43,35 @@ export default {
       alert('date click! ' + arg.dateStr)
     },
     returnEvents: function(){
-      console.log(this.TrainingUsers, "kor");
+      console.log(this.TrainingUsers.length, "kor");
       for(let i=0; i<= this.TrainingUsers.length;i++){
       let ev = {
-        title: this.TrainingUsers.TrainingTitle,
-        start:this.TrainingUsers.DateOfTraining+"T"+this.TrainingUsers.startAt+":00",
-        end:this.TrainingUsers.DateOfTraining+"T"+this.TrainingUsers.EndsAt+":00",
+        title: this.TrainingUsers[i].TrainingTitle,
+        start:this.TrainingUsers[i].DateOfTraining+"T"+this.TrainingUsers[i].startAt+":00",
+        end:this.TrainingUsers[i].DateOfTraining+"T"+this.TrainingUsers[i].EndsAt+":00",
       }
       console.log(ev, "ovo jejedan event");
       this.calendarOptions.events.push(ev);
     }
 
   },
-  mounted(){
-    axios.get(`/api/alltrainingsofuser/${this.store?.user?.id}`).then((res) => {
+},
+watch:{
+  'store.user'(newUser, oldUser){
+    if(newUser?.id!=null){
+      axios.get(`/api/alltrainingsofuser/${newUser?.id}`).then((res) => {
         this.TrainingUsers = res.data.output;
+        console.log(this.TrainingUsers, "ovo je trening kor")
+        this.returnEvents();
         console.log(res.data.output, "output")
       })
-     
-      this.returnEvents();
     }
+   
   }
+},
+  mounted(){
+    }
+ 
 }
 </script>
 
