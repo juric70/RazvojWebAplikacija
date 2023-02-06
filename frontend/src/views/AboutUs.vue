@@ -1,7 +1,7 @@
 <template>
  <div id="AboutUsBackDiv">
     <div id="AboutUsInfo">
-        <h1>
+        <h1 style="color: #e6e6e6;">
           O nama
        </h1>
        <div id="aboutUsCardsDiv">
@@ -58,17 +58,12 @@
     
 
     #AboutUsBackDiv{
-        width: 100%;
-        
-        background-color: #f2f2f2;
+        color: #e6e6e6;
     }
 
     #AboutUsInfo{
         height: 70%;
-      
-    
         width: 100%;
-        padding-top: 40px;
     }
 
     .AboutUsCard{

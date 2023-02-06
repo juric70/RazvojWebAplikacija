@@ -3,7 +3,7 @@
     <div class="mainDiv">
         <div class="profilePersonalData"> 
             <h2>MyProfile</h2>
-            <img src="../assets/MatejKvesic.jpg" alt="">
+            <img src="../assets/KVSUM-Logo.png" alt="">
             <div class="profilePersonalDataStore">
                 <h4 class="profileInfo">{{DataForProfile[0]}}</h4>
                 <p class="profileInfoData">{{ store.user.username }}</p>
@@ -119,13 +119,17 @@ mounted(){
     text-decoration: none;
     color: #01427b;
 }
+.profilesubtitle a:hover{
+    text-decoration: none;
+    color: #e6373a;
+}
 .mainDiv{
     display: block;
     padding: 50px;
     width: 400px;
 } 
 .mainDiv img{
-    width: 50%;
+    width: 70%;
     border-radius: 10%;
 }
 .profilePersonalData{

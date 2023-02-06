@@ -27,9 +27,8 @@ export default{
         logoutUser: function(){
             axios.delete(`/api/logoutUser`)
                 .then((res) => {
-                    alert("zamjenio" , this.store?.user);
+                    alert("Uspješna odjava" , this.store?.user);
                     store.user=null;
-                    alert("zamjenio" , this.store?.user);
                     window.location.replace('/');
                
 

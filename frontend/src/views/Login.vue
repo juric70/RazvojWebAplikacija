@@ -68,9 +68,9 @@ import { store } from '../../store.js'
 
 <style>
 
-.LoginBackground{
+/* .LoginBackground{
     padding-top: 20px;
-}
+} */
 
 .loginCard{
     border-radius: 30px;

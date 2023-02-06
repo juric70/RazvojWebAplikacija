@@ -29,6 +29,7 @@
             </div>  
             <div class="cardInputBox">
                 <select v-model="selected">
+                    <option disabled value="">Molimo odaberite rolu</option>
                     <option v-for="option in options" v-bind:value="option.value" v-bind:key="option.value">
                         {{ option.text }}
                     </option>
@@ -104,13 +105,7 @@ export default{
 </script>
 
 <style>
-#RegisterPhoto{
-margin: 20px;
-width: 170px;
-height: 170px;
-border-radius: 85px;
-border: 2px solid #03A9F4 ;
-}
+
 
 @media(max-width:800px){
     .card{
