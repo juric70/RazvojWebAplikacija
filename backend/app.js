@@ -296,20 +296,28 @@ app.get("/api/login", function (req, res) {
 });
 //Log out usera
 app.delete("/api/logoutUser", function (req, res) {
-  console.log("zali uci u login: ", res.cookies);
-  if (ENVIRONMENT === "local") {
-    res.cookie("kvsum-token", token, {
-      expires: "2020-01-01",
-    });
+  if (req.cookies["kvsum-token"] == null) {
+    res.json(true);
   } else {
-    res.cookie("kvsum-token", token, {
-      expires: "2020-01-01",
-    });
-  }
-  res.clearCookie("kvsum-token");
-  console.log("zali uci u login: ", res.cookies);
+    console.log("zali uci u login: ", req.cookies);
+    let token = req.cookies["kvsum-token"];
 
-  res.json(true);
+    if (ENVIRONMENT === "local") {
+      res.cookie("kvsum-token", token, {
+        domain: "localhost",
+        maxAge: 0,
+      });
+    } else {
+      res.cookie("kvsum-token", token, {
+        secure: false,
+        maxAge: 0,
+        domain: "studenti.sum.ba",
+      });
+    }
+    res.clearCookie("kvsum-token");
+    console.log("zali uci u login: ", req.cookies);
+    res.json(true);
+  }
 });
 //Display trenera
 app.get("/api/coaches", function (req, res) {
