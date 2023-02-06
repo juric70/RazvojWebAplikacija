@@ -1,7 +1,9 @@
 <template>
     <div class="exercisesMainDiv">
-        <button class="addExercises"><router-link to="/addexercise">Dodaj! +</router-link></button>
-        <h1 class="exercisesTitle">Vjezbe</h1>
+        <div class="titleAndButton">
+            <h1 class="exercisesTitle">Vjezbe</h1>
+            <button class="addExercises"><router-link to="/addexercise">Dodaj! +</router-link></button>
+        </div>
         <div class="exerciseCard">
             <table>
         <tr>
@@ -75,22 +77,29 @@ tr:nth-child(odd) {
 }
 .exercisesMainDiv{
     margin-bottom: 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.titleAndButton{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 30px;
 }
 .exercisesTitle{
-    text-align: left;
-    margin-left: 60px;
-    margin-left: 5%;
+    display: block;
+    color: #e6e6e6;
 }
 .addExercises{
-    float: right;
+    display: block;
     height: 40px;
     width: 110px;
-    margin-right: 80px;
-    margin-top: 10px;
     border-radius: 15px;
-    border: solid 1px #03A9F4;
-    background-color: #03A9F4;
+    border: solid 1px #e6e6e6;
+    background-color: #e6e6e6;
     font-weight: bold;
+    align-self: center;
+    box-shadow: 0px 0px 15px #01294c;
 }
 .addExercises :hover{
     float: right;
@@ -101,21 +110,18 @@ tr:nth-child(odd) {
 }
 .addExercises a{
     text-decoration: none;
-    color: white;
-    padding: 5px 20px;	
-
+    color: #e6373a;
+    padding: 5px 20px;
 }
 .addExercises img{
     width: 100%;
     height: 100%;
 }
 .exerciseCard{
-    width: 90%;
-    margin-left: 5%;
+    display: block;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 0 40px 0 rgb(0 0 0 / 15%);
-    margin-top: 60px;
     text-align: left;
 }
 
