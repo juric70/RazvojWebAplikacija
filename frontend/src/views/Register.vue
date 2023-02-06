@@ -85,7 +85,7 @@ export default{
 
 <style>
 .RegisterBackground{
-padding-top: 20px;
+padding: 10px;
 }
 .registerCard{
     border-radius: 30px;
@@ -109,13 +109,6 @@ padding-top: 20px;
     color: white;
 }
 
-#RegisterPhoto{
-    margin: 20px;
-    width: 170px;
-    height: 170px;
-    border-radius: 85px;
-    border: 2px solid #03A9F4 ;
-}
 
 .cardInputBox input, .cardInputBox select{
     height: 35px;

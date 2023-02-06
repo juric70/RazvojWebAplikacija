@@ -78,6 +78,16 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: #d9d9d9;
 }
+table tr td a{
+    text-decoration: none;
+    color: #01427b;
+    font-weight: bold;
+}
+table tr td a:hover{
+    text-decoration: none;
+    color: #e6373a;
+    font-weight: bold;
+}
 .exercisesMainDiv{
     display: flex;
     flex-direction: column;
@@ -104,16 +114,14 @@ tr:nth-child(odd) {
     align-self: center;
     box-shadow: 0px 0px 15px #01294c;
 }
-.addExercises :hover{
-    float: right;
-    border-radius: 15px;
-    border: solid 1px #03A9F4;
-    background-color: #03A9F4;
-    font-weight: bold;
-}
 .addExercises a{
     text-decoration: none;
     color: #e6373a;
+    padding: 5px 20px;
+}
+.addExercises a:hover{
+    text-decoration: none;
+    color: #01427b;
     padding: 5px 20px;
 }
 .addExercises img{

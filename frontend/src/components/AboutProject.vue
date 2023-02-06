@@ -1,7 +1,7 @@
 <template>
  
     <div id="AboutProjectInfo">
-        <h1>
+        <h1 style="color: #e6e6e6;">
           O Projektu
        </h1>
        <div id="aboutProjectCardsDiv">
@@ -101,14 +101,15 @@
         padding:0 30px;
     }
     .AboutProjectTechnologiesCard{
+        color: #e6e6e6;
       
     }
     .AboutProjectCard{
         width: 85%;
         height: 80%;
-   
         margin: auto;
         margin: 30px;
+        color: #e6e6e6;
     }
     
     #aboutProjectCardsDiv{
@@ -136,7 +137,7 @@
         font-weight: bold;
         float: left;
         text-decoration: none;
-        color: lightskyblue;
+        color: #e6e6e6;
     }
     #AboutProjectLinks{
         display: flex;

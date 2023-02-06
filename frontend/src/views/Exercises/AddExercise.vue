@@ -55,7 +55,6 @@ methods:{
 
 <style>
 .card{
-    margin-top: 20px;
     border-radius: 30px;
     border: solid 1px #e6e6e6;
     background-color: #e6e6e6;

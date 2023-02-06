@@ -5,10 +5,10 @@
                 <div class="blockDateAndButton">
                     <p class="creationDateForNews">{{ New.CreationDate }}</p>
                     <div class="blockNewsButtons">
-                        <button class="RegisterButton1" >
+                        <button v-if="store?.user?.role === 1" class="RegisterButton1" >
                             <router-link :to="{name: 'ModifyNews'}">Uredi</router-link>
                         </button>
-                        <button class="RegisterButton1" >
+                        <button v-if="store?.user?.role === 1" class="RegisterButton1" >
                             <router-link class="linkDeco" :to="{name: 'DeleteNews'}">Obrisi</router-link> 
                         </button>
                     </div> 
@@ -18,7 +18,7 @@
                     {{ New.Title }}
                 </h1>
                 <div class="blockNewsPicture" >
-                    <img class="pictureForNews" v-if="New !== ''" v-bind:src="`http://localhost:3000/${New.ImageName}`" /> 
+                    <img class="pictureForNews" v-if="New !== ''" v-bind:src="`http://kvsum.studenti.sum.ba/${New.ImageName}`" /> 
                 </div>
                 <p class="descriptionForNews">{{ New.Decsription }}</p>
                 <p class="blockAuthor">{{ New.Username }}</p>
@@ -31,6 +31,7 @@
 </template>
 <script>
 import axios from '../../../axios.js';
+import { store } from '../../../store.js';
 
 export default{
     name: 'OneNew',
@@ -38,6 +39,7 @@ export default{
         return{
             New: "",
             ImgName: "",
+            store
            
         }
     },
@@ -74,6 +76,14 @@ export default{
     border-radius: 10px;
     border: solid 1px #01427b;
     background-color: #01427b;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 10px;
+}
+.RegisterButton1:hover{
+    border-radius: 10px;
+    border: solid 1px #e6373a;
+    background-color: #e6373a;
     font-weight: bold;
     margin-left: 10px;
     padding: 10px;
