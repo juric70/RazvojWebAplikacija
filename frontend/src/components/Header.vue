@@ -94,6 +94,7 @@ header{
     height: 60px;
     font-weight: bold;
     display: table;
+    margin-bottom: 20px;
 }
 /* .headerComponents{
     display: flex;

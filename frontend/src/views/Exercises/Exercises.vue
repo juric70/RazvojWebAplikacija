@@ -76,10 +76,9 @@ tr:nth-child(odd) {
     background-color: #d9d9d9;
 }
 .exercisesMainDiv{
-    margin-bottom: 20%;
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding: 0px 40px 40px 40px;
 }
 .titleAndButton{
     display: flex;
