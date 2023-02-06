@@ -126,7 +126,9 @@
   </script>
 
 <style>
-#app { height: 100% }
+#app {
+   /* height: 100%  */
+}
 html,
 h1{
   z-index: 3;
