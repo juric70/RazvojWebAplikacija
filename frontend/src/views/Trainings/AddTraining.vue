@@ -36,6 +36,7 @@ data(){
         Title: "",
         Categories:"",
         selected: "",
+        storedid:"",
         store
     }
 },
@@ -46,9 +47,12 @@ methods:{
            Userid: this.store.user.id,
            selected: this.selected
         }).then((res) => {
-            if(res.data == true){
+            console.log(res.data.result, "e rezultat")
+            if(res.data.result == true){
+                this.storedid = res.data.output;
+                console.log( this.storedid[0], "ovo je id")
                 alert("Kreiraliste uspjesno :)")
-                window.location.replace(`/addexetotr/${this.$route.params.id}`);
+                window.location.replace(`/addexetotr/${this.storedid[0].id}`);
             }else{
                 alert("nesto nece!")
             }

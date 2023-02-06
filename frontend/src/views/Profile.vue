@@ -22,29 +22,33 @@
 
     <div class="paymentsAndSchedule">
             <div class="trainingSchedule">
-                <h2>Training schedule</h2>
+                <h2 class="profilesubtitle"><router-link :to="{name: 'AllTrainingsOfUser', params: {id : store?.user?.id}}">Moji treninzi</router-link></h2>
                 <div class="trainingScheduleDataStore">
-                    <h4>{{DataForTrainingSchedule[0]}}</h4>
-                    <input class="trainingScheduleWindow" type="text" value="">
-                    <h4>{{DataForTrainingSchedule[1]}}</h4>
-                    <input class="trainingScheduleWindow" type="text" value="">
-                    <h4>{{DataForTrainingSchedule[2]}}</h4>
-                    <input class="trainingScheduleWindow" type="text" value="">
-                    <h4>{{DataForTrainingSchedule[3]}}</h4>
-                    <input class="trainingScheduleWindow" type="text" value="">
-                    <h4>{{DataForTrainingSchedule[4]}}</h4>
-                    <input class="trainingScheduleWindow" type="text" value="">
+                    <table>
+                <tr>
+                    <th class="htprofile">Naziv treninga</th>
+                    <th class="htprofile">Datum treninga</th>
+                    <th class="htprofile">Početak - Kraj</th>
+                </tr>
+                <tr  v-for="ut in TrainingUsers" :key="ut.id">
+                    <td>{{ ut.TrainingTitle}}</td>
+                    <td>{{ ut.DateOfTraining }}</td>
+                    <td>{{ ut.startAt }} - {{ ut.EndsAt }}</td>
+                </tr>
+        
+            </table>
+
                 </div>
             </div>
 
             <div class="monthlyPayments">
-                <h2><router-link :to="{name: 'AllProgramsOfUser', params: {id : store?.user?.id}}">Mjesečne uplate</router-link></h2>
+                <h2 class="profilesubtitle"><router-link :to="{name: 'AllProgramsOfUser', params: {id : store?.user?.id}}">Mjesečne uplate</router-link></h2>
                 <div class="monthlyPaymentsDataStore">
                     <table>
                         <tr>
-                            <th>Naziv programa </th>
-                            <th>Mijesec za članstvo</th>
-                            <th>Uplaćeno: </th>
+                            <th class="htprofile">Naziv programa </th>
+                            <th class="htprofile">Mijesec za članstvo</th>
+                            <th class="htprofile">Uplaćeno: </th>
                             
                         </tr>
                         <tr  v-for="up in UsersPrograms" :key="up.id">
@@ -65,7 +69,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../../axios';
 import { store } from '../../store.js'
 
 
@@ -74,6 +78,7 @@ export default{
 name: 'Profile',
 data () {
     return {
+        TrainingUsers: "",
         DataForProfile:["Korisničko ime", "Ime", "Prezime", "Broj telefona", "Email",],
         KorisnickoIme:null,
         Ime:null,
@@ -88,6 +93,9 @@ data () {
 
 },
 mounted(){
+    axios.get(`/api/alltrainingsofuser/${this.store?.user?.id}`).then((res) => {
+        this.TrainingUsers = res.data.output;
+      })
     axios.get(`/api/programsofuser/${this.store?.user?.id}`).then((res) => {
         this.UsersPrograms = res.data.output;
       })
@@ -103,6 +111,13 @@ mounted(){
     display: flex;
     justify-content: center;
     margin-bottom: -20px;
+}
+.htprofile{
+    text-align: center;
+}
+.profilesubtitle a{
+    text-decoration: none;
+    color: #01427b;
 }
 .mainDiv{
     display: block;

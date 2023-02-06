@@ -56,22 +56,23 @@ table, th, td {
     border-collapse: collapse;
     overflow: hidden;
     padding: 10px;
-
    
 }
 th {
     font-size: 18px;
     color: #fff;
     line-height: 1.4;
-    background-color: #03A9F4;
+    background-color: #e6373a;
     text-align: left;
 
 
 }
-tr:nth-child(odd) {
+tr:nth-child(even) {
     background-color: #e6e6e6;
 }
-
+tr:nth-child(odd) {
+    background-color: #d9d9d9;
+}
 .exercisesMainDiv{
     margin-bottom: 20%;
 }

@@ -7,12 +7,13 @@
         
             <div class="cardInputBox">
                 <input type="date" placeholder="Datum treninga! " v-model="DateOfTraining" id="title">
+
             </div> 
             <div class="cardInputBox">
-                <input type="number" placeholder="Početak treninga! " v-model="startAt" id="title">
+                <input type="time" placeholder="Početak treninga! " v-model="startAt" id="title">
             </div>    
             <div class="cardInputBox">
-                <input type="number" placeholder="Kraj treninga! " v-model="EndsAt" id="title">
+                <input type="time" placeholder="Kraj treninga! " v-model="EndsAt" id="title">
             </div> 
 
         
@@ -67,7 +68,7 @@ export default{
                 TrainingId: this.TrainingId
             }).then((res) => {
                 if(res.data == true){
-                window.location.replace(`/tr`);
+                window.location.replace(`/trusers`);
                 }
              }).catch(() => {
                  alert("e tek sada ne valja :(")

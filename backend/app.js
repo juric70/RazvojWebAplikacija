@@ -740,13 +740,29 @@ app.post("/api/createtraining", function (req, res) {
   console.log(selected, "selected");
   db.query(
     `INSERT INTO training(Title, IsDeleted, CreationDate, CreatorId, CategoryId )
-            VALUES('${Title}', false ,'${date}', ${CreatorId}, ${selected})`,
+            VALUES('${Title}', false ,'${date}', ${CreatorId}, ${selected});
+            `,
     (error, result) => {
       if (error) {
         console.log(error);
-        res.json(false);
+        res.json({
+          result: false,
+        });
       } else {
-        return res.json(true);
+        db.query(`SELECT LAST_INSERT_ID() as id`, (errorSel, resultSel) => {
+          if (errorSel) {
+            console.log(error);
+            res.json({
+              result: false,
+            });
+          } else {
+            res.status(200).json({
+              msg: "Uspjesno Uređeno!",
+              result: true,
+              output: resultSel,
+            });
+          }
+        });
       }
     }
   );
@@ -1281,14 +1297,17 @@ app.put("/api/userpayment/:id", function (req, res) {
 //Spajanje treninga sa korisnicima
 app.post("/api/trainingforusers", function (req, res) {
   const { UserId, DateOfTraining, startAt, EndsAt, TrainingId } = req.body;
+  let dat = DateOfTraining.toString();
+  console.log(dat, "Datum treninga");
   db.query(
-    `INSERT INTO training_user(UserId, TrainingId, DateOfTraining, startAt, EndsAt, IsDeleted)
-           VALUES(${UserId} ,${TrainingId} ,${DateOfTraining}, ${startAt}, ${EndsAt}, false)`,
+    `INSERT INTO user_training(UserId, TrainingId, DateOfTraining, startAt, EndsAt, IsDeleted)
+           VALUES(${UserId} ,${TrainingId} ,'${dat}', '${startAt}', '${EndsAt}', false)`,
     (error, result) => {
       if (error) {
         console.log(error);
         res.json(false);
       } else {
+        console.log(dat, "Datum treninga");
         return res.json(true);
       }
     }
@@ -1345,7 +1364,7 @@ app.get("/api/traininguser/:id", function (req, res) {
 app.get("/api/alltrainingsofuser/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `SELECT ut.*, u.Username as Username, t.Title as TrainingTitle FROM user_training ut join users u on u.Id = ut.UserId join training t on t.id= ut.TrainingId where UserId = ${id} and IsDeleted = false order by str_to_date(DateOfTraining, '%y-%m-%d') `,
+    `SELECT ut.*, u.Username as Username, t.Title as TrainingTitle FROM user_training ut join users u on u.Id = ut.UserId join training t on t.id= ut.TrainingId where ut.UserId = ${id} and ut.IsDeleted = false order by str_to_date(ut.DateOfTraining, '%y-%m-%d') `,
     function (error, result) {
       if (error) {
         console.log(error);
@@ -1393,7 +1412,7 @@ app.get("/api/allusersoftraining/:id", function (req, res) {
 app.get("/api/deleteusertraining/:id", function (req, res) {
   var id = req.params["id"];
   db.query(
-    `UPDATE TABLE user_training SET IsDeleted = true WHERE id = ${id}`,
+    `UPDATE user_training SET IsDeleted = true WHERE id = ${id}`,
     (error, result) => {
       if (error) {
         console.log(error);

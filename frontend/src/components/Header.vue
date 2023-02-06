@@ -27,6 +27,7 @@
         <div class="headerButtonOne">
             <router-link class = "headerItem" to="/calendar">Raspored</router-link>
             <router-link class = "headerItem" to="/training">Treninzi</router-link>
+            <router-link v-if="store?.user != null " class = "headerItem" :to="{name: 'AllTrainingsOfUser', params: {id: store?.user?.id}}">Moji treninzi!</router-link>
             <router-link class = "headerItem" to="/coaches">Treneri</router-link>
             <router-link class = "headerItem" to="/programs">Programi</router-link>
            
@@ -48,6 +49,7 @@
                     <button class="dropdownRouterButton"><router-link  to="/categories" >Kategorije</router-link></button>
                     <button class="dropdownRouterButton"><router-link  to="/exercises" >Vježbe</router-link></button>
                     <button class="dropdownRouterButton"><router-link  to="/Trainings" >Trening</router-link></button>
+                    <button class="dropdownRouterButton"><router-link  :to="{name:'AllTrainingsUsers'}" >Privatni treninzi</router-link></button>
                 </div>
                 </div>
                 <div class="dropdownButton">

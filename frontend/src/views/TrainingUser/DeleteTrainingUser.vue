@@ -24,7 +24,7 @@ export default{
          
           axios.get(`/api/deleteusertraining/${id}`).then((res)=>{
              if(res.data){
-              window.location.replace(`/userstrainings`);
+              window.location.replace(`/trusers`);
              }
           }).catch((error) => {
               alert(error);

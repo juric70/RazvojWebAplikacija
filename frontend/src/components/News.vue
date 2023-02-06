@@ -119,9 +119,7 @@
     mounted(){
       axios.get('/api/news').then((res) => {
         this.newsData = res.data.news;
-        for(var i =0; i<this.newsData.length; i++){
-          console.log (this.newsData[i].Title + "   "  + this.newsData[i].Decsription)
-        }
+        
       })
     }
   };
