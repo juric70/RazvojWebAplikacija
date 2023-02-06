@@ -83,6 +83,7 @@ tr:nth-child(odd) {
     flex-direction: column;
     padding: 0px 40px 40px 40px;
 }
+
 .titleAndButton{
     display: flex;
     justify-content: space-between;
@@ -126,5 +127,12 @@ tr:nth-child(odd) {
     box-shadow: 0 0 40px 0 rgb(0 0 0 / 15%);
     text-align: left;
 }
+@media(max-width:400px){
 
+    .exercisesMainDiv{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 15px 15px 15px;
+}
+}
 </style>

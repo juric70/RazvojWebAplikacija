@@ -80,8 +80,8 @@ import { store } from '../../store.js'
     margin-left: 36%;
     padding: 4%;
 }
-@media(max-width:800px){
-    .LoginCard{
+@media(max-width:400px){
+    .loginCard{
         width: 80%;
         margin-left: 10%;
     }
