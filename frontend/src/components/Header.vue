@@ -20,17 +20,17 @@
 
 
     <div class="headerComponents">
+        <div class="headerLogoAndButton">
         <div class="headerLogo">
             <router-link to="/"><img class="headerLogo" :src="require('../assets/KVSUM-Logo.png')"/></router-link>
         </div>
-
         <div class="headerButtonOne">
             <router-link v-if="store?.user != null && store?.user?.role ===3 " class = "headerItem" to="/calendar">Raspored</router-link>
             <router-link class = "headerItem" to="/training">Treninzi</router-link>
             <router-link v-if="store?.user != null && store?.user?.role ===3 " class = "headerItem" :to="{name: 'AllTrainingsOfUser', params: {id: store?.user?.id}}">Moji treninzi!</router-link>
             <router-link class = "headerItem" to="/coaches">Treneri</router-link>
             <router-link class = "headerItem" to="/programs">Programi</router-link>
-           
+        </div>
         </div>
 
         <div class="headerButtonTwo">
@@ -96,9 +96,13 @@ header{
     display: table;
     margin-bottom: 20px;
 }
-/* .headerComponents{
+.headerComponents{
     display: flex;
-} */
+    justify-content: space-between;
+}
+.headerLogoAndButton{
+    display: flex;
+}
 .headerLogo{
     margin-left: 1%;
     width: 60px;
@@ -106,8 +110,9 @@ header{
     float: left;
 }
 .headerButtonOne{
-    display: inline;
+    display: flex;
     float: left;
+    min-width: fit-content;
 }
 .headerItem{
     display:inline-block;
@@ -119,6 +124,7 @@ header{
     color:  #e6373a;
 }
 .headerButtonTwo{
+    display: flex;
     float: right;
 }
 .dropdownButton {
@@ -171,11 +177,11 @@ header{
 
 
 #headerIconDiv{
-    display: inline;
+    display: flex;
 }
 .headerIcon{
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
 }
 #headerIcon{
     display: inline;
