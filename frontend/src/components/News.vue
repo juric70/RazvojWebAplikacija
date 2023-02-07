@@ -30,8 +30,9 @@
     >
       
         <swiper-slide v-for="news in newsData" :key="news.Id"> 
-          <div class=" imgDiv" :style="{'background-image': 'url('+ require(`../../../backend/public/${news.ImageName}`) +')'}">
+         <div class=" imgDiv" v-if="news !== ''" > 
             <!-- <img :src="require(`../../../backend/public/${news.ImageName}`)" alt=""> -->
+            <img v-if="news !== ''" v-bind:src="`http://kvsum.studenti.sum.ba/${news.ImageName}`" /> 
              <div class="newsAndBtn">
 
               <h1 style="z-index: 1000;">{{news.Title }}</h1>
