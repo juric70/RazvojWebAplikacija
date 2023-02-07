@@ -191,7 +191,7 @@ header{
 .dropdownMenuIcon{
     display: none;
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .headerItem{
         display: none;
     }

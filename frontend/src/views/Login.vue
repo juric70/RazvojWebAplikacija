@@ -71,7 +71,15 @@ import { store } from '../../store.js'
 /* .LoginBackground{
     padding-top: 20px;
 } */
-
+@media(max-width:400px){
+    .loginCard{
+        width: 80%;
+        margin-left: 10%;
+    }
+    .LoginInputBox input{
+        width: 80%;
+    }
+}
 .loginCard{
     border-radius: 30px;
     border: solid 1px #e6e6e6;
@@ -80,15 +88,7 @@ import { store } from '../../store.js'
     margin-left: 36%;
     padding: 4%;
 }
-@media(max-width:800px){
-    .LoginCard{
-        width: 80%;
-        margin-left: 10%;
-    }
-    .LoginInputBox input{
-        width: 80%;
-    }
-}
+
 .LoginDescriptionTitle{
     color: #01427b;
 }

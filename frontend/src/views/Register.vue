@@ -84,6 +84,15 @@ export default{
 </script>
 
 <style>
+@media(max-width:900px){
+    .registerCard{
+    border-radius: 30px;
+    border: solid 1px #e6e6e6;
+    background-color: #e6e6e6;
+    width: 85%;
+    margin-left: 5%;
+    }
+}
 .RegisterBackground{
 padding: 10px;
 }
@@ -120,17 +129,5 @@ padding: 10px;
 }
 
 
-@media(max-width:800px){
-    .card{
-        width: 80%;
-    }
-    .cardInputBox input, #textarea{
-        width: 80%;
-    }
-    .card{
-        background-color: #f2f2f2;
-        border: 0px;
-        padding: 7px;
-    }
-}
+
 </style>

@@ -249,7 +249,7 @@ app.post("/api/loginUser", function (req, res) {
                 secure: false,
                 httpOnly: true,
                 sameSite: "lax",
-                domain: 'studenti.sum.ba',
+                domain: "studenti.sum.ba",
               });
             }
 
@@ -296,11 +296,28 @@ app.get("/api/login", function (req, res) {
 });
 //Log out usera
 app.delete("/api/logoutUser", function (req, res) {
-  console.log("zali uci u login: ", res.cookies);
-  res.clearCookie("kvsum-token");
-  console.log("zali uci u login: ", res.cookies);
+  if (req.cookies["kvsum-token"] == null) {
+    res.json(true);
+  } else {
+    console.log("zali uci u login: ", req.cookies);
+    let token = req.cookies["kvsum-token"];
 
-  res.json(true);
+    if (ENVIRONMENT === "local") {
+      res.cookie("kvsum-token", token, {
+        domain: "localhost",
+        maxAge: 0,
+      });
+    } else {
+      res.cookie("kvsum-token", token, {
+        secure: false,
+        maxAge: 0,
+        domain: "studenti.sum.ba",
+      });
+    }
+    res.clearCookie("kvsum-token");
+    console.log("zali uci u login: ", req.cookies);
+    res.json(true);
+  }
 });
 //Display trenera
 app.get("/api/coaches", function (req, res) {

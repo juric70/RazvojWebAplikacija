@@ -102,4 +102,9 @@ footer{
 .footerCopyright{
     place-content: center;
 }
+@media(max-width:900px){
+    footer{
+        display: none;
+    }
+}
 </style>
