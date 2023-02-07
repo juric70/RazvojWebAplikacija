@@ -1,5 +1,5 @@
 <template>
-<div class="RegisterBackground">
+<div class="RegisterBackground" style="margin: 4% 0  ;">
         <div class="card">
             <h1 class="RegisterDescriptionTitle">
                Jeste li sigurni da se želite odjaviti?

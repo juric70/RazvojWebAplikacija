@@ -32,7 +32,7 @@
         <swiper-slide v-for="news in newsData" :key="news.Id"> 
          <div class=" imgDiv" v-if="news !== ''" > 
             <!-- <img :src="require(`../../../backend/public/${news.ImageName}`)" alt=""> -->
-            <img v-if="news !== ''" v-bind:src="`http://kvsum.studenti.sum.ba/${news.ImageName}`" /> 
+            <img v-bind:src="`http://kvsum.studenti.sum.ba/${news.ImageName}`" /> 
              <div class="newsAndBtn">
 
               <h1 style="z-index: 1000; -webkit-text-stroke: 1px #01427b; color: #e6e6e6">{{news.Title }}</h1>
