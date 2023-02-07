@@ -1,15 +1,18 @@
 <template>
     <div id="sider">
       <div id="siderCenter">
-      <RouterLink class="sideBarRouterLinks" to="/trainings" v-if="store?.user?.role == 2 || store?.user?.role == 1">Treninzi</RouterLink>
+      
       <RouterLink class="sideBarRouterLinks" to="/calendar">Raspored</RouterLink>
-      <RouterLink class="sideBarRouterLinks" to="/">Treneri</RouterLink>
-      <RouterLink class="sideBarRouterLinks" to="/">Cjenik</RouterLink>
-      <RouterLink class="sideBarRouterLinks" to="/">Album</RouterLink>
-      <RouterLink class="sideBarRouterLinks" to="/createUser" v-if=" store?.user?.role == 1">Kreiraj korisnika</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/training">Treninzi</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/trusers">Moji Treninzi!</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/coaches">Treneri</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/programs">Programi</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/profile">Profil</RouterLink>
       <RouterLink class="sideBarRouterLinks" to="/aboutUs">O nama</RouterLink>
-      <RouterLink class="sideBarRouterLinks" to="/exercises" v-if="store?.user?.role == 2 || store?.user?.role == 1">Vježbe</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/createUser" v-if=" store?.user?.role == 1">Kreiraj korisnika</RouterLink>
+      <RouterLink class="sideBarRouterLinks" to="/" v-if="store?.user?.role == 2 || store?.user?.role == 1">Vježbe</RouterLink>
       <router-link class="sideBarRouterLinks" to="/allnews" v-if="store?.user?.role == 2 || store?.user?.role == 1">Sve novosti</router-link>
+      <RouterLink class="sideBarRouterLinks" to="/trainings" v-if="store?.user?.role == 2 || store?.user?.role == 1">Treninzi</RouterLink>
 
       <RouterLink  v-if="store?.user == null" class="sideBarRouterLinks" to="/login">Login</RouterLink>
       <RouterLink v-if="store?.user != null" class="sideBarRouterLinks" to="/profile">Profile</RouterLink>
