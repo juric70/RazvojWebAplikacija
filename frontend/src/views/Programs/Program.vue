@@ -2,7 +2,7 @@
 
 
     <div class="RegisterBackground">
-        <div class="card">
+        <div class="cardTraining">
             <h1 class="RegisterDescriptionTitle">
                 {{ Program.Title }}
             </h1>

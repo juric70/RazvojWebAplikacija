@@ -13,7 +13,8 @@
                    
                 </tr>
                 <tr  v-for="ut in TrainingUsers" :key="ut.id">
-                    <td>{{ ut.TrainingTitle}}</td>
+                    <td><router-link :to="{name: 'FullTraining', params: {id: ut.TrainingId}}">{{ ut.TrainingTitle}}</router-link>
+                        </td>
                     <td>{{ ut.DateOfTraining }}</td>
                     <td>{{ ut.startAt }} - {{ ut.EndsAt }}</td>
                 </tr>
