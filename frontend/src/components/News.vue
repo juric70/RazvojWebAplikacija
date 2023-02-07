@@ -35,7 +35,7 @@
             <img v-if="news !== ''" v-bind:src="`http://kvsum.studenti.sum.ba/${news.ImageName}`" /> 
              <div class="newsAndBtn">
 
-              <h1 style="z-index: 1000;">{{news.Title }}</h1>
+              <h1 style="z-index: 1000; -webkit-text-stroke: 1px #01427b; color: #e6e6e6">{{news.Title }}</h1>
               <button class="NewsButtonClass"><router-link :to="{name:'OneNew', params:{id: news.Id}}">Procitaj Više!</router-link></button>
               </div>
              
@@ -193,8 +193,13 @@ h1{
     height: 45px;
     padding:6px;
     border-radius: 15px;
-    border: 1px solid white;
+    border: 1px solid #01427b;
     background-color: white;
+}
+.NewsButtonClass a{
+  text-decoration: none;
+  font-weight: bold;
+  color: #01427b;
 }
 .newsAndBtn{
   width: 94%;
